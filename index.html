@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MinivanRent | Аренда минивэнов у частных лиц</title>
+    <style>
+        /* Фон всего лендинга */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #231A16; /* Тёмный шоколад */
+            background-image: url("image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23E8DCC5' stroke-opacity='0.12' stroke-width='1' fill='none'%3E%3Cpath d='M0,20 L100,20 M20,0 L20,100 M0,80 L100,80 M80,0 L80,100 M0,0 L100,100 M100,0 L0,100'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 100px 100px;
+            min-height: 100vh;
+            color: #F0E6D2; /* Светло-бежевый текст для контраста */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка сайта */
+        header {
+            padding: 20px 0;
+            position: relative;
+            z-index: 10;
+            background: rgba(35, 26, 22, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #E8DCC5;
+            text-decoration: none;
+        }
+
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .phone {
+            color: #D4C4A8;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .phone:hover {
+            color: #E8DCC5;
+        }
+
+        .callback-btn {
+            background: #8B5A2B;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .callback-btn:hover {
+            background: #A06A37;
+        }
+
+        /* Первый экран */
+        .hero {
+            display: flex;
+            align-items: center;
+            min-height: 80vh;
+            padding: 60px 0;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 40px;
+        }
+
+        .hero-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px; /* Уменьшил отступ */
+            color: #E8DCC5;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #D4C4A8;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .search-form {
+            background: rgba(40, 30, 25, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #D4C4A8;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #443A30;
+            background: #3A2F28;
+            color: #F0E6D2;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .btn-primary {
+            background: #8B5A2B;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #A06A37;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #E8DCC5;
+            border: 1px solid #8B5A2B;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(139, 90, 43, 0.2);
+        }
+
+        /* Секция "Почему выбирают нас" */
+        .why-us {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #E8DCC5;
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .reason-card {
+            background: rgba(40, 30, 25, 0.6);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .reason-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .reason-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #8B5A2B;
+        }
+
+        .reason-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #E8DCC5;
+        }
+
+        .reason-card p {
+            color: #D4C4A8;
+        }
+
+        /* Секция "Популярные модели" */
+        .popular-cars {
+            padding: 80px 0;
+            background: rgba(30, 25, 20, 0.5);
+        }
+
+        .carousel {
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 280px;
+            margin-right: 20px;
+        }
+
+        .car-card {
+            background: rgba(40, 30, 25, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .car-image-placeholder {
+            height: 200px;
+            background: #5D4037;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #D4C4A8;
+            font-size: 0.9rem;
+        }
+
+        .car-info {
+            padding: 20px;
+        }
+
+        .car-info h3 {
+            margin: 0 0 10px 0;
+            color: #E8DCC5;
+        }
+
+        .car-info p {
+            color: #D4C4A8;
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .car-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #8B5A2B;
+            margin-top: 10px;
+        }
+
+        /* Секция "Для владельцев" */
+        .owners-cta {
+            padding: 100px 0;
+            text-align: center;
+            background: rgba(35, 26, 22, 0.9);
+        }
+
+        .owners-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #E8DCC5;
+        }
+
+        .owners-cta p {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: #D4C4A8;
+            font-size: 1.1rem;
+        }
+
+        /* Футер */
+        footer {
+            padding: 60px 0 20px;
+            background: rgba(20, 15, 12, 0.95);
+            border-top: 1px solid #443A30;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: #E8DCC5;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #D4C4A8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #E8DCC5;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #443A30;
+            color: #D4C4A8;
+            font-size: 0.9rem;
+        }
+
+        /* Адаптив для мобильных */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                min-height: auto;
+                padding: 40px 0;
+            }
+
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                max-width: 100%;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+
+            .form-group {
+                min-width: 100%;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                min-width: 100%;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .carousel-inner {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .carousel-item {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">MinivanRent</a>
+                <div class="header-contact">
+                    <a href="tel:+71234567890" class="phone">+7 (123) 456-78-90</a>
+                    <button class="callback-btn">Заказать звонок</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Арендуй минивэн у частных владельцев на новогодние праздники на 40% дешевле, чем в прокате</h1>
+                
+                <div class="search-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Марка</label>
+                            <select>
+                                <option>Любая</option>
+                                <option value="">Любая</option>
+                                <option value="Mercedes">Mercedes</option>
+                                <option value="Volkswagen">Volkswagen</option>
+                                <option value="Toyota">Toyota</option>
+                                <option value="Hyundai">Hyundai</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Модель</label>
+                            <select>
+                                <option value="">Любая</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Двигатель</label>
+                            <select>
+                                <option value="">Любой</option>
+                                <option value="diesel">Дизель</option>
+                                <option value="gasoline">Бензин</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Коробка передач</label>
+                            <select>
+                                <option value="">Любая</option>
+                                <option value="automatic">Автомат</option>
+                                <option value="manual">Механика</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Цена в день (₽)</label>
+                            <input type="number" placeholder="до 5000">
+                        </div>
+                        <div class="form-group">
+                            <label>Залог (₽)</label>
+                            <input type="number" placeholder="до 10000">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="catalog/" class="btn btn-primary">Смотреть все машины</a>
+                    <a href="forms/voice-request.html" class="btn btn-secondary">Интеллектуальный ИИ-поиск по голосовому запросу</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <!-- Поместите сюда изображение в папку static/images/ и назовите его hero-image.jpg -->
+                <img src="static/images/hero-image.jpg" alt="Минивэн для аренды">
+            </div>
+        </div>
+    </section>
+
+    <section class="why-us">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают нас</h2>
+            <div class="why-us-grid">
+                <div class="reason-card">
+                    <div class="reason-icon">💰</div>
+                    <h3>Честные цены</h3>
+                    <p>Указываем окончательную цену без доплат</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">🚗</div>
+                    <h3>Широкий выбор</h3>
+                    <p>120 минивэнов в наличии на новогодние каникулы</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">🤝</div>
+                    <h3>Честные условия</h3>
+                    <p>В случае повреждения ремонт по честной цене</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="popular-cars">
+        <div class="container">
+            <h2 class="section-title">Популярные модели</h2>
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <!-- Эти данные будут динамически подгружаться из каталога -->
+                    <div class="carousel-item">
+                        <div class="car-card">
+                            <div class="car-image-placeholder">[Фото автомобиля 1]</div>
+                            <div class="car-info">
+                                <h3>Модель 1</h3>
+                                <p>2018, 2.2L, АКПП</p>
+                                <p>8 мест</p>
+                                <div class="car-price">3500 ₽/день</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="car-card">
+                            <div class="car-image-placeholder">[Фото автомобиля 2]</div>
+                            <div class="car-info">
+                                <h3>Модель 2</h3>
+                                <p>2019, 2.0L, МКПП</p>
+                                <p>8 мест</p>
+                                <div class="car-price">3200 ₽/день</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="car-card">
+                            <div class="car-image-placeholder">[Фото автомобиля 3]</div>
+                            <div class="car-info">
+                                <h3>Модель 3</h3>
+                                <p>2017, 2.8L, АКПП</p>
+                                <p>12 мест</p>
+                                <div class="car-price">4000 ₽/день</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="car-card">
+                            <div class="car-image-placeholder">[Фото автомобиля 4]</div>
+                            <div class="car-info">
+                                <h3>Модель 4</h3>
+                                <p>2020, 2.5L, АКПП</p>
+                                <p>9 мест</p>
+                                <div class="car-price">3800 ₽/день</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="car-card">
+                            <div class="car-image-placeholder">[Фото автомобиля 5]</div>
+                            <div class="car-info">
+                                <h3>Модель 5</h3>
+                                <p>2020, 2.2L, АКПП</p>
+                                <p>8 мест</p>
+                                <div class="car-price">3700 ₽/день</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="car-card">
+                            <div class="car-image-placeholder">[Фото автомобиля 6]</div>
+                            <div class="car-info">
+                                <h3>Модель 6</h3>
+                                <p>2018, 2.0L, АКПП</p>
+                                <p>8 мест</p>
+                                <div class="car-price">3400 ₽/день</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="car-card">
+                            <div class="car-image-placeholder">[Фото автомобиля 7]</div>
+                            <div class="car-info">
+                                <h3>Модель 7</h3>
+                                <p>2019, 2.8L, МКПП</p>
+                                <p>12 мест</p>
+                                <div class="car-price">3600 ₽/день</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="car-card">
+                            <div class="car-image-placeholder">[Фото автомобиля 8]</div>
+                            <div class="car-info">
+                                <h3>Модель 8</h3>
+                                <p>2021, 2.5L, АКПП</p>
+                                <p>9 мест</p>
+                                <div class="car-price">4100 ₽/день</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="car-card">
+                            <div class="car-image-placeholder">[Фото автомобиля 9]</div>
+                            <div class="car-info">
+                                <h3>Модель 9</h3>
+                                <p>2016, 2.2L, МКПП</p>
+                                <p>8 мест</p>
+                                <div class="car-price">3000 ₽/день</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="car-card">
+                            <div class="car-image-placeholder">[Фото автомобиля 10]</div>
+                            <div class="car-info">
+                                <h3>Модель 10</h3>
+                                <p>2020, 2.0L, АКПП</p>
+                                <p>8 мест</p>
+                                <div class="car-price">3900 ₽/день</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="owners-cta">
+        <div class="container">
+            <h2>Сдайте свой минивэн в аренду</h2>
+            <p>Зарабатывайте на своем автомобиле, когда он не нужен вам. Простая регистрация и поддержка 24/7.</p>
+            <a href="forms/owner-application.html" class="btn btn-primary">Разместить автомобиль</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><a href="mailto:info@minivanrent.ru">info@minivanrent.ru</a></li>
+                        <li><a href="tel:+71234567890">+7 (123) 456-78-90</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Правовая информация</h3>
+                    <ul>
+                        <li><a href="privacy.html">Политика конфиденциальности</a></li>
+                        <li><a href="#">Условия использования</a></li>
+                        <li><a href="#">Политика cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MinivanRent. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Простая логика для кнопки "Заказать звонок"
+        document.querySelector('.callback-btn').addEventListener('click', function() {
+            alert('Спасибо! Мы свяжемся с вами в ближайшее время.');
+        });
+
+        // Простой слайдер для карусели
+        let currentIndex = 0;
+        const items = document.querySelectorAll('.carousel-item');
+        const totalItems = items.length;
+        const itemWidth = 300; // Ширина одного элемента + отступ (280 + 20)
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalItems;
+            const carouselInner = document.querySelector('.carousel-inner');
+            carouselInner.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+        }
+
+        // Автоматическая прокрутка каждые 5 секунд
+        setInterval(nextSlide, 5000);
+    </script>
+</body>
+</html>
