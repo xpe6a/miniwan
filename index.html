@@ -9,23 +9,55 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #231A16; /* Тёмный шоколад */
-            background-image: url("image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23E8DCC5' stroke-opacity='0.12' stroke-width='1' fill='none'%3E%3Cpath d='M0,20 L100,20 M20,0 L20,100 M0,80 L100,80 M80,0 L80,100 M0,0 L100,100 M100,0 L0,100'/%3E%3C/g%3E%3C/svg%3E");
+            background-color: #231A16;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23E8DCC5' stroke-opacity='0.12' stroke-width='1' fill='none'%3E%3Cpath d='M0,20 L100,20 M20,0 L20,100 M0,80 L100,80 M80,0 L80,100 M0,0 L100,100 M100,0 L0,100'/%3E%3C/g%3E%3C/svg%3E");
             background-repeat: repeat;
             background-size: 100px 100px;
             min-height: 100vh;
-            color: #F0E6D2; /* Светло-бежевый текст для контраста */
+            color: #F0E6D2;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow-x: hidden;
         }
 
+        /* ИКОНКА ЧАТА */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .chat-button {
+            width: 60px;
+            height: 60px;
+            background: #8B5A2B;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .chat-button:hover {
+            background: #A06A37;
+            transform: scale(1.1);
+        }
+
+        .chat-icon {
+            font-size: 24px;
+            color: white;
+        }
+
+        /* Остальные стили без изменений */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* Шапка сайта */
         header {
             padding: 20px 0;
             position: relative;
@@ -78,100 +110,56 @@
             background: #A06A37;
         }
 
-        /* Первый экран */
         .hero {
-            display: flex;
-            align-items: center;
             min-height: 80vh;
             padding: 60px 0;
+            background-image: url('static/images/hero-image.jpg');
+            background-position: right center;
+            background-size: 50% auto;
+            background-repeat: no-repeat;
+            position: relative;
         }
 
         .hero-content {
-            flex: 1;
-            padding-right: 40px;
-        }
-
-        .hero-image {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: auto;
-            display: block;
+            max-width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 60vh;
         }
 
         .hero h1 {
             font-size: 3rem;
-            margin-bottom: 10px; /* Уменьшил отступ */
+            margin-bottom: 40px;
             color: #E8DCC5;
             line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #D4C4A8;
-            margin-bottom: 40px;
-            max-width: 600px;
-        }
-
-        .search-form {
-            background: rgba(40, 30, 25, 0.8);
-            border-radius: 10px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .form-row {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .form-group {
-            flex: 1;
-            min-width: 150px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #D4C4A8;
-            font-size: 0.9rem;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            border-radius: 5px;
-            border: 1px solid #443A30;
-            background: #3A2F28;
-            color: #F0E6D2;
+            max-width: 100%;
         }
 
         .action-buttons {
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 10px;
         }
 
         .btn {
-            padding: 15px 25px;
+            padding: 12px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px;
             transition: all 0.3s;
             text-decoration: none;
             text-align: center;
-            flex: 1;
-            min-width: 200px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: auto;
+            min-width: 220px;
+            max-width: 280px;
         }
 
         .btn-primary {
@@ -181,6 +169,7 @@
 
         .btn-primary:hover {
             background: #A06A37;
+            transform: translateY(-1px);
         }
 
         .btn-secondary {
@@ -190,10 +179,33 @@
         }
 
         .btn-secondary:hover {
-            background: rgba(139, 90, 43, 0.2);
+            background: rgba(139, 90, 43, 0.1);
+            transform: translateY(-1px);
         }
 
-        /* Секция "Почему выбирают нас" */
+        .ai-search-note {
+            color: #D4C4A8;
+            font-size: 12px;
+            line-height: 1.4;
+            padding: 8px 0 8px 12px;
+            border-left: 2px solid #8B5A2B;
+            margin-top: -2px;
+            margin-bottom: 20px;
+            max-width: 300px;
+            background: rgba(40, 30, 25, 0.4);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .ai-search-note::before {
+            content: "💡";
+            margin-right: 6px;
+            font-size: 11px;
+        }
+
+        .btn-icon {
+            font-size: 16px;
+        }
+
         .why-us {
             padding: 80px 0;
         }
@@ -239,26 +251,28 @@
             color: #D4C4A8;
         }
 
-        /* Секция "Популярные модели" */
         .popular-cars {
             padding: 80px 0;
             background: rgba(30, 25, 20, 0.5);
         }
 
+        /* ОБНОВЛЕННАЯ КАРУСЕЛЬ */
         .carousel {
             max-width: 1200px;
             margin: 0 auto;
             overflow: hidden;
+            position: relative;
         }
 
         .carousel-inner {
             display: flex;
             transition: transform 0.5s ease;
+            gap: 20px;
         }
 
         .carousel-item {
-            min-width: 280px;
-            margin-right: 20px;
+            min-width: calc(25% - 15px);
+            flex-shrink: 0;
         }
 
         .car-card {
@@ -266,41 +280,62 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            height: 100%;
         }
 
-        .car-image-placeholder {
-            height: 200px;
+        .car-image {
+            height: 180px;
             background: #5D4037;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-placeholder {
             color: #D4C4A8;
             font-size: 0.9rem;
+            text-align: center;
         }
 
         .car-info {
-            padding: 20px;
+            padding: 15px;
         }
 
         .car-info h3 {
-            margin: 0 0 10px 0;
+            margin: 0 0 8px 0;
             color: #E8DCC5;
+            font-size: 1.1rem;
+            min-height: 1.2em;
         }
 
         .car-info p {
             color: #D4C4A8;
-            margin: 5px 0;
-            font-size: 0.9rem;
+            margin: 4px 0;
+            font-size: 0.85rem;
+            min-height: 1em;
         }
 
         .car-price {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
             color: #8B5A2B;
-            margin-top: 10px;
+            margin-top: 8px;
+            min-height: 1.2em;
         }
 
-        /* Секция "Для владельцев" */
+        .text-placeholder {
+            color: #8B7D6B;
+            font-style: italic;
+        }
+
         .owners-cta {
             padding: 100px 0;
             text-align: center;
@@ -320,7 +355,6 @@
             font-size: 1.1rem;
         }
 
-        /* Футер */
         footer {
             padding: 60px 0 20px;
             background: rgba(20, 15, 12, 0.95);
@@ -367,7 +401,6 @@
             font-size: 0.9rem;
         }
 
-        /* Адаптив для мобильных */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -375,59 +408,54 @@
             }
 
             .hero {
-                flex-direction: column;
-                text-align: center;
+                background-image: none;
                 min-height: auto;
                 padding: 40px 0;
             }
 
             .hero-content {
-                padding-right: 0;
-                margin-bottom: 40px;
+                max-width: 100%;
+                min-height: auto;
+                text-align: center;
             }
 
             .hero h1 {
                 font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-                max-width: 100%;
-            }
-
-            .form-row {
-                flex-direction: column;
-            }
-
-            .form-group {
-                min-width: 100%;
-            }
-
-            .action-buttons {
-                flex-direction: column;
+                margin-bottom: 30px;
             }
 
             .btn {
-                min-width: 100%;
+                min-width: 200px;
+                margin: 0 auto;
+                font-size: 13px;
+                padding: 10px 16px;
+            }
+
+            .ai-search-note {
+                margin: 0 auto 20px;
+                text-align: left;
+                max-width: 250px;
+                font-size: 11px;
             }
 
             .section-title {
                 font-size: 2rem;
             }
 
-            .carousel-inner {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
             .carousel-item {
-                margin-right: 0;
-                margin-bottom: 20px;
+                min-width: calc(50% - 10px);
             }
         }
     </style>
 </head>
 <body>
+    <!-- Иконка чата -->
+    <div class="chat-widget">
+        <button class="chat-button" onclick="openChat()">
+            <span class="chat-icon">💬</span>
+        </button>
+    </div>
+
     <header>
         <div class="container">
             <div class="header-content">
@@ -445,62 +473,16 @@
             <div class="hero-content">
                 <h1>Арендуй минивэн у частных владельцев на новогодние праздники на 40% дешевле, чем в прокате</h1>
                 
-                <div class="search-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Марка</label>
-                            <select>
-                                <option>Любая</option>
-                                <option value="">Любая</option>
-                                <option value="Mercedes">Mercedes</option>
-                                <option value="Volkswagen">Volkswagen</option>
-                                <option value="Toyota">Toyota</option>
-                                <option value="Hyundai">Hyundai</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Модель</label>
-                            <select>
-                                <option value="">Любая</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Двигатель</label>
-                            <select>
-                                <option value="">Любой</option>
-                                <option value="diesel">Дизель</option>
-                                <option value="gasoline">Бензин</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Коробка передач</label>
-                            <select>
-                                <option value="">Любая</option>
-                                <option value="automatic">Автомат</option>
-                                <option value="manual">Механика</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Цена в день (₽)</label>
-                            <input type="number" placeholder="до 5000">
-                        </div>
-                        <div class="form-group">
-                            <label>Залог (₽)</label>
-                            <input type="number" placeholder="до 10000">
-                        </div>
-                    </div>
-                </div>
-                
                 <div class="action-buttons">
-                    <a href="catalog/" class="btn btn-primary">Смотреть все машины</a>
-                    <a href="forms/voice-request.html" class="btn btn-secondary">Интеллектуальный ИИ-поиск по голосовому запросу</a>
+                    <a href="catalog/" class="btn btn-primary">Смотреть все автомобили в наличии</a>
+                    <a href="forms/voice-request.html" class="btn btn-secondary">
+                        <span class="btn-icon">🤖</span>
+                        Воспользоваться интеллектуальным ИИ-поиском
+                    </a>
+                    <div class="ai-search-note">
+                        Например, найти автомобиль для поездки в Минск из Москвы, на 7 дней, не старше 5 лет, бензиновый, не дороже 6000 в день
+                    </div>
                 </div>
-            </div>
-            <div class="hero-image">
-                <!-- Поместите сюда изображение в папку static/images/ и назовите его hero-image.jpg -->
-                <img src="static/images/hero-image.jpg" alt="Минивэн для аренды">
             </div>
         </div>
     </section>
@@ -532,118 +514,8 @@
         <div class="container">
             <h2 class="section-title">Популярные модели</h2>
             <div class="carousel">
-                <div class="carousel-inner">
-                    <!-- Эти данные будут динамически подгружаться из каталога -->
-                    <div class="carousel-item">
-                        <div class="car-card">
-                            <div class="car-image-placeholder">[Фото автомобиля 1]</div>
-                            <div class="car-info">
-                                <h3>Модель 1</h3>
-                                <p>2018, 2.2L, АКПП</p>
-                                <p>8 мест</p>
-                                <div class="car-price">3500 ₽/день</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="car-card">
-                            <div class="car-image-placeholder">[Фото автомобиля 2]</div>
-                            <div class="car-info">
-                                <h3>Модель 2</h3>
-                                <p>2019, 2.0L, МКПП</p>
-                                <p>8 мест</p>
-                                <div class="car-price">3200 ₽/день</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="car-card">
-                            <div class="car-image-placeholder">[Фото автомобиля 3]</div>
-                            <div class="car-info">
-                                <h3>Модель 3</h3>
-                                <p>2017, 2.8L, АКПП</p>
-                                <p>12 мест</p>
-                                <div class="car-price">4000 ₽/день</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="car-card">
-                            <div class="car-image-placeholder">[Фото автомобиля 4]</div>
-                            <div class="car-info">
-                                <h3>Модель 4</h3>
-                                <p>2020, 2.5L, АКПП</p>
-                                <p>9 мест</p>
-                                <div class="car-price">3800 ₽/день</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="car-card">
-                            <div class="car-image-placeholder">[Фото автомобиля 5]</div>
-                            <div class="car-info">
-                                <h3>Модель 5</h3>
-                                <p>2020, 2.2L, АКПП</p>
-                                <p>8 мест</p>
-                                <div class="car-price">3700 ₽/день</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="car-card">
-                            <div class="car-image-placeholder">[Фото автомобиля 6]</div>
-                            <div class="car-info">
-                                <h3>Модель 6</h3>
-                                <p>2018, 2.0L, АКПП</p>
-                                <p>8 мест</p>
-                                <div class="car-price">3400 ₽/день</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="car-card">
-                            <div class="car-image-placeholder">[Фото автомобиля 7]</div>
-                            <div class="car-info">
-                                <h3>Модель 7</h3>
-                                <p>2019, 2.8L, МКПП</p>
-                                <p>12 мест</p>
-                                <div class="car-price">3600 ₽/день</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="car-card">
-                            <div class="car-image-placeholder">[Фото автомобиля 8]</div>
-                            <div class="car-info">
-                                <h3>Модель 8</h3>
-                                <p>2021, 2.5L, АКПП</p>
-                                <p>9 мест</p>
-                                <div class="car-price">4100 ₽/день</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="car-card">
-                            <div class="car-image-placeholder">[Фото автомобиля 9]</div>
-                            <div class="car-info">
-                                <h3>Модель 9</h3>
-                                <p>2016, 2.2L, МКПП</p>
-                                <p>8 мест</p>
-                                <div class="car-price">3000 ₽/день</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="car-card">
-                            <div class="car-image-placeholder">[Фото автомобиля 10]</div>
-                            <div class="car-info">
-                                <h3>Модель 10</h3>
-                                <p>2020, 2.0L, АКПП</p>
-                                <p>8 мест</p>
-                                <div class="car-price">3900 ₽/день</div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="carousel-inner" id="carouselInner">
+                    <!-- Данные загружаются через JavaScript -->
                 </div>
             </div>
         </div>
@@ -683,25 +555,85 @@
     </footer>
 
     <script>
-        // Простая логика для кнопки "Заказать звонок"
+        // Чат с поддержкой
+        function openChat() {
+            alert('Чат с поддержкой будет открыт здесь. В реальном проекте подключите сервис чата (например, Telegram Web App, JivoSite и т.д.)');
+        }
+
+        // Заказ звонка
         document.querySelector('.callback-btn').addEventListener('click', function() {
             alert('Спасибо! Мы свяжемся с вами в ближайшее время.');
         });
 
-        // Простой слайдер для карусели
+        // СОЗДАНИЕ КАРТОЧКИ МАШИНЫ С ПЛЕЙСХОЛДЕРАМИ
+        function createCarCard(carId) {
+            return `
+                <div class="carousel-item">
+                    <a href="car-details/car-${carId}.html" style="text-decoration: none; color: inherit;">
+                        <div class="car-card">
+                            <div class="car-image">
+                                <img src="static/images/minivans/car-${carId}.jpg" alt="Машина ${carId}" 
+                                     onerror="this.style.display='none'; this.previousElementSibling.style.display='flex'">
+                                <div class="image-placeholder" style="display: none;">
+                                    Фото машины ${carId}
+                                </div>
+                            </div>
+                            <div class="car-info">
+                                <h3 class="text-placeholder">Название машины ${carId}</h3>
+                                <p class="text-placeholder">Год, двигатель, коробка</p>
+                                <p class="text-placeholder">Количество мест, тип топлива</p>
+                                <div class="car-price text-placeholder">0 ₽/день</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `;
+        }
+
+        // ИНИЦИАЛИЗАЦИЯ КАРУСЕЛИ
         let currentIndex = 0;
-        const items = document.querySelectorAll('.carousel-item');
-        const totalItems = items.length;
-        const itemWidth = 300; // Ширина одного элемента + отступ (280 + 20)
+
+        function initCarousel() {
+            const carouselInner = document.getElementById('carouselInner');
+            
+            // Создаем 10 карточек с плейсхолдерами
+            const carIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            const carCards = carIds.map(createCarCard).join('');
+            carouselInner.innerHTML = carCards;
+            
+            // Дублируем первую карточку в конец для бесконечной прокрутки
+            const firstItem = carouselInner.children[0].cloneNode(true);
+            carouselInner.appendChild(firstItem);
+            
+            // Обновляем карусель
+            updateCarousel();
+            
+            // Запускаем автоматическую прокрутку
+            setInterval(nextSlide, 3000);
+        }
 
         function nextSlide() {
-            currentIndex = (currentIndex + 1) % totalItems;
-            const carouselInner = document.querySelector('.carousel-inner');
+            const carouselInner = document.getElementById('carouselInner');
+            const items = document.querySelectorAll('.carousel-item');
+            if (items.length <= 1) return;
+            
+            const totalRealItems = items.length - 1;
+            currentIndex = (currentIndex + 1) % totalRealItems;
+            
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const carouselInner = document.getElementById('carouselInner');
+            const items = document.querySelectorAll('.carousel-item');
+            if (items.length === 0) return;
+            
+            const itemWidth = items[0].offsetWidth + 20;
             carouselInner.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
         }
 
-        // Автоматическая прокрутка каждые 5 секунд
-        setInterval(nextSlide, 5000);
+        // Запускаем карусель
+        document.addEventListener('DOMContentLoaded', initCarousel);
     </script>
 </body>
 </html>

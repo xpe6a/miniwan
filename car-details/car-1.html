@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Минивэн для аренды - MinivanRent</title>
+    <style>
+        /* Фон всего лендинга */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #231A16;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23E8DCC5' stroke-opacity='0.12' stroke-width='1' fill='none'%3E%3Cpath d='M0,20 L100,20 M20,0 L20,100 M0,80 L100,80 M80,0 L80,100 M0,0 L100,100 M100,0 L0,100'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 100px 100px;
+            min-height: 100vh;
+            color: #F0E6D2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка сайта */
+        header {
+            padding: 20px 0;
+            position: relative;
+            z-index: 10;
+            background: rgba(35, 26, 22, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #E8DCC5;
+            text-decoration: none;
+        }
+
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .phone {
+            color: #D4C4A8;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .phone:hover {
+            color: #E8DCC5;
+        }
+
+        .callback-btn {
+            background: #8B5A2B;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .callback-btn:hover {
+            background: #A06A37;
+        }
+
+        /* Детали машины */
+        .car-detail {
+            padding: 60px 0;
+        }
+
+        .car-detail-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .car-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+        }
+
+        .car-main-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .car-main-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .car-gallery:hover .gallery-controls {
+            opacity: 1;
+        }
+
+        .gallery-btn {
+            width: 50px;
+            height: 50px;
+            background: rgba(139, 90, 43, 0.8);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .gallery-btn:hover {
+            background: #A06A37;
+        }
+
+        .gallery-counter {
+            text-align: center;
+            color: #D4C4A8;
+            font-size: 0.9rem;
+        }
+
+        .car-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .car-title {
+            font-size: 2.5rem;
+            color: #E8DCC5;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .car-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #8B5A2B;
+            margin-bottom: 20px;
+        }
+
+        .car-specs {
+            background: rgba(40, 30, 25, 0.6);
+            border-radius: 10px;
+            padding: 30px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .spec-label {
+            color: #D4C4A8;
+            font-size: 0.9rem;
+        }
+
+        .spec-value {
+            color: #E8DCC5;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .car-description {
+            color: #D4C4A8;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .booking-section {
+            background: rgba(40, 30, 25, 0.6);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .booking-section h3 {
+            color: #E8DCC5;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #8B5A2B;
+            color: white;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: #A06A37;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            padding: 60px 0 20px;
+            background: rgba(20, 15, 12, 0.95);
+            border-top: 1px solid #443A30;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: #E8DCC5;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #D4C4A8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #E8DCC5;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #443A30;
+            color: #D4C4A8;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .car-detail-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .car-title {
+                font-size: 2rem;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-controls {
+                opacity: 1;
+            }
+
+            .gallery-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">MinivanRent</a>
+                <div class="header-contact">
+                    <a href="tel:+71234567890" class="phone">+7 (123) 456-78-90</a>
+                    <button class="callback-btn">Заказать звонок</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="car-detail">
+        <div class="container">
+            <div class="car-detail-content">
+                <div class="car-gallery">
+                    <div class="car-main-image">
+                        <img id="mainImage" src="../static/images/minivans/car-1-1.jpg" alt="Минивэн для аренды">
+                        <div class="gallery-controls">
+                            <button class="gallery-btn" onclick="prevImage()">‹</button>
+                            <button class="gallery-btn" onclick="nextImage()">›</button>
+                        </div>
+                    </div>
+                    <div class="gallery-counter">
+                        Фото <span id="currentImage">1</span> из <span id="totalImages">3</span>
+                    </div>
+                </div>
+                
+                <div class="car-info">
+                    <div>
+                        <h1 class="car-title" id="carName">Минивэн для аренды</h1>
+                        <div class="car-price" id="carPrice">4 500 ₽/день</div>
+                        
+                        <div class="car-specs">
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Марка</span>
+                                    <span class="spec-value" id="carBrand">Mercedes</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Модель</span>
+                                    <span class="spec-value" id="carModel">V-Class</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Год выпуска</span>
+                                    <span class="spec-value" id="carYear">2022</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Двигатель</span>
+                                    <span class="spec-value" id="carEngine">2.0L Дизель</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Коробка передач</span>
+                                    <span class="spec-value" id="carTransmission">Автоматическая</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Количество мест</span>
+                                    <span class="spec-value" id="carSeats">8</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Тип топлива</span>
+                                    <span class="spec-value" id="carFuel">Дизель</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Пробег</span>
+                                    <span class="spec-value" id="carMileage">45 000 км</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="car-description" id="carDescription">
+                        <p>Просторный и комфортабельный минивэн для аренды. Идеальный выбор для семейных поездок, корпоративных мероприятий и путешествий с друзьями.</p>
+                        <p>Автомобиль оснащен современной системой безопасности, климат-контролем, мультимедийной системой с навигацией и камерой заднего вида. Мягкие сиденья с подогревом и ample space для багажа делают поездку максимально комфортной.</p>
+                    </div>
+                    
+                    <div class="booking-section">
+                        <h3>Забронировать автомобиль</h3>
+                        <a href="../forms/booking.html?car=1" class="btn btn-primary">Забронировать сейчас</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><a href="mailto:info@minivanrent.ru">info@minivanrent.ru</a></li>
+                        <li><a href="tel:+71234567890">+7 (123) 456-78-90</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Правовая информация</h3>
+                    <ul>
+                        <li><a href="../privacy.html">Политика конфиденциальности</a></li>
+                        <li><a href="../how-it-works.html">Как это работает</a></li>
+                        <li><a href="#">Условия использования</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MinivanRent. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // =============================================
+        // НАСТРОЙКА МАШИНЫ - МЕНЯЙ ТОЛЬКО ЭТИ ЗНАЧЕНИЯ
+        // =============================================
+        
+        // Основная информация
+        const TOTAL_PHOTOS = 3;           // Общее количество фото
+        const CAR_NAME = "Минивэн для аренды";
+        const CAR_PRICE = "4 500";
+        
+        // Технические характеристики
+        const CAR_BRAND = "Mercedes";
+        const CAR_MODEL = "V-Class";
+        const CAR_YEAR = "2022";
+        const CAR_ENGINE = "2.0L Дизель";
+        const CAR_TRANSMISSION = "Автоматическая";
+        const CAR_SEATS = "8";
+        const CAR_FUEL = "Дизель";
+        const CAR_MILEAGE = "45 000 км";
+        
+        // Описание
+        const CAR_DESCRIPTION = `Просторный и комфортабельный минивэн для аренды. Идеальный выбор для семейных поездок, корпоративных мероприятий и путешествий с друзьями.
+
+Автомобиль оснащен современной системой безопасности, климат-контролем, мультимедийной системой с навигацией и камерой заднего вида. Мягкие сиденья с подогревом и ample space для багажа делают поездку максимально комфортной.`;
+
+        // =============================================
+        // КОНЕЦ НАСТРОЙКИ - НИЖЕ НЕ МЕНЯТЬ
+        // =============================================
+
+        // Инициализация данных
+        document.getElementById('carName').textContent = CAR_NAME;
+        document.getElementById('carPrice').textContent = CAR_PRICE + ' ₽/день';
+        document.getElementById('carBrand').textContent = CAR_BRAND;
+        document.getElementById('carModel').textContent = CAR_MODEL;
+        document.getElementById('carYear').textContent = CAR_YEAR;
+        document.getElementById('carEngine').textContent = CAR_ENGINE;
+        document.getElementById('carTransmission').textContent = CAR_TRANSMISSION;
+        document.getElementById('carSeats').textContent = CAR_SEATS;
+        document.getElementById('carFuel').textContent = CAR_FUEL;
+        document.getElementById('carMileage').textContent = CAR_MILEAGE;
+        document.getElementById('carDescription').innerHTML = CAR_DESCRIPTION.replace(/\n/g, '<br>');
+        document.getElementById('totalImages').textContent = TOTAL_PHOTOS;
+
+        // Управление галереей
+        let currentImageIndex = 1;
+
+        function updateImage() {
+            const mainImage = document.getElementById('mainImage');
+            const currentImageSpan = document.getElementById('currentImage');
+            
+            mainImage.src = `../static/images/minivans/car-1-${currentImageIndex}.jpg`;
+            currentImageSpan.textContent = currentImageIndex;
+            
+            // Скрываем/показываем кнопки управления
+            const galleryControls = document.querySelector('.gallery-controls');
+            if (TOTAL_PHOTOS > 1) {
+                galleryControls.style.display = 'flex';
+            } else {
+                galleryControls.style.display = 'none';
+            }
+        }
+
+        function nextImage() {
+            currentImageIndex = currentImageIndex % TOTAL_PHOTOS + 1;
+            updateImage();
+        }
+
+        function prevImage() {
+            currentImageIndex = currentImageIndex === 1 ? TOTAL_PHOTOS : currentImageIndex - 1;
+            updateImage();
+        }
+
+        // Инициализация галереи
+        updateImage();
+
+        // Заказ звонка
+        document.querySelector('.callback-btn').addEventListener('click', function() {
+            alert('Спасибо! Мы свяжемся с вами в ближайшее время.');
+        });
+    </script>
+</body>
+</html>
