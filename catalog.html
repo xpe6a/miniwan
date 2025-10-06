@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог минивэнов | MinivanRent</title>
+    <style>
+        /* Основные стили как на главной */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #231A16;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23E8DCC5' stroke-opacity='0.12' stroke-width='1' fill='none'%3E%3Cpath d='M0,20 L100,20 M20,0 L20,100 M0,80 L100,80 M80,0 L80,100 M0,0 L100,100 M100,0 L0,100'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 100px 100px;
+            min-height: 100vh;
+            color: #F0E6D2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            position: relative;
+            z-index: 10;
+            background: rgba(35, 26, 22, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #E8DCC5;
+            text-decoration: none;
+        }
+
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .phone {
+            color: #D4C4A8;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .phone:hover {
+            color: #E8DCC5;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #8B5A2B;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #A06A37;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #E8DCC5;
+            border: 1px solid #8B5A2B;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(139, 90, 43, 0.1);
+        }
+
+        /* Стили для каталога */
+        .catalog-header {
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .catalog-header h1 {
+            font-size: 2.5rem;
+            color: #E8DCC5;
+            margin-bottom: 10px;
+        }
+
+        .cars-count {
+            color: #D4C4A8;
+            font-size: 1.1rem;
+        }
+
+        .catalog-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+            padding: 30px 0 60px;
+        }
+
+        /* Стили фильтров */
+        .filters-sidebar {
+            background: rgba(40, 30, 25, 0.8);
+            border-radius: 10px;
+            padding: 25px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .filters-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .filters-header h2 {
+            color: #E8DCC5;
+            margin: 0;
+            font-size: 1.3rem;
+        }
+
+        .clear-filters {
+            background: none;
+            border: none;
+            color: #8B5A2B;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: underline;
+        }
+
+        .clear-filters:hover {
+            color: #A06A37;
+        }
+
+        .filter-group {
+            margin-bottom: 25px;
+            border-bottom: 1px solid #443A30;
+            padding-bottom: 20px;
+        }
+
+        .filter-group:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .filter-group h3 {
+            color: #E8DCC5;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .filter-option input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #8B5A2B;
+        }
+
+        .filter-option label {
+            color: #D4C4A8;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .filter-option-count {
+            color: #8B7D6B;
+            font-size: 0.9rem;
+        }
+
+        .price-range {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .price-inputs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .price-inputs input {
+            flex: 1;
+            padding: 8px 12px;
+            background: rgba(35, 26, 22, 0.8);
+            border: 1px solid #8B5A2B;
+            border-radius: 5px;
+            color: #F0E6D2;
+        }
+
+        .apply-filters {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* Стили сетки автомобилей */
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .car-card {
+            background: rgba(40, 30, 25, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .car-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .car-image {
+            height: 200px;
+            background: #5D4037;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .car-card:hover .car-image img {
+            transform: scale(1.05);
+        }
+
+        .image-placeholder {
+            color: #D4C4A8;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .car-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #8B5A2B;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .car-info {
+            padding: 20px;
+        }
+
+        .car-title {
+            font-size: 1.2rem;
+            color: #E8DCC5;
+            margin: 0 0 10px 0;
+            line-height: 1.3;
+        }
+
+        .car-details {
+            color: #D4C4A8;
+            margin: 8px 0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .car-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .car-feature {
+            background: rgba(139, 90, 43, 0.2);
+            color: #D4C4A8;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .car-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #8B5A2B;
+            margin: 15px 0 10px 0;
+        }
+
+        .car-price-period {
+            font-size: 0.9rem;
+            color: #D4C4A8;
+            font-weight: normal;
+        }
+
+        .book-btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* Пагинация */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 40px;
+            padding: 20px 0;
+        }
+
+        .page-btn {
+            padding: 8px 16px;
+            background: rgba(40, 30, 25, 0.8);
+            border: 1px solid #8B5A2B;
+            border-radius: 5px;
+            color: #E8DCC5;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .page-btn:hover:not(.disabled) {
+            background: #8B5A2B;
+        }
+
+        .page-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .page-numbers {
+            display: flex;
+            gap: 8px;
+        }
+
+        .page-number {
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .page-number.active {
+            background: #8B5A2B;
+            color: white;
+        }
+
+        .page-number:not(.active):hover {
+            background: rgba(139, 90, 43, 0.3);
+        }
+
+        /* Состояние загрузки и пустого состояния */
+        .loading, .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #D4C4A8;
+            font-size: 1.1rem;
+            grid-column: 1 / -1;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            .catalog-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .filters-sidebar {
+                position: static;
+                margin-bottom: 30px;
+            }
+            
+            .cars-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .catalog-header h1 {
+                font-size: 2rem;
+            }
+            
+            .cars-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .price-inputs {
+                flex-direction: column;
+            }
+        }
+
+        footer {
+            padding: 60px 0 20px;
+            background: rgba(20, 15, 12, 0.95);
+            border-top: 1px solid #443A30;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: #E8DCC5;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #D4C4A8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #E8DCC5;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #443A30;
+            color: #D4C4A8;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">MinivanRent</a>
+                <div class="header-contact">
+                    <a href="tel:+71234567890" class="phone">+7 (123) 456-78-90</a>
+                    <a href="forms/owner-application.html" class="btn btn-secondary">Сдать машину в аренду</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="catalog-header">
+        <div class="container">
+            <h1>Каталог минивэнов</h1>
+            <div class="cars-count" id="carsCount">Загружаем автомобили...</div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="catalog-content">
+            <!-- Боковая панель фильтров -->
+            <aside class="filters-sidebar">
+                <div class="filters-header">
+                    <h2>Фильтры</h2>
+                    <button class="clear-filters" onclick="clearAllFilters()">Сбросить все</button>
+                </div>
+
+                <!-- Фильтр по марке -->
+                <div class="filter-group">
+                    <h3>Марка</h3>
+                    <div class="filter-options" id="brandFilter">
+                        <!-- Динамически заполняется через JS -->
+                    </div>
+                </div>
+
+                <!-- Фильтр по цене -->
+                <div class="filter-group">
+                    <h3>Цена за день</h3>
+                    <div class="price-range">
+                        <div class="price-inputs">
+                            <input type="number" id="minPrice" placeholder="От" min="0">
+                            <input type="number" id="maxPrice" placeholder="До" min="0">
+                        </div>
+                        <button class="btn btn-primary apply-filters" onclick="applyFilters()">Применить фильтры</button>
+                    </div>
+                </div>
+
+                <!-- Фильтр по году -->
+                <div class="filter-group">
+                    <h3>Год выпуска</h3>
+                    <div class="filter-options" id="yearFilter">
+                        <!-- Динамически заполняется через JS -->
+                    </div>
+                </div>
+
+                <!-- Фильтр по коробке передач -->
+                <div class="filter-group">
+                    <h3>Коробка передач</h3>
+                    <div class="filter-options" id="transmissionFilter">
+                        <!-- Динамически заполняется через JS -->
+                    </div>
+                </div>
+
+                <!-- Фильтр по типу топлива -->
+                <div class="filter-group">
+                    <h3>Тип топлива</h3>
+                    <div class="filter-options" id="fuelFilter">
+                        <!-- Динамически заполняется через JS -->
+                    </div>
+                </div>
+
+                <!-- Фильтр по количеству мест -->
+                <div class="filter-group">
+                    <h3>Количество мест</h3>
+                    <div class="filter-options" id="seatsFilter">
+                        <!-- Динамически заполняется через JS -->
+                    </div>
+                </div>
+
+                <!-- Фильтр по залогу -->
+                <div class="filter-group">
+                    <h3>Залог</h3>
+                    <div class="filter-options" id="depositFilter">
+                        <!-- Динамически заполняется через JS -->
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Основной контент - сетка автомобилей -->
+            <main>
+                <div class="cars-grid" id="carsGrid">
+                    <!-- Автомобили загружаются через JavaScript -->
+                    <div class="loading">Загрузка автомобилей...</div>
+                </div>
+
+                <!-- Пагинация -->
+                <div class="pagination" id="pagination" style="display: none;">
+                    <button class="page-btn prev-btn" onclick="changePage(currentPage - 1)">← Назад</button>
+                    <div class="page-numbers" id="pageNumbers"></div>
+                    <button class="page-btn next-btn" onclick="changePage(currentPage + 1)">Вперед →</button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><a href="mailto:info@minivanrent.ru">info@minivanrent.ru</a></li>
+                        <li><a href="tel:+71234567890">+7 (123) 456-78-90</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Правовая информация</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Политика конфиденциальности</a></li>
+                        <li><a href="#">Условия использования</a></li>
+                        <li><a href="#">Политика cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MinivanRent. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Глобальные переменные
+        let allCars = [];
+        let filteredCars = [];
+        let currentPage = 1;
+        const carsPerPage = 9;
+        let currentFilters = {};
+
+        // Загрузка данных
+        async function loadCarsData() {
+            try {
+                const response = await fetch('data/cars.json');
+                allCars = await response.json();
+                initCatalog();
+            } catch (error) {
+                console.error('Ошибка загрузки данных:', error);
+                document.getElementById('carsGrid').innerHTML = 
+                    '<div class="no-results">Ошибка загрузки данных. Пожалуйста, попробуйте позже.</div>';
+            }
+        }
+
+        // Инициализация каталога
+        function initCatalog() {
+            filteredCars = [...allCars];
+            updateCarsCount();
+            renderFilters();
+            renderCars();
+            setupPagination();
+        }
+
+        // Обновление счетчика автомобилей
+        function updateCarsCount() {
+            const countElement = document.getElementById('carsCount');
+            const count = filteredCars.length;
+            countElement.textContent = `Найдено ${count} автомобилей`;
+        }
+
+        // Рендер фильтров
+        function renderFilters() {
+            renderBrandFilter();
+            renderYearFilter();
+            renderTransmissionFilter();
+            renderFuelFilter();
+            renderSeatsFilter();
+            renderDepositFilter();
+        }
+
+        function renderBrandFilter() {
+            const brands = [...new Set(allCars.map(car => car.brand))].sort();
+            const container = document.getElementById('brandFilter');
+            container.innerHTML = brands.map(brand => {
+                const count = allCars.filter(car => car.brand === brand).length;
+                return `
+                    <div class="filter-option">
+                        <input type="checkbox" id="brand-${brand}" value="${brand}" onchange="handleFilterChange()">
+                        <label for="brand-${brand}">${brand}</label>
+                        <span class="filter-option-count">(${count})</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderYearFilter() {
+            const years = [...new Set(allCars.map(car => car.year))].sort((a, b) => b - a);
+            const container = document.getElementById('yearFilter');
+            container.innerHTML = years.map(year => {
+                const count = allCars.filter(car => car.year === year).length;
+                return `
+                    <div class="filter-option">
+                        <input type="checkbox" id="year-${year}" value="${year}" onchange="handleFilterChange()">
+                        <label for="year-${year}">${year}</label>
+                        <span class="filter-option-count">(${count})</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderTransmissionFilter() {
+            const transmissions = [...new Set(allCars.map(car => car.transmission))];
+            const container = document.getElementById('transmissionFilter');
+            container.innerHTML = transmissions.map(transmission => {
+                const count = allCars.filter(car => car.transmission === transmission).length;
+                const label = transmission === 'automatic' ? 'Автоматическая' : 'Механическая';
+                return `
+                    <div class="filter-option">
+                        <input type="checkbox" id="transmission-${transmission}" value="${transmission}" onchange="handleFilterChange()">
+                        <label for="transmission-${transmission}">${label}</label>
+                        <span class="filter-option-count">(${count})</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderFuelFilter() {
+            const fuels = [...new Set(allCars.map(car => car.fuelType))];
+            const container = document.getElementById('fuelFilter');
+            container.innerHTML = fuels.map(fuel => {
+                const count = allCars.filter(car => car.fuelType === fuel).length;
+                return `
+                    <div class="filter-option">
+                        <input type="checkbox" id="fuel-${fuel}" value="${fuel}" onchange="handleFilterChange()">
+                        <label for="fuel-${fuel}">${fuel}</label>
+                        <span class="filter-option-count">(${count})</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderSeatsFilter() {
+            const seats = [...new Set(allCars.map(car => car.seats))].sort((a, b) => a - b);
+            const container = document.getElementById('seatsFilter');
+            container.innerHTML = seats.map(seat => {
+                const count = allCars.filter(car => car.seats === seat).length;
+                return `
+                    <div class="filter-option">
+                        <input type="checkbox" id="seats-${seat}" value="${seat}" onchange="handleFilterChange()">
+                        <label for="seats-${seat}">${seat} мест</label>
+                        <span class="filter-option-count">(${count})</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderDepositFilter() {
+            const deposits = ['0-10000', '10000-25000', '25000-50000', '50000+'];
+            const container = document.getElementById('depositFilter');
+            container.innerHTML = deposits.map(range => {
+                return `
+                    <div class="filter-option">
+                        <input type="checkbox" id="deposit-${range}" value="${range}" onchange="handleFilterChange()">
+                        <label for="deposit-${range}">${getDepositLabel(range)}</label>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function getDepositLabel(range) {
+            const labels = {
+                '0-10000': 'до 10 000 ₽',
+                '10000-25000': '10 000-25 000 ₽',
+                '25000-50000': '25 000-50 000 ₽',
+                '50000+': 'свыше 50 000 ₽'
+            };
+            return labels[range];
+        }
+
+        // Обработка изменений фильтров
+        function handleFilterChange() {
+            applyFilters();
+        }
+
+        function applyFilters() {
+            currentFilters = getCurrentFilters();
+            filteredCars = allCars.filter(car => matchesFilters(car));
+            currentPage = 1;
+            updateCarsCount();
+            renderCars();
+            setupPagination();
+        }
+
+        function getCurrentFilters() {
+            const filters = {};
+            
+            // Бренды
+            filters.brands = getCheckedValues('brand');
+            
+            // Годы
+            filters.years = getCheckedValues('year').map(year => parseInt(year));
+            
+            // Коробки передач
+            filters.transmissions = getCheckedValues('transmission');
+            
+            // Типы топлива
+            filters.fuels = getCheckedValues('fuel');
+            
+            // Количество мест
+            filters.seats = getCheckedValues('seats').map(seat => parseInt(seat));
+            
+            // Цена
+            filters.minPrice = document.getElementById('minPrice').value ? parseInt(document.getElementById('minPrice').value) : 0;
+            filters.maxPrice = document.getElementById('maxPrice').value ? parseInt(document.getElementById('maxPrice').value) : Infinity;
+            
+            // Залог
+            filters.depositRanges = getCheckedValues('deposit');
+            
+            return filters;
+        }
+
+        function getCheckedValues(prefix) {
+            const checkboxes = document.querySelectorAll(`input[type="checkbox"][id^="${prefix}-"]:checked`);
+            return Array.from(checkboxes).map(cb => cb.value);
+        }
+
+        function matchesFilters(car) {
+            const f = currentFilters;
+            
+            // Проверка бренда
+            if (f.brands.length > 0 && !f.brands.includes(car.brand)) return false;
+            
+            // Проверка года
+            if (f.years.length > 0 && !f.years.includes(car.year)) return false;
+            
+            // Проверка коробки передач
+            if (f.transmissions.length > 0 && !f.transmissions.includes(car.transmission)) return false;
+            
+            // Проверка типа топлива
+            if (f.fuels.length > 0 && !f.fuels.includes(car.fuelType)) return false;
+            
+            // Проверка количества мест
+            if (f.seats.length > 0 && !f.seats.includes(car.seats)) return false;
+            
+            // Проверка цены
+            if (car.price < f.minPrice || car.price > f.maxPrice) return false;
+            
+            // Проверка залога
+            if (f.depositRanges.length > 0) {
+                const depositMatch = f.depositRanges.some(range => {
+                    const [min, max] = range === '50000+' ? [50000, Infinity] : range.split('-').map(Number);
+                    return car.deposit >= min && car.deposit <= max;
+                });
+                if (!depositMatch) return false;
+            }
+            
+            return true;
+        }
+
+        // Очистка фильтров
+        function clearAllFilters() {
+            // Сброс чекбоксов
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            
+            // Сброс полей цены
+            document.getElementById('minPrice').value = '';
+            document.getElementById('maxPrice').value = '';
+            
+            applyFilters();
+        }
+
+        // Рендер автомобилей
+        function renderCars() {
+            const grid = document.getElementById('carsGrid');
+            
+            if (filteredCars.length === 0) {
+                grid.innerHTML = '<div class="no-results">По вашему запросу ничего не найдено. Попробуйте изменить параметры фильтров.</div>';
+                return;
+            }
+            
+            const startIndex = (currentPage - 1) * carsPerPage;
+            const endIndex = startIndex + carsPerPage;
+            const carsToShow = filteredCars.slice(startIndex, endIndex);
+            
+            grid.innerHTML = carsToShow.map(car => `
+                <div class="car-card" onclick="window.location.href='car-detail.html?id=${car.id}'">
+                    <div class="car-image">
+                        <img src="${car.images[0]}" alt="${car.brand} ${car.model}" 
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="image-placeholder" style="display: none;">
+                            ${car.brand} ${car.model}
+                        </div>
+                        ${car.isPopular ? '<div class="car-badge">Популярный</div>' : ''}
+                    </div>
+                    <div class="car-info">
+                        <h3 class="car-title">${car.brand} ${car.model}</h3>
+                        <p class="car-details">${car.year} год • ${car.engine} • ${car.transmission === 'automatic' ? 'АКПП' : 'МКПП'}</p>
+                        <p class="car-details">${car.seats} мест • ${car.fuelType}</p>
+                        
+                        <div class="car-features">
+                            <span class="car-feature">${car.doors} двери</span>
+                            <span class="car-feature">${car.airConditioning ? 'Кондиционер' : 'Без кондиционера'}</span>
+                        </div>
+                        
+                        <div class="car-price">
+                            ${car.price} ₽ <span class="car-price-period">/ день</span>
+                        </div>
+                        <div class="car-details">Залог: ${car.deposit} ₽</div>
+                        
+                        <button class="btn btn-primary book-btn" onclick="event.stopPropagation(); bookCar(${car.id})">
+                            Забронировать
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Пагинация
+        function setupPagination() {
+            const totalPages = Math.ceil(filteredCars.length / carsPerPage);
+            const pagination = document.getElementById('pagination');
+            const pageNumbers = document.getElementById('pageNumbers');
+            
+            if (totalPages <= 1) {
+                pagination.style.display = 'none';
+                return;
+            }
+            
+            pagination.style.display = 'flex';
+            
+            // Кнопки назад/вперед
+            document.querySelector('.prev-btn').disabled = currentPage === 1;
+            document.querySelector('.next-btn').disabled = currentPage === totalPages;
+            
+            // Номера страниц
+            pageNumbers.innerHTML = '';
+            for (let i = 1; i <= totalPages; i++) {
+                const pageBtn = document.createElement('div');
+                pageBtn.className = `page-number ${i === currentPage ? 'active' : ''}`;
+                pageBtn.textContent = i;
+                pageBtn.onclick = () => changePage(i);
+                pageNumbers.appendChild(pageBtn);
+            }
+        }
+
+        function changePage(page) {
+            const totalPages = Math.ceil(filteredCars.length / carsPerPage);
+            if (page < 1 || page > totalPages) return;
+            
+            currentPage = page;
+            renderCars();
+            setupPagination();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Бронирование автомобиля
+        function bookCar(carId) {
+            window.location.href = `booking.html?carId=${carId}`;
+        }
+
+        // Загрузка данных при загрузке страницы
+        document.addEventListener('DOMContentLoaded', loadCarsData);
+    </script>
+</body>
+</html>

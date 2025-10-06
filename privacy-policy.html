@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика конфиденциальности | MinivanRent</title>
+    <style>
+        /* Основные стили как на главной */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #231A16;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23E8DCC5' stroke-opacity='0.12' stroke-width='1' fill='none'%3E%3Cpath d='M0,20 L100,20 M20,0 L20,100 M0,80 L100,80 M80,0 L80,100 M0,0 L100,100 M100,0 L0,100'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 100px 100px;
+            min-height: 100vh;
+            color: #F0E6D2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            position: relative;
+            z-index: 10;
+            background: rgba(35, 26, 22, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #E8DCC5;
+            text-decoration: none;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #E8DCC5;
+            border: 1px solid #8B5A2B;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(139, 90, 43, 0.1);
+        }
+
+        /* Контент политики */
+        .policy-content {
+            padding: 40px 0 60px;
+        }
+
+        .policy-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #443A30;
+        }
+
+        .policy-header h1 {
+            font-size: 2.5rem;
+            color: #E8DCC5;
+            margin-bottom: 15px;
+        }
+
+        .policy-meta {
+            color: #D4C4A8;
+            font-size: 1rem;
+        }
+
+        .last-updated {
+            background: rgba(139, 90, 43, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* Навигация по разделам */
+        .policy-nav {
+            background: rgba(40, 30, 25, 0.8);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 40px;
+            position: sticky;
+            top: 20px;
+            z-index: 5;
+        }
+
+        .policy-nav h3 {
+            color: #E8DCC5;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .nav-link {
+            color: #8B5A2B;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            background: rgba(139, 90, 43, 0.1);
+            color: #A06A37;
+        }
+
+        /* Стили для разделов */
+        .policy-section {
+            background: rgba(40, 30, 25, 0.8);
+            border-radius: 10px;
+            padding: 35px;
+            margin-bottom: 30px;
+            scroll-margin-top: 20px;
+        }
+
+        .policy-section h2 {
+            color: #E8D4A8;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #8B5A2B;
+        }
+
+        .policy-section h3 {
+            color: #E8DCC5;
+            font-size: 1.2rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .policy-section p {
+            color: #D4C4A8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .policy-section ul, .policy-section ol {
+            color: #D4C4A8;
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .policy-section li {
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        .policy-section strong {
+            color: #E8DCC5;
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background: rgba(139, 90, 43, 0.2);
+            border-left: 4px solid #8B5A2B;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: #E8DCC5;
+            font-style: italic;
+        }
+
+        .definition-list {
+            margin: 20px 0;
+        }
+
+        .definition-term {
+            color: #E8DCC5;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .definition-description {
+            color: #D4C4A8;
+            margin-bottom: 15px;
+            padding-left: 15px;
+        }
+
+        .contact-info {
+            background: rgba(35, 26, 22, 0.6);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .contact-info h4 {
+            color: #E8DCC5;
+            margin-bottom: 10px;
+        }
+
+        /* Кнопка "Наверх" */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #8B5A2B;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #A06A37;
+            transform: translateY(-3px);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .policy-header h1 {
+                font-size: 2rem;
+            }
+            
+            .policy-section {
+                padding: 25px 20px;
+            }
+            
+            .nav-links {
+                grid-template-columns: 1fr;
+            }
+            
+            .policy-nav {
+                position: static;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .policy-header h1 {
+                font-size: 1.7rem;
+            }
+            
+            .policy-section {
+                padding: 20px 15px;
+            }
+            
+            .policy-section h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        footer {
+            padding: 60px 0 20px;
+            background: rgba(20, 15, 12, 0.95);
+            border-top: 1px solid #443A30;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: #E8DCC5;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #D4C4A8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #E8DCC5;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #443A30;
+            color: #D4C4A8;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Кнопка "Наверх" -->
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">MinivanRent</a>
+                <a href="index.html" class="btn btn-secondary">← На главную</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="policy-content">
+            <!-- Заголовок -->
+            <div class="policy-header">
+                <h1>Политика конфиденциальности</h1>
+                <div class="policy-meta">
+                    Документ описывает правила сбора и обработки персональных данных<br>
+                    <div class="last-updated">Последнее обновление: 15 декабря 2024 года</div>
+                </div>
+            </div>
+
+            <!-- Навигация -->
+            <nav class="policy-nav">
+                <h3>Содержание документа</h3>
+                <div class="nav-links">
+                    <a href="#general" class="nav-link">1. Общие положения</a>
+                    <a href="#definitions" class="nav-link">2. Основные понятия</a>
+                    <a href="#data-collection" class="nav-link">3. Сбор данных</a>
+                    <a href="#data-usage" class="nav-link">4. Использование данных</a>
+                    <a href="#data-protection" class="nav-link">5. Защита данных</a>
+                    <a href="#user-rights" class="nav-link">6. Права пользователей</a>
+                    <a href="#cookies" class="nav-link">7. Файлы cookies</a>
+                    <a href="#changes" class="nav-link">8. Изменения политики</a>
+                    <a href="#contacts" class="nav-link">9. Контакты</a>
+                </div>
+            </nav>
+
+            <!-- Основное содержание -->
+            <section id="general" class="policy-section">
+                <h2>1. Общие положения</h2>
+                <p>Настоящая Политика конфиденциальности (далее — «Политика») определяет порядок обработки и защиты персональных данных пользователей сервиса MinivanRent (далее — «Сервис»), принадлежащего ООО «МинивэнРент» (ИНН 1234567890, ОГРН 1234567890123).</p>
+                
+                <p>Используя Сервис MinivanRent, вы соглашаетесь с условиями настоящей Политики конфиденциальности. Если вы не согласны с этими условиями, пожалуйста, не используйте наш Сервис.</p>
+
+                <div class="highlight-box">
+                    <p>Мы стремимся защищать вашу конфиденциальность и обеспечивать безопасность ваших персональных данных. Эта Политика объясняет, как мы собираем, используем и защищаем информацию о вас.</p>
+                </div>
+            </section>
+
+            <section id="definitions" class="policy-section">
+                <h2>2. Основные понятия</h2>
+                <div class="definition-list">
+                    <div class="definition-term">Персональные данные</div>
+                    <div class="definition-description">Любая информация, относящаяся к прямо или косвенно определенному или определяемому физическому лицу (субъекту персональных данных).</div>
+
+                    <div class="definition-term">Обработка персональных данных</div>
+                    <div class="definition-description">Любое действие (операция) или совокупность действий (операций), совершаемых с использованием средств автоматизации или без использования таких средств с персональными данными.</div>
+
+                    <div class="definition-term">Конфиденциальность персональных данных</div>
+                    <div class="definition-description">Обязательное для соблюдения требование не допускать их распространения без согласия субъекта персональных данных или наличия иного законного основания.</div>
+
+                    <div class="definition-term">Пользователь</div>
+                    <div class="definition-description">Лицо, имеющее доступ к Сайту посредством сети Интернет и использующее Сервис MinivanRent.</div>
+                </div>
+            </section>
+
+            <section id="data-collection" class="policy-section">
+                <h2>3. Какие данные мы собираем</h2>
+                
+                <h3>3.1. Данные, предоставляемые пользователем</h3>
+                <p>При использовании нашего Сервиса мы можем собирать следующую информацию:</p>
+                <ul>
+                    <li><strong>Контактные данные:</strong> имя, фамилия, адрес электронной почты, номер телефона</li>
+                    <li><strong>Данные для бронирования:</strong> даты аренды, предпочтения по автомобилю</li>
+                    <li><strong>Документы:</strong> данные паспорта, водительского удостоверения</li>
+                    <li><strong>Платежная информация:</strong> данные для обработки платежей (обрабатываются платежными системами)</li>
+                    <li><strong>Коммуникация:</strong> переписка с поддержкой, отзывы и комментарии</li>
+                </ul>
+
+                <h3>3.2. Данные, собираемые автоматически</h3>
+                <p>При посещении нашего сайта мы можем автоматически собирать:</p>
+                <ul>
+                    <li>IP-адрес и данные о местоположении</li>
+                    <li>Тип браузера и операционной системы</li>
+                    <li>Информацию об устройстве</li>
+                    <li>Историю посещений и действия на сайте</li>
+                    <li>Данные файлов cookies</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p>Мы не собираем избыточные данные и обрабатываем только ту информацию, которая необходима для предоставления услуг аренды автомобилей.</p>
+                </div>
+            </section>
+
+            <section id="data-usage" class="policy-section">
+                <h2>4. Цели обработки персональных данных</h2>
+                
+                <p>Мы используем ваши персональные данные для следующих целей:</p>
+                
+                <ul>
+                    <li><strong>Оказание услуг:</strong> обработка бронирований, оформление договоров аренды</li>
+                    <li><strong>Идентификация:</strong> подтверждение личности и водительских прав</li>
+                    <li><strong>Коммуникация:</strong> уведомления о статусе заказа, ответы на запросы</li>
+                    <li><strong>Безопасность:</strong> предотвращение мошенничества и обеспечение безопасности</li>
+                    <li><strong>Улучшение сервиса:</strong> анализ использования сайта для улучшения функциональности</li>
+                    <li><strong>Маркетинг:</strong> информирование о специальных предложениях (только с вашего согласия)</li>
+                    <li><strong>Выполнение обязательств:</strong> соблюдение требований законодательства</li>
+                </ul>
+
+                <h3>4.1. Правовые основания обработки</h3>
+                <p>Обработка ваших персональных данных осуществляется на следующих правовых основаниях:</p>
+                <ul>
+                    <li>Выполнение договора аренды</li>
+                    <li>Ваше явное согласие</li>
+                    <li>Законные интересы нашей компании</li>
+                    <li>Выполнение юридических обязательств</li>
+                </ul>
+            </section>
+
+            <section id="data-protection" class="policy-section">
+                <h2>5. Защита персональных данных</h2>
+                
+                <p>Мы принимаем все необходимые организационные и технические меры для защиты ваших персональных данных от неправомерного или случайного доступа, уничтожения, изменения, блокирования, копирования, распространения, а также от иных неправомерных действий.</p>
+
+                <h3>5.1. Меры защиты включают:</h3>
+                <ul>
+                    <li>Шифрование передаваемых данных с использованием SSL-сертификатов</li>
+                    <li>Регулярное обновление систем безопасности</li>
+                    <li>Ограничение доступа к персональным данным для сотрудников</li>
+                    <li>Регулярное обучение сотрудников вопросам защиты данных</li>
+                    <li>Резервное копирование данных</li>
+                    <li>Системы обнаружения и предотвращения вторжений</li>
+                </ul>
+
+                <h3>5.2. Хранение данных</h3>
+                <p>Мы храним ваши персональные данные только в течение срока, необходимого для достижения целей обработки, или в течение срока, установленного законодательством.</p>
+                
+                <div class="highlight-box">
+                    <p>После достижения целей обработки или истечения сроков хранения, установленных законодательством, ваши персональные данные подлежат уничтожению или обезличиванию.</p>
+                </div>
+            </section>
+
+            <section id="user-rights" class="policy-section">
+                <h2>6. Права субъектов персональных данных</h2>
+                
+                <p>Вы имеете следующие права в отношении ваших персональных данных:</p>
+
+                <ul>
+                    <li><strong>Право на доступ:</strong> получать информацию о том, какие ваши персональные данные мы обрабатываем</li>
+                    <li><strong>Право на исправление:</strong> требовать исправления неточных или неполных данных</li>
+                    <li><strong>Право на удаление:</strong> требовать удаления ваших персональных данных</li>
+                    <li><strong>Право на ограничение обработки:</strong> требовать ограничения обработки в определенных случаях</li>
+                    <li><strong>Право на перенос данных:</strong> получать данные в структурированном формате</li>
+                    <li><strong>Право на возражение:</strong> возражать против обработки данных в определенных ситуациях</li>
+                    <li><strong>Право на отзыв согласия:</strong> отозвать согласие на обработку данных в любое время</li>
+                </ul>
+
+                <h3>6.1. Как реализовать свои права</h3>
+                <p>Для реализации своих прав вы можете:</p>
+                <ul>
+                    <li>Отправить запрос на электронную почту: <a href="mailto:privacy@minivanrent.ru">privacy@minivanrent.ru</a></li>
+                    <li>Обратиться по телефону: <a href="tel:+71234567890">+7 (123) 456-78-90</a></li>
+                    <li>Использовать форму обратной связи в личном кабинете</li>
+                </ul>
+
+                <div class="contact-info">
+                    <h4>Срок рассмотрения запросов</h4>
+                    <p>Мы рассмотрим ваш запрос в течение 30 календарных дней с момента его получения. В случае необходимости этот срок может быть продлен, о чем мы вас уведомим.</p>
+                </div>
+            </section>
+
+            <section id="cookies" class="policy-section">
+                <h2>7. Использование файлов cookies</h2>
+                
+                <p>Мы используем файлы cookies для улучшения работы нашего сайта и предоставления персонализированного сервиса.</p>
+
+                <h3>7.1. Типы используемых cookies:</h3>
+                <ul>
+                    <li><strong>Необходимые cookies:</strong> обеспечивают работу основных функций сайта</li>
+                    <li><strong>Функциональные cookies:</strong> запоминают ваши предпочтения и настройки</li>
+                    <li><strong>Аналитические cookies:</strong> помогают нам понять, как используется сайт</li>
+                    <li><strong>Маркетинговые cookies:</strong> используются для показа релевантной рекламы</li>
+                </ul>
+
+                <h3>7.2. Управление cookies</h3>
+                <p>Вы можете управлять использованием cookies через настройки вашего браузера. Однако отключение некоторых типов cookies может повлиять на функциональность сайта.</p>
+            </section>
+
+            <section id="changes" class="policy-section">
+                <h2>8. Изменения в Политике конфиденциальности</h2>
+                
+                <p>Мы оставляем за собой право вносить изменения в настоящую Политику конфиденциальности. При внесении существенных изменений мы уведомим вас путем размещения новой версии Политики на нашем сайте с указанием даты последнего обновления.</p>
+
+                <p>Рекомендуем периодически просматривать эту страницу для получения информации о любых изменениях. Продолжение использования Сервиса после внесения изменений означает ваше согласие с новой версией Политики.</p>
+
+                <div class="highlight-box">
+                    <p>Все изменения вступают в силу с момента их публикации на сайте, если иное не предусмотрено новой редакцией Политики.</p>
+                </div>
+            </section>
+
+            <section id="contacts" class="policy-section">
+                <h2>9. Контактная информация</h2>
+                
+                <p>Если у вас есть вопросы или предложения относительно настоящей Политики конфиденциальности, пожалуйста, свяжитесь с нами:</p>
+
+                <div class="contact-info">
+                    <h4>ООО «МинивэнРент»</h4>
+                    <p><strong>Адрес:</strong> 123456, г. Москва, ул. Примерная, д. 1</p>
+                    <p><strong>Email:</strong> <a href="mailto:privacy@minivanrent.ru">privacy@minivanrent.ru</a></p>
+                    <p><strong>Телефон:</strong> <a href="tel:+71234567890">+7 (123) 456-78-90</a></p>
+                    <p><strong>ИНН:</strong> 1234567890</p>
+                    <p><strong>ОГРН:</strong> 1234567890123</p>
+                </div>
+
+                <p>Вы также можете обратиться в уполномоченный орган по защите прав субъектов персональных данных — Роскомнадзор — если считаете, что обработка ваших персональных данных осуществляется с нарушением законодательства.</p>
+            </section>
+
+            <!-- Заключение -->
+            <div class="policy-section" style="text-align: center; background: rgba(139, 90, 43, 0.1);">
+                <p><strong>Благодарим вас за доверие к сервису MinivanRent!</strong></p>
+                <p>Мы ценим вашу конфиденциальность и прилагаем все усилия для защиты ваших персональных данных.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><a href="mailto:info@minivanrent.ru">info@minivanrent.ru</a></li>
+                        <li><a href="tel:+71234567890">+7 (123) 456-78-90</a></li>
+                        <li>Круглосуточная поддержка</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Правовая информация</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Политика конфиденциальности</a></li>
+                        <li><a href="terms.html">Условия использования</a></li>
+                        <li><a href="#">Политика возвратов</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Сервис</h3>
+                    <ul>
+                        <li><a href="catalog.html">Каталог автомобилей</a></li>
+                        <li><a href="forms/owner-application.html">Сдать в аренду</a></li>
+                        <li><a href="#">Помощь и поддержка</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MinivanRent. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Плавная прокрутка к якорям
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Кнопка "Наверх"
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Подсветка текущего раздела в навигации
+        const sections = document.querySelectorAll('.policy-section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function highlightCurrentSection() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                    link.style.background = 'rgba(139, 90, 43, 0.2)';
+                    link.style.color = '#E8DCC5';
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightCurrentSection);
+
+        // Автоматическое обновление даты
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentYear = new Date().getFullYear();
+            document.querySelector('.footer-bottom p').textContent = 
+                `© ${currentYear} MinivanRent. Все права защищены.`;
+        });
+    </script>
+</body>
+</html>

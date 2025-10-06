@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бронирование подтверждено | MinivanRent</title>
+    <style>
+        /* Основные стили как на главной */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #231A16;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23E8DCC5' stroke-opacity='0.12' stroke-width='1' fill='none'%3E%3Cpath d='M0,20 L100,20 M20,0 L20,100 M0,80 L100,80 M80,0 L80,100 M0,0 L100,100 M100,0 L0,100'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 100px 100px;
+            min-height: 100vh;
+            color: #F0E6D2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            position: relative;
+            z-index: 10;
+            background: rgba(35, 26, 22, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #E8DCC5;
+            text-decoration: none;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #8B5A2B;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #A06A37;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #E8DCC5;
+            border: 1px solid #8B5A2B;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(139, 90, 43, 0.1);
+        }
+
+        /* Контент успеха */
+        .success-content {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .success-icon {
+            width: 120px;
+            height: 120px;
+            background: #5D8B2B;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 3rem;
+            animation: bounce 1s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .success-title {
+            font-size: 2.5rem;
+            color: #E8DCC5;
+            margin-bottom: 20px;
+        }
+
+        .success-subtitle {
+            font-size: 1.2rem;
+            color: #D4C4A8;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .booking-number {
+            background: rgba(139, 90, 43, 0.3);
+            padding: 15px 30px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        .number-label {
+            color: #D4C4A8;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .number-value {
+            color: #E8DCC5;
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* Детали бронирования */
+        .booking-details {
+            background: rgba(40, 30, 25, 0.8);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: left;
+        }
+
+        .details-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #443A30;
+        }
+
+        .car-info {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .car-image {
+            width: 120px;
+            height: 90px;
+            background: #5D4037;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .car-text h3 {
+            color: #E8DCC5;
+            margin: 0 0 8px 0;
+            font-size: 1.3rem;
+        }
+
+        .car-text p {
+            color: #D4C4A8;
+            margin: 4px 0;
+            font-size: 0.9rem;
+        }
+
+        .total-price {
+            text-align: right;
+        }
+
+        .price-label {
+            color: #D4C4A8;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .price-amount {
+            color: #8B5A2B;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .detail-section h4 {
+            color: #E8DCC5;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(68, 58, 48, 0.5);
+        }
+
+        .detail-label {
+            color: #D4C4A8;
+        }
+
+        .detail-value {
+            color: #E8DCC5;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* Следующие шаги */
+        .next-steps {
+            background: rgba(40, 30, 25, 0.8);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .next-steps h3 {
+            color: #E8DCC5;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .step-item {
+            text-align: center;
+            padding: 25px 15px;
+            background: rgba(35, 26, 22, 0.6);
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .step-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #8B5A2B;
+        }
+
+        .step-title {
+            color: #E8DCC5;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .step-description {
+            color: #D4C4A8;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Действия */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .action-btn {
+            min-width: 200px;
+            padding: 15px 25px;
+        }
+
+        /* Уведомления */
+        .notification {
+            background: rgba(139, 90, 43, 0.2);
+            border-left: 4px solid #8B5A2B;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .notification-icon {
+            font-size: 1.5rem;
+            margin-top: 2px;
+        }
+
+        .notification-content h4 {
+            color: #E8DCC5;
+            margin: 0 0 8px 0;
+            font-size: 1.1rem;
+        }
+
+        .notification-content p {
+            color: #D4C4A8;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .success-title {
+                font-size: 2rem;
+            }
+            
+            .success-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .details-header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .car-info {
+                justify-content: center;
+            }
+            
+            .total-price {
+                text-align: center;
+            }
+            
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .action-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        footer {
+            padding: 60px 0 20px;
+            background: rgba(20, 15, 12, 0.95);
+            border-top: 1px solid #443A30;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: #E8DCC5;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #D4C4A8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #E8DCC5;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #443A30;
+            color: #D4C4A8;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">MinivanRent</a>
+                <a href="catalog.html" class="btn btn-secondary">Вернуться в каталог</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="success-content">
+            <!-- Иконка успеха -->
+            <div class="success-icon">✅</div>
+            
+            <!-- Заголовок -->
+            <h1 class="success-title">Бронирование подтверждено!</h1>
+            <p class="success-subtitle">
+                Ваша заявка успешно отправлена. Наш оператор свяжется с вами в течение 30 минут<br>
+                для подтверждения бронирования и уточнения деталей.
+            </p>
+
+            <!-- Номер бронирования -->
+            <div class="booking-number">
+                <div class="number-label">Номер вашей заявки</div>
+                <div class="number-value" id="bookingNumber">MV-000000</div>
+            </div>
+
+            <!-- Детали бронирования -->
+            <div class="booking-details">
+                <div class="details-header">
+                    <div class="car-info">
+                        <div class="car-image" id="carImage">
+                            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #D4C4A8; font-size: 0.8rem;">
+                                Фото
+                            </div>
+                        </div>
+                        <div class="car-text">
+                            <h3 id="carTitle">Загрузка...</h3>
+                            <p id="carDetails">Год, двигатель, коробка</p>
+                            <p id="carFeatures">Мест, топливо</p>
+                        </div>
+                    </div>
+                    <div class="total-price">
+                        <div class="price-label">Общая стоимость</div>
+                        <div class="price-amount" id="totalAmount">0 ₽</div>
+                    </div>
+                </div>
+
+                <div class="details-grid">
+                    <div class="detail-section">
+                        <h4>Данные аренды</h4>
+                        <div class="detail-item">
+                            <span class="detail-label">Начало аренды:</span>
+                            <span class="detail-value" id="startDate">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Окончание аренды:</span>
+                            <span class="detail-value" id="endDate">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Количество дней:</span>
+                            <span class="detail-value" id="daysCount">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Залог:</span>
+                            <span class="detail-value" id="depositAmount">-</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h4>Ваши данные</h4>
+                        <div class="detail-item">
+                            <span class="detail-label">Имя и фамилия:</span>
+                            <span class="detail-value" id="customerName">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Телефон:</span>
+                            <span class="detail-value" id="customerPhone">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Email:</span>
+                            <span class="detail-value" id="customerEmail">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notification">
+                    <div class="notification-icon">📞</div>
+                    <div class="notification-content">
+                        <h4>Ожидайте звонка оператора</h4>
+                        <p>Наш менеджер свяжется с вами по указанному номеру телефона для подтверждения бронирования и согласования времени получения автомобиля.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Следующие шаги -->
+            <div class="next-steps">
+                <h3>Что дальше?</h3>
+                <div class="steps-grid">
+                    <div class="step-item">
+                        <div class="step-icon">📞</div>
+                        <div class="step-title">Звонок оператора</div>
+                        <div class="step-description">В течение 30 минут мы свяжемся с вами для подтверждения заявки</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-icon">📋</div>
+                        <div class="step-title">Подписание договора</div>
+                        <div class="step-description">При встрече подпишем договор аренды и все необходимые документы</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-icon">💳</div>
+                        <div class="step-title">Оплата залога</div>
+                        <div class="step-description">Внесете залог и получите автомобиль в указанное время</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-icon">🚗</div>
+                        <div class="step-title">Наслаждайтесь поездкой!</div>
+                        <div class="step-description">Получите ключи и отправляйтесь в путешествие на комфортабельном минивэне</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Действия -->
+            <div class="action-buttons">
+                <a href="index.html" class="btn btn-primary action-btn">На главную страницу</a>
+                <a href="catalog.html" class="btn btn-secondary action-btn">Найти еще автомобили</a>
+                <button class="btn btn-secondary action-btn" onclick="printPage()">🖨️ Распечатать подтверждение</button>
+            </div>
+
+            <!-- Дополнительная информация -->
+            <div class="notification">
+                <div class="notification-icon">ℹ️</div>
+                <div class="notification-content">
+                    <h4>Важная информация</h4>
+                    <p>
+                        При получении автомобиля обязательно возьмите с собой паспорт и водительское удостоверение.<br>
+                        Залог возвращается при возврате автомобиля в исходном состоянии.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><a href="mailto:info@minivanrent.ru">info@minivanrent.ru</a></li>
+                        <li><a href="tel:+71234567890">+7 (123) 456-78-90</a></li>
+                        <li>Круглосуточная поддержка</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Правовая информация</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Политика конфиденциальности</a></li>
+                        <li><a href="terms.html">Условия аренды</a></li>
+                        <li><a href="#">Политика возвратов</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MinivanRent. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Загрузка данных бронирования
+        function loadBookingData() {
+            const bookingData = localStorage.getItem('bookingData');
+            
+            if (!bookingData) {
+                // Если данных нет, перенаправляем в каталог
+                window.location.href = 'catalog.html';
+                return;
+            }
+
+            try {
+                const data = JSON.parse(bookingData);
+                renderSuccessPage(data);
+                
+                // Очищаем localStorage после отображения
+                setTimeout(() => {
+                    localStorage.removeItem('bookingData');
+                }, 5000);
+                
+            } catch (error) {
+                console.error('Ошибка загрузки данных:', error);
+                window.location.href = 'catalog.html';
+            }
+        }
+
+        // Рендер страницы успеха
+        function renderSuccessPage(data) {
+            // Генерация номера бронирования
+            const bookingNumber = 'MV-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+            document.getElementById('bookingNumber').textContent = bookingNumber;
+
+            // Информация об автомобиле
+            const car = data.car;
+            document.getElementById('carTitle').textContent = `${car.brand} ${car.model}`;
+            document.getElementById('carDetails').textContent = `${car.year} год • ${car.engine} • ${getTransmissionLabel(car.transmission)}`;
+            document.getElementById('carFeatures').textContent = `${car.seats} мест • ${car.fuelType}`;
+            
+            // Установка изображения
+            const carImage = document.getElementById('carImage');
+            if (car.images && car.images.length > 0) {
+                carImage.innerHTML = `<img src="${car.images[0]}" alt="${car.brand} ${car.model}" 
+                    onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'display: flex; align-items: center; justify-content: center; height: 100%; color: #D4C4A8; font-size: 0.8rem;\\'>${car.brand} ${car.model}</div>'">`;
+            }
+
+            // Даты и стоимость
+            document.getElementById('startDate').textContent = formatDate(data.dates.start);
+            document.getElementById('endDate').textContent = formatDate(data.dates.end);
+            document.getElementById('daysCount').textContent = `${data.dates.days} дней`;
+            document.getElementById('depositAmount').textContent = `${car.deposit} ₽`;
+            document.getElementById('totalAmount').textContent = `${data.total} ₽`;
+
+            // Данные клиента
+            const customer = data.customer;
+            document.getElementById('customerName').textContent = `${customer.firstName} ${customer.lastName}`;
+            document.getElementById('customerPhone').textContent = customer.phone;
+            document.getElementById('customerEmail').textContent = customer.email;
+
+            // Отправка данных на сервер (в реальном проекте)
+            sendBookingToServer(data, bookingNumber);
+        }
+
+        function getTransmissionLabel(transmission) {
+            return transmission === 'automatic' ? 'Автоматическая' : 'Механическая';
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ru-RU', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+        }
+
+        // Функция печати
+        function printPage() {
+            window.print();
+        }
+
+        // Отправка данных на сервер (заглушка)
+        function sendBookingToServer(data, bookingNumber) {
+            // В реальном проекте здесь будет отправка данных на сервер
+            console.log('Отправка данных бронирования:', {
+                bookingNumber: bookingNumber,
+                car: data.car,
+                customer: data.customer,
+                dates: data.dates,
+                total: data.total
+            });
+
+            // Здесь можно добавить отправку через fetch API
+            /*
+            fetch('/api/bookings', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    bookingNumber: bookingNumber,
+                    ...data
+                })
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Бронирование сохранено:', result);
+            })
+            .catch(error => {
+                console.error('Ошибка сохранения:', error);
+            });
+            */
+        }
+
+        // Загрузка данных при загрузке страницы
+        document.addEventListener('DOMContentLoaded', loadBookingData);
+
+        // Добавляем стили для печати
+        const style = document.createElement('style');
+        style.textContent = `
+            @media print {
+                header, footer, .action-buttons, .notification:last-child {
+                    display: none !important;
+                }
+                body {
+                    background: white !important;
+                    color: black !important;
+                }
+                .success-content {
+                    padding: 20px 0 !important;
+                }
+                .booking-details, .next-steps {
+                    background: white !important;
+                    color: black !important;
+                    border: 2px solid #000 !important;
+                }
+                .success-icon {
+                    background: #4CAF50 !important;
+                    color: white !important;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

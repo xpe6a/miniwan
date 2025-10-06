@@ -1,0 +1,467 @@
+[
+  {
+    "id": 1,
+    "brand": "Toyota",
+    "model": "Alphard",
+    "year": 2022,
+    "engine": "2.5L Hybrid",
+    "transmission": "automatic",
+    "fuelType": "Бензин",
+    "seats": 7,
+    "doors": 5,
+    "color": "Белый",
+    "bodyType": "Минивэн",
+    "price": 8500,
+    "deposit": 50000,
+    "isPopular": true,
+    "description": "Роскошный минивэн Toyota Alphard в отличном состоянии. Просторный салон с кожаной отделкой, системами климат-контроля и мультимедиа. Идеален для комфортных поездок на большие расстояния.",
+    "features": ["Климат-контроль", "Кожаный салон", "Панорамная крыша", "Камеры кругового обзора", "Подогрев сидений", "Apple CarPlay", "Android Auto"],
+    "images": [
+      "images/cars/toyota-alphard-1.jpg",
+      "images/cars/toyota-alphard-2.jpg",
+      "images/cars/toyota-alphard-3.jpg",
+      "images/cars/toyota-alphard-4.jpg"
+    ],
+    "owner": {
+      "name": "Алексей Петров",
+      "rating": 4.9,
+      "carsCount": 3,
+      "rentalsCount": 47
+    },
+    "location": "Москва, ЦАО",
+    "available": true
+  },
+  {
+    "id": 2,
+    "brand": "Volkswagen",
+    "model": "Multivan",
+    "year": 2021,
+    "engine": "2.0L TDI",
+    "transmission": "automatic",
+    "fuelType": "Дизель",
+    "seats": 8,
+    "doors": 5,
+    "color": "Серый",
+    "bodyType": "Минивэн",
+    "price": 6500,
+    "deposit": 45000,
+    "isPopular": true,
+    "description": "Практичный и вместительный Volkswagen Multivan. Отличный выбор для семейных поездок и путешествий с компанией. Экономичный дизельный двигатель.",
+    "features": ["Климат-контроль", "Круиз-контроль", "Парктроники", "Электропривод дверей", "Система стабилизации", "Мультируль", "Сдвижные двери"],
+    "images": [
+      "images/cars/vw-multivan-1.jpg",
+      "images/cars/vw-multivan-2.jpg",
+      "images/cars/vw-multivan-3.jpg"
+    ],
+    "owner": {
+      "name": "Мария Иванова",
+      "rating": 4.8,
+      "carsCount": 2,
+      "rentalsCount": 32
+    },
+    "location": "Москва, СВАО",
+    "available": true
+  },
+  {
+    "id": 3,
+    "brand": "Mercedes-Benz",
+    "model": "V-Class",
+    "year": 2023,
+    "engine": "2.0L Diesel",
+    "transmission": "automatic",
+    "fuelType": "Дизель",
+    "seats": 7,
+    "doors": 5,
+    "color": "Черный",
+    "bodyType": "Минивэн",
+    "price": 12000,
+    "deposit": 75000,
+    "isPopular": true,
+    "description": "Премиальный Mercedes-Benz V-Class с роскошной отделкой салона. Идеален для деловых поездок и особых мероприятий. Максимальный комфорт и безопасность.",
+    "features": ["Память сидений", "Массаж сидений", "Вентиляция сидений", "Панорамная крыша", "Система ночного видения", "Burmester аудиосистема", "Электропривод дверей"],
+    "images": [
+      "images/cars/mercedes-vclass-1.jpg",
+      "images/cars/mercedes-vclass-2.jpg",
+      "images/cars/mercedes-vclass-3.jpg",
+      "images/cars/mercedes-vclass-4.jpg",
+      "images/cars/mercedes-vclass-5.jpg"
+    ],
+    "owner": {
+      "name": "Дмитрий Смирнов",
+      "rating": 5.0,
+      "carsCount": 5,
+      "rentalsCount": 89
+    },
+    "location": "Москва, ЗАО",
+    "available": true
+  },
+  {
+    "id": 4,
+    "brand": "Honda",
+    "model": "Odyssey",
+    "year": 2020,
+    "engine": "2.4L i-VTEC",
+    "transmission": "automatic",
+    "fuelType": "Бензин",
+    "seats": 8,
+    "doors": 5,
+    "color": "Серебристый",
+    "bodyType": "Минивэн",
+    "price": 5500,
+    "deposit": 35000,
+    "isPopular": false,
+    "description": "Надежный и практичный Honda Odyssey. Отличное соотношение цены и комфорта. Просторный салон с удобной трансформацией сидений.",
+    "features": ["Климат-контроль", "Камера заднего вида", "Система помощи при парковке", "Электропривод боковых дверей", "Складывающиеся сиденья", "Bluetooth", "USB порты"],
+    "images": [
+      "images/cars/honda-odyssey-1.jpg",
+      "images/cars/honda-odyssey-2.jpg"
+    ],
+    "owner": {
+      "name": "Сергей Козлов",
+      "rating": 4.7,
+      "carsCount": 1,
+      "rentalsCount": 18
+    },
+    "location": "Москва, ЮАО",
+    "available": true
+  },
+  {
+    "id": 5,
+    "brand": "Kia",
+    "model": "Carnival",
+    "year": 2022,
+    "engine": "2.2L CRDi",
+    "transmission": "automatic",
+    "fuelType": "Дизель",
+    "seats": 7,
+    "doors": 5,
+    "color": "Синий",
+    "bodyType": "Минивэн",
+    "price": 6000,
+    "deposit": 40000,
+    "isPopular": true,
+    "description": "Современный Kia Carnival с стильным дизайном и богатым оснащением. Экономичный дизельный двигатель и просторный салон.",
+    "features": ["Двухзонный климат-контроль", "Панорамная крыша", "Вентиляция передних сидений", "Камеры кругового обзора", "Бесключевой доступ", "Запуск с кнопки", "Apple CarPlay"],
+    "images": [
+      "images/cars/kia-carnival-1.jpg",
+      "images/cars/kia-carnival-2.jpg",
+      "images/cars/kia-carnival-3.jpg",
+      "images/cars/kia-carnival-4.jpg"
+    ],
+    "owner": {
+      "name": "Анна Волкова",
+      "rating": 4.8,
+      "carsCount": 2,
+      "rentalsCount": 41
+    },
+    "location": "Москва, САО",
+    "available": true
+  },
+  {
+    "id": 6,
+    "brand": "Hyundai",
+    "model": "Staria",
+    "year": 2023,
+    "engine": "2.2L Diesel",
+    "transmission": "automatic",
+    "fuelType": "Дизель",
+    "seats": 9,
+    "doors": 5,
+    "color": "Белый",
+    "bodyType": "Минивэн",
+    "price": 7000,
+    "deposit": 50000,
+    "isPopular": false,
+    "description": "Инновационный Hyundai Staria с футуристичным дизайном. Вместительный салон на 9 человек, идеален для больших компаний.",
+    "features": ["Цифровая приборная панель", "Двухзонный климат-контроль", "Электропривод дверей", "Система безопасности", "Современная мультимедиа", "Подогрев руля", "Светодиодная оптика"],
+    "images": [
+      "images/cars/hyundai-staria-1.jpg",
+      "images/cars/hyundai-staria-2.jpg",
+      "images/cars/hyundai-staria-3.jpg"
+    ],
+    "owner": {
+      "name": "Игорь Новиков",
+      "rating": 4.6,
+      "carsCount": 1,
+      "rentalsCount": 12
+    },
+    "location": "Москва, ЮЗАО",
+    "available": true
+  },
+  {
+    "id": 7,
+    "brand": "Toyota",
+    "model": "Hiace",
+    "year": 2021,
+    "engine": "2.8L Diesel",
+    "transmission": "manual",
+    "fuelType": "Дизель",
+    "seats": 12,
+    "doors": 4,
+    "color": "Белый",
+    "bodyType": "Минивэн",
+    "price": 4500,
+    "deposit": 30000,
+    "isPopular": false,
+    "description": "Вместительный Toyota Hiace на 12 мест. Отличный выбор для групповых поездок, трансферов и корпоративных мероприятий.",
+    "features": ["Кондиционер", "Аудиосистема", "Парктроник", "Круиз-контроль", "Электростеклоподъемники", "Центральный замок", "Регулируемые сиденья"],
+    "images": [
+      "images/cars/toyota-hiace-1.jpg",
+      "images/cars/toyota-hiace-2.jpg"
+    ],
+    "owner": {
+      "name": "ООО 'Трансфер Сервис'",
+      "rating": 4.5,
+      "carsCount": 8,
+      "rentalsCount": 156
+    },
+    "location": "Москва, ВАО",
+    "available": true
+  },
+  {
+    "id": 8,
+    "brand": "Ford",
+    "model": "Tourneo Custom",
+    "year": 2020,
+    "engine": "2.0L EcoBlue",
+    "transmission": "automatic",
+    "fuelType": "Дизель",
+    "seats": 8,
+    "doors": 5,
+    "color": "Серый",
+    "bodyType": "Минивэн",
+    "price": 5800,
+    "deposit": 38000,
+    "isPopular": false,
+    "description": "Универсальный Ford Tourneo Custom с просторным салоном и практичной компоновкой. Надежный и экономичный в эксплуатации.",
+    "features": ["Климат-контроль", "SYNC мультимедиа", "Камера заднего вида", "Датчики парковки", "Электропривод дверей", "Регулируемый руль", "Подогрев зеркал"],
+    "images": [
+      "images/cars/ford-tourneo-1.jpg",
+      "images/cars/ford-tourneo-2.jpg",
+      "images/cars/ford-tourneo-3.jpg"
+    ],
+    "owner": {
+      "name": "Павел Морозов",
+      "rating": 4.7,
+      "carsCount": 3,
+      "rentalsCount": 29
+    },
+    "location": "Москва, СЗАО",
+    "available": true
+  },
+  {
+    "id": 9,
+    "brand": "Mercedes-Benz",
+    "model": "Metris",
+    "year": 2019,
+    "engine": "2.0L Turbo",
+    "transmission": "automatic",
+    "fuelType": "Бензин",
+    "seats": 7,
+    "doors": 5,
+    "color": "Черный",
+    "bodyType": "Минивэн",
+    "price": 6800,
+    "deposit": 42000,
+    "isPopular": false,
+    "description": "Компактный Mercedes-Benz Metris с премиальным оснащением. Идеален для городских поездок и коротких путешествий.",
+    "features": ["Климат-контроль", "Кожаный руль", "Камера заднего вида", "Парктроники", "Электропривод окон", "Центральный замок", "Система стабилизации"],
+    "images": [
+      "images/cars/mercedes-metris-1.jpg",
+      "images/cars/mercedes-metris-2.jpg"
+    ],
+    "owner": {
+      "name": "Елена Соколова",
+      "rating": 4.8,
+      "carsCount": 2,
+      "rentalsCount": 34
+    },
+    "location": "Москва, ЦАО",
+    "available": true
+  },
+  {
+    "id": 10,
+    "brand": "Volkswagen",
+    "model": "Caravelle",
+    "year": 2021,
+    "engine": "2.0L TDI",
+    "transmission": "manual",
+    "fuelType": "Дизель",
+    "seats": 9,
+    "doors": 5,
+    "color": "Красный",
+    "bodyType": "Минивэн",
+    "price": 5200,
+    "deposit": 35000,
+    "isPopular": false,
+    "description": "Классический Volkswagen Caravelle с механической коробкой передач. Надежный и практичный автомобиль для любых задач.",
+    "features": ["Кондиционер", "Мультируль", "Аудиосистема", "Парктроник", "Электропривод зеркал", "Регулируемые сиденья", "Большой багажник"],
+    "images": [
+      "images/cars/vw-caravelle-1.jpg",
+      "images/cars/vw-caravelle-2.jpg"
+    ],
+    "owner": {
+      "name": "Андрей Кузнецов",
+      "rating": 4.6,
+      "carsCount": 1,
+      "rentalsCount": 21
+    },
+    "location": "Москва, ЮВАО",
+    "available": true
+  },
+  {
+    "id": 11,
+    "brand": "Toyota",
+    "model": "Vellfire",
+    "year": 2023,
+    "engine": "2.5L Hybrid",
+    "transmission": "automatic",
+    "fuelType": "Бензин",
+    "seats": 7,
+    "doors": 5,
+    "color": "Черный",
+    "bodyType": "Минивэн",
+    "price": 9500,
+    "deposit": 60000,
+    "isPopular": true,
+    "description": "Элегантный Toyota Vellfire в черном цвете. Гибридная силовая установка обеспечивает экономичность и плавность хода.",
+    "features": ["Двухзонный климат-контроль", "Кожаный салон", "Панорамная крыша", "Электропривод сидений", "Подогрев и вентиляция", "Система шумоподавления", "Премиум аудиосистема"],
+    "images": [
+      "images/cars/toyota-vellfire-1.jpg",
+      "images/cars/toyota-vellfire-2.jpg",
+      "images/cars/toyota-vellfire-3.jpg",
+      "images/cars/toyota-vellfire-4.jpg",
+      "images/cars/toyota-vellfire-5.jpg"
+    ],
+    "owner": {
+      "name": "Михаил Орлов",
+      "rating": 4.9,
+      "carsCount": 4,
+      "rentalsCount": 67
+    },
+    "location": "Москва, ЗАО",
+    "available": true
+  },
+  {
+    "id": 12,
+    "brand": "Kia",
+    "model": "Sedona",
+    "year": 2020,
+    "engine": "3.3L V6",
+    "transmission": "automatic",
+    "fuelType": "Бензин",
+    "seats": 7,
+    "doors": 5,
+    "color": "Бордовый",
+    "bodyType": "Минивэн",
+    "price": 5000,
+    "deposit": 32000,
+    "isPopular": false,
+    "description": "Мощный Kia Sedona с двигателем V6. Просторный салон и плавный ход делают его отличным выбором для семейных поездок.",
+    "features": ["Климат-контроль", "Кожаный салон", "Подогрев сидений", "Камера заднего вида", "Система помощи при парковке", "Электропривод дверей", "Складывающиеся сиденья"],
+    "images": [
+      "images/cars/kia-sedona-1.jpg",
+      "images/cars/kia-sedona-2.jpg",
+      "images/cars/kia-sedona-3.jpg"
+    ],
+    "owner": {
+      "name": "Наталья Романова",
+      "rating": 4.7,
+      "carsCount": 1,
+      "rentalsCount": 15
+    },
+    "location": "Москва, СВАО",
+    "available": true
+  },
+  {
+    "id": 13,
+    "brand": "Honda",
+    "model": "Stepwgn",
+    "year": 2022,
+    "engine": "1.5L Turbo",
+    "transmission": "automatic",
+    "fuelType": "Бензин",
+    "seats": 8,
+    "doors": 5,
+    "color": "Зеленый",
+    "bodyType": "Минивэн",
+    "price": 6200,
+    "deposit": 38000,
+    "isPopular": false,
+    "description": "Компактный и маневренный Honda Stepwgn с турбированным двигателем. Идеален для городской эксплуатации.",
+    "features": ["Экономичный двигатель", "Компактные размеры", "Трансформируемый салон", "Камера заднего вида", "Система стабилизации", "Противотуманные фары", "Легкость управления"],
+    "images": [
+      "images/cars/honda-stepwgn-1.jpg",
+      "images/cars/honda-stepwgn-2.jpg"
+    ],
+    "owner": {
+      "name": "Артем Васильев",
+      "rating": 4.5,
+      "carsCount": 1,
+      "rentalsCount": 8
+    },
+    "location": "Москва, ЮАО",
+    "available": true
+  },
+  {
+    "id": 14,
+    "brand": "Chrysler",
+    "model": "Pacifica",
+    "year": 2021,
+    "engine": "3.6L V6",
+    "transmission": "automatic",
+    "fuelType": "Бензин",
+    "seats": 7,
+    "doors": 5,
+    "color": "Серебристый",
+    "bodyType": "Минивэн",
+    "price": 7200,
+    "deposit": 45000,
+    "isPopular": false,
+    "description": "Американский Chrysler Pacifica с мощным двигателем V6. Просторный салон в американском стиле.",
+    "features": ["Климат-контроль", "Кожаный салон", "Подогрев сидений", "Панорамная крыша", "Стеклоподъемники", "Центральный замок", "Аудиосистема"],
+    "images": [
+      "images/cars/chrysler-pacifica-1.jpg",
+      "images/cars/chrysler-pacifica-2.jpg",
+      "images/cars/chrysler-pacifica-3.jpg"
+    ],
+    "owner": {
+      "name": "Виктор Павлов",
+      "rating": 4.6,
+      "carsCount": 2,
+      "rentalsCount": 23
+    },
+    "location": "Москва, САО",
+    "available": true
+  },
+  {
+    "id": 15,
+    "brand": "Nissan",
+    "model": "Serena",
+    "year": 2022,
+    "engine": "2.0L Hybrid",
+    "transmission": "automatic",
+    "fuelType": "Бензин",
+    "seats": 8,
+    "doors": 5,
+    "color": "Белый",
+    "bodyType": "Минивэн",
+    "price": 5800,
+    "deposit": 36000,
+    "isPopular": false,
+    "description": "Экономичный Nissan Serena с гибридной силовой установкой. Отличная топливная экономичность и практичность.",
+    "features": ["Гибридная установка", "Экономичный расход", "Просторный салон", "Трансформируемые сиденья", "Кондиционер", "Аудиосистема", "Легкость управления"],
+    "images": [
+      "images/cars/nissan-serena-1.jpg",
+      "images/cars/nissan-serena-2.jpg"
+    ],
+    "owner": {
+      "name": "Ольга Никитина",
+      "rating": 4.7,
+      "carsCount": 1,
+      "rentalsCount": 19
+    },
+    "location": "Москва, ЗАО",
+    "available": true
+  }
+]
