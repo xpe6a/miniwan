@@ -1,11 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MinivanRent | Аренда минивэнов у частных лиц</title>
     <style>
-        /* Фон всего лендинга */
         body {
             margin: 0;
             padding: 0;
@@ -19,7 +18,222 @@
             overflow-x: hidden;
         }
 
-        /* ИКОНКА ЧАТА */
+        .header-nav {
+            display: flex;
+            gap: 25px;
+            margin: 0 40px;
+        }
+
+        .nav-link {
+            color: #D4C4A8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: #E8DCC5;
+        }
+
+        .hero {
+            min-height: 80vh;
+            padding: 60px 0;
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('images/hero-bg.jpg');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: #E8DCC5;
+            line-height: 1.2;
+        }
+
+        .large-btn {
+            min-width: 320px;
+            padding: 20px 40px;
+            font-size: 18px;
+            margin: 0 auto;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 2px;
+        }
+
+        .checkbox-group label {
+            font-size: 12px;
+            color: #D4C4A8;
+            line-height: 1.4;
+        }
+
+        .checkbox-group a {
+            color: #8B5A2B;
+            text-decoration: none;
+        }
+
+        .checkbox-group a:hover {
+            color: #A06A37;
+        }
+
+        .form-note {
+            font-size: 12px;
+            color: #D4C4A8;
+            margin-top: -10px;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: rgba(35, 26, 22, 0.95);
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid #8B5A2B;
+        }
+
+        .close {
+            color: #D4C4A8;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close:hover {
+            color: #E8DCC5;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #E8DCC5;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(40, 30, 25, 0.8);
+            border: 1px solid #8B5A2B;
+            border-radius: 5px;
+            color: #F0E6D2;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #8B5A2B;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #A06A37;
+        }
+
+        .filters-section {
+            padding: 60px 0;
+            background: rgba(30, 25, 20, 0.6);
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .filter-group {
+            margin-bottom: 15px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #E8DCC5;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(40, 30, 25, 0.8);
+            border: 1px solid #8B5A2B;
+            border-radius: 5px;
+            color: #F0E6D2;
+            font-size: 14px;
+        }
+
+        .filter-group select option {
+            background: #231A16;
+            color: #F0E6D2;
+        }
+
+        .filter-actions {
+            grid-column: 1 / -1;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
         .chat-widget {
             position: fixed;
             bottom: 20px;
@@ -51,7 +265,6 @@
             color: white;
         }
 
-        /* Остальные стили без изменений */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -110,37 +323,12 @@
             background: #A06A37;
         }
 
-        .hero {
-            min-height: 80vh;
-            padding: 60px 0;
-            background-image: url('static/images/hero-image.jpg');
-            background-position: right center;
-            background-size: 50% auto;
-            background-repeat: no-repeat;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 60vh;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 40px;
-            color: #E8DCC5;
-            line-height: 1.2;
-            max-width: 100%;
-        }
-
         .action-buttons {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 15px;
             margin-bottom: 10px;
+            align-items: center;
         }
 
         .btn {
@@ -158,8 +346,6 @@
             justify-content: center;
             gap: 8px;
             width: auto;
-            min-width: 220px;
-            max-width: 280px;
         }
 
         .btn-primary {
@@ -181,25 +367,6 @@
         .btn-secondary:hover {
             background: rgba(139, 90, 43, 0.1);
             transform: translateY(-1px);
-        }
-
-        .ai-search-note {
-            color: #D4C4A8;
-            font-size: 12px;
-            line-height: 1.4;
-            padding: 8px 0 8px 12px;
-            border-left: 2px solid #8B5A2B;
-            margin-top: -2px;
-            margin-bottom: 20px;
-            max-width: 300px;
-            background: rgba(40, 30, 25, 0.4);
-            border-radius: 0 4px 4px 0;
-        }
-
-        .ai-search-note::before {
-            content: "💡";
-            margin-right: 6px;
-            font-size: 11px;
         }
 
         .btn-icon {
@@ -256,7 +423,6 @@
             background: rgba(30, 25, 20, 0.5);
         }
 
-        /* ОБНОВЛЕННАЯ КАРУСЕЛЬ */
         .carousel {
             max-width: 1200px;
             margin: 0 auto;
@@ -313,14 +479,12 @@
             margin: 0 0 8px 0;
             color: #E8DCC5;
             font-size: 1.1rem;
-            min-height: 1.2em;
         }
 
         .car-info p {
             color: #D4C4A8;
             margin: 4px 0;
             font-size: 0.85rem;
-            min-height: 1em;
         }
 
         .car-price {
@@ -328,12 +492,6 @@
             font-weight: bold;
             color: #8B5A2B;
             margin-top: 8px;
-            min-height: 1.2em;
-        }
-
-        .text-placeholder {
-            color: #8B7D6B;
-            font-style: italic;
         }
 
         .owners-cta {
@@ -407,8 +565,19 @@
                 gap: 15px;
             }
 
+            .header-nav {
+                margin: 10px 0;
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
             .hero {
-                background-image: none;
+                background-image: 
+                    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                    url('images/hero-bg.jpg');
+                background-position: center;
+                background-size: cover;
                 min-height: auto;
                 padding: 40px 0;
             }
@@ -424,18 +593,13 @@
                 margin-bottom: 30px;
             }
 
-            .btn {
-                min-width: 200px;
-                margin: 0 auto;
-                font-size: 13px;
-                padding: 10px 16px;
+            .large-btn {
+                min-width: 280px;
+                padding: 16px 30px;
             }
 
-            .ai-search-note {
-                margin: 0 auto 20px;
-                text-align: left;
-                max-width: 250px;
-                font-size: 11px;
+            .filters-grid {
+                grid-template-columns: 1fr;
             }
 
             .section-title {
@@ -449,9 +613,57 @@
     </style>
 </head>
 <body>
-    <!-- Иконка чата -->
+    <div id="callbackModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('callbackModal')">&times;</span>
+            <h2 style="color: #E8DCC5; margin-bottom: 20px;">Заказать звонок</h2>
+            <form id="callbackForm" onsubmit="submitCallbackForm(event)">
+                <div class="form-group">
+                    <label for="callbackName">Ваше имя</label>
+                    <input type="text" id="callbackName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="callbackPhone">Телефон</label>
+                    <input type="tel" id="callbackPhone" name="phone" required>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="callbackAgreement" required>
+                    <label for="callbackAgreement">Соглашаюсь на обработку персональных данных в соответствии с <a href="privacy-policy.html">политикой конфиденциальности</a></label>
+                </div>
+                <button type="submit" class="submit-btn">Позвоните мне</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="chatModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('chatModal')">&times;</span>
+            <h2 style="color: #E8DCC5; margin-bottom: 20px;">Запрос авто</h2>
+            <form id="chatForm" onsubmit="submitChatForm(event)">
+                <div class="form-group">
+                    <label for="chatName">Ваше имя</label>
+                    <input type="text" id="chatName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="chatEmail">Email</label>
+                    <input type="email" id="chatEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="chatMessage">Сообщение</label>
+                    <textarea id="chatMessage" name="message" required></textarea>
+                    <div class="form-note">Например: нужен минивэн для поездки в Минск с 29.12 до 06.01 не старше 7 лет в хорошем состоянии, до 7000 в день</div>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="chatAgreement" required>
+                    <label for="chatAgreement">Соглашаюсь на обработку персональных данных в соответствии с <a href="privacy-policy.html">политикой конфиденциальности</a></label>
+                </div>
+                <button type="submit" class="submit-btn">Отправить запрос</button>
+            </form>
+        </div>
+    </div>
+
     <div class="chat-widget">
-        <button class="chat-button" onclick="openChat()">
+        <button class="chat-button" onclick="openModal('chatModal')">
             <span class="chat-icon">💬</span>
         </button>
     </div>
@@ -460,9 +672,17 @@
         <div class="container">
             <div class="header-content">
                 <a href="#" class="logo">MinivanRent</a>
+                
+                <nav class="header-nav">
+                    <a href="catalog.html" class="nav-link">Каталог авто</a>
+                    <a href="booking.html" class="nav-link">Бронирование</a>
+                    <a href="forms/owner-application.html" class="nav-link">Сдать авто</a>
+                    <a href="privacy-policy.html" class="nav-link">Политика</a>
+                </nav>
+                
                 <div class="header-contact">
                     <a href="tel:+71234567890" class="phone">+7 (123) 456-78-90</a>
-                    <button class="callback-btn">Заказать звонок</button>
+                    <button class="callback-btn" onclick="openModal('callbackModal')">Заказать звонок</button>
                 </div>
             </div>
         </div>
@@ -474,14 +694,105 @@
                 <h1>Арендуй минивэн у частных владельцев на новогодние праздники на 40% дешевле, чем в прокате</h1>
                 
                 <div class="action-buttons">
-                    <a href="catalog/" class="btn btn-primary">Смотреть все автомобили в наличии</a>
-                    <a href="forms/voice-request.html" class="btn btn-secondary">
-                        <span class="btn-icon">🤖</span>
-                        Воспользоваться интеллектуальным ИИ-поиском
+                    <a href="catalog.html" class="btn btn-primary large-btn">
+                        <span class="btn-icon">🔍</span>
+                        Смотреть все автомобили
                     </a>
-                    <div class="ai-search-note">
-                        Например, найти автомобиль для поездки в Минск из Москвы, на 7 дней, не старше 5 лет, бензиновый, не дороже 6000 в день
-                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="popular-cars">
+        <div class="container">
+            <h2 class="section-title">Популярные модели</h2>
+            <div class="carousel">
+                <div class="carousel-inner" id="carouselInner">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="filters-section">
+        <div class="container">
+            <h2 class="section-title">Поиск по параметрам</h2>
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label for="brand">Марка</label>
+                    <select id="brand">
+                        <option value="">Любая марка</option>
+                        <option value="toyota">Toyota</option>
+                        <option value="honda">Honda</option>
+                        <option value="volkswagen">Volkswagen</option>
+                        <option value="mercedes">Mercedes-Benz</option>
+                        <option value="bmw">BMW</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="model">Модель</label>
+                    <select id="model">
+                        <option value="">Любая модель</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="year">Год выпуска</label>
+                    <select id="year">
+                        <option value="">Любой год</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="transmission">Коробка передач</label>
+                    <select id="transmission">
+                        <option value="">Любая</option>
+                        <option value="automatic">Автоматическая</option>
+                        <option value="manual">Механическая</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="engine">Объем двигателя</label>
+                    <select id="engine">
+                        <option value="">Любой</option>
+                        <option value="1.6">до 1.6 л</option>
+                        <option value="2.0">1.6-2.0 л</option>
+                        <option value="2.5">2.0-2.5 л</option>
+                        <option value="3.0">2.5-3.0 л</option>
+                        <option value="3.5">свыше 3.0 л</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="priceFrom">Цена за день от (₽)</label>
+                    <input type="number" id="priceFrom" placeholder="0">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="priceTo">Цена за день до (₽)</label>
+                    <input type="number" id="priceTo" placeholder="10000">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="deposit">Сумма залога до (₽)</label>
+                    <input type="number" id="deposit" placeholder="50000">
+                </div>
+                
+                <div class="filter-actions">
+                    <button class="btn btn-primary" onclick="applyFilters()">
+                        <span class="btn-icon">🔍</span>
+                        Найти автомобили
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetFilters()">
+                        <span class="btn-icon">🔄</span>
+                        Сбросить фильтры
+                    </button>
                 </div>
             </div>
         </div>
@@ -510,17 +821,6 @@
         </div>
     </section>
 
-    <section class="popular-cars">
-        <div class="container">
-            <h2 class="section-title">Популярные модели</h2>
-            <div class="carousel">
-                <div class="carousel-inner" id="carouselInner">
-                    <!-- Данные загружаются через JavaScript -->
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="owners-cta">
         <div class="container">
             <h2>Сдайте свой минивэн в аренду</h2>
@@ -542,7 +842,7 @@
                 <div class="footer-section">
                     <h3>Правовая информация</h3>
                     <ul>
-                        <li><a href="privacy.html">Политика конфиденциальности</a></li>
+                        <li><a href="privacy-policy.html">Политика конфиденциальности</a></li>
                         <li><a href="#">Условия использования</a></li>
                         <li><a href="#">Политика cookies</a></li>
                     </ul>
@@ -555,60 +855,122 @@
     </footer>
 
     <script>
-        // Чат с поддержкой
-        function openChat() {
-            alert('Чат с поддержкой будет открыт здесь. В реальном проекте подключите сервис чата (например, Telegram Web App, JivoSite и т.д.)');
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
         }
 
-        // Заказ звонка
-        document.querySelector('.callback-btn').addEventListener('click', function() {
-            alert('Спасибо! Мы свяжемся с вами в ближайшее время.');
-        });
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
 
-        // СОЗДАНИЕ КАРТОЧКИ МАШИНЫ С ПЛЕЙСХОЛДЕРАМИ
-        function createCarCard(carId) {
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        function submitCallbackForm(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            console.log('Данные звонка:', data);
+            alert('Спасибо! Мы свяжемся с вами в ближайшее время.');
+            closeModal('callbackModal');
+            event.target.reset();
+        }
+
+        function submitChatForm(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            console.log('Запрос авто:', data);
+            alert('Запрос отправлен! Мы подберем для вас автомобиль и свяжемся в течение 24 часов.');
+            closeModal('chatModal');
+            event.target.reset();
+        }
+
+        function applyFilters() {
+            const filters = {
+                brand: document.getElementById('brand').value,
+                model: document.getElementById('model').value,
+                year: document.getElementById('year').value,
+                transmission: document.getElementById('transmission').value,
+                engine: document.getElementById('engine').value,
+                priceFrom: document.getElementById('priceFrom').value,
+                priceTo: document.getElementById('priceTo').value,
+                deposit: document.getElementById('deposit').value
+            };
+            
+            const queryString = new URLSearchParams(filters).toString();
+            window.location.href = `catalog.html?${queryString}`;
+        }
+
+        function resetFilters() {
+            document.getElementById('brand').value = '';
+            document.getElementById('model').value = '';
+            document.getElementById('year').value = '';
+            document.getElementById('transmission').value = '';
+            document.getElementById('engine').value = '';
+            document.getElementById('priceFrom').value = '';
+            document.getElementById('priceTo').value = '';
+            document.getElementById('deposit').value = '';
+        }
+
+        async function loadCarouselData() {
+            try {
+                const response = await fetch('data/cars.json');
+                const cars = await response.json();
+                return cars.slice(0, 8);
+            } catch (error) {
+                console.error('Ошибка загрузки данных:', error);
+                return [];
+            }
+        }
+
+        function createCarCard(car) {
+            const transmissionText = car.transmission === 'automatic' ? 'Автоматическая' : 'Механическая';
+            
             return `
                 <div class="carousel-item">
-                    <a href="car-details/car-${carId}.html" style="text-decoration: none; color: inherit;">
-                        <div class="car-card">
-                            <div class="car-image">
-                                <img src="static/images/minivans/car-${carId}.jpg" alt="Машина ${carId}" 
-                                     onerror="this.style.display='none'; this.previousElementSibling.style.display='flex'">
-                                <div class="image-placeholder" style="display: none;">
-                                    Фото машины ${carId}
-                                </div>
-                            </div>
-                            <div class="car-info">
-                                <h3 class="text-placeholder">Название машины ${carId}</h3>
-                                <p class="text-placeholder">Год, двигатель, коробка</p>
-                                <p class="text-placeholder">Количество мест, тип топлива</p>
-                                <div class="car-price text-placeholder">0 ₽/день</div>
-                            </div>
+                    <div class="car-card">
+                        <div class="car-image">
+                            ${car.images && car.images[0] ? 
+                                `<img src="${car.images[0]}" alt="${car.brand} ${car.model}">` :
+                                `<div class="image-placeholder">${car.brand} ${car.model}</div>`
+                            }
                         </div>
-                    </a>
+                        <div class="car-info">
+                            <h3>${car.brand} ${car.model}</h3>
+                            <p>${car.year} год, ${car.engine}</p>
+                            <p>${car.seats} мест, ${transmissionText}</p>
+                            <div class="car-price">${car.price} ₽/день</div>
+                        </div>
+                    </div>
                 </div>
             `;
         }
 
-        // ИНИЦИАЛИЗАЦИЯ КАРУСЕЛИ
         let currentIndex = 0;
 
-        function initCarousel() {
+        async function initCarousel() {
             const carouselInner = document.getElementById('carouselInner');
+            const cars = await loadCarouselData();
             
-            // Создаем 10 карточек с плейсхолдерами
-            const carIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-            const carCards = carIds.map(createCarCard).join('');
-            carouselInner.innerHTML = carCards;
+            if (cars.length === 0) {
+                carouselInner.innerHTML = '<p style="text-align: center; color: #D4C4A8;">Автомобили загружаются...</p>';
+                return;
+            }
             
-            // Дублируем первую карточку в конец для бесконечной прокрутки
-            const firstItem = carouselInner.children[0].cloneNode(true);
-            carouselInner.appendChild(firstItem);
+            carouselInner.innerHTML = cars.map(createCarCard).join('');
             
-            // Обновляем карусель
+            if (carouselInner.children.length > 0) {
+                const firstItem = carouselInner.children[0].cloneNode(true);
+                carouselInner.appendChild(firstItem);
+            }
+            
             updateCarousel();
-            
-            // Запускаем автоматическую прокрутку
             setInterval(nextSlide, 3000);
         }
 
@@ -619,7 +981,6 @@
             
             const totalRealItems = items.length - 1;
             currentIndex = (currentIndex + 1) % totalRealItems;
-            
             updateCarousel();
         }
 
@@ -632,7 +993,6 @@
             carouselInner.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
         }
 
-        // Запускаем карусель
         document.addEventListener('DOMContentLoaded', initCarousel);
     </script>
 </body>
