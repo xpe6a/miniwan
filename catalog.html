@@ -99,22 +99,6 @@
         }
 
         /* Стили для каталога */
-        .catalog-header {
-            padding: 40px 0 20px;
-            text-align: center;
-        }
-
-        .catalog-header h1 {
-            font-size: 2.5rem;
-            color: #E8DCC5;
-            margin-bottom: 10px;
-        }
-
-        .cars-count {
-            color: #D4C4A8;
-            font-size: 1.1rem;
-        }
-
         .catalog-content {
             display: grid;
             grid-template-columns: 300px 1fr;
@@ -130,11 +114,12 @@
             height: fit-content;
             position: sticky;
             top: 20px;
+            margin-top: 20px;
         }
 
         .filters-header {
             display: flex;
-            justify-content: between;
+            justify-content: space-between;
             align-items: center;
             margin-bottom: 25px;
         }
@@ -213,11 +198,11 @@
 
         .price-inputs {
             display: flex;
+            flex-direction: column;
             gap: 10px;
         }
 
         .price-inputs input {
-            flex: 1;
             padding: 8px 12px;
             background: rgba(35, 26, 22, 0.8);
             border: 1px solid #8B5A2B;
@@ -227,14 +212,15 @@
 
         .apply-filters {
             width: 100%;
-            margin-top: 10px;
+            margin-top: 20px;
         }
 
         /* Стили сетки автомобилей */
         .cars-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 25px;
+            margin-top: 20px;
         }
 
         .car-card {
@@ -421,10 +407,6 @@
                 gap: 15px;
             }
             
-            .catalog-header h1 {
-                font-size: 2rem;
-            }
-            
             .cars-grid {
                 grid-template-columns: 1fr;
             }
@@ -494,13 +476,6 @@
         </div>
     </header>
 
-    <section class="catalog-header">
-        <div class="container">
-            <h1>Каталог минивэнов</h1>
-            <div class="cars-count" id="carsCount">Загружаем автомобили...</div>
-        </div>
-    </section>
-
     <div class="container">
         <div class="catalog-content">
             <!-- Боковая панель фильтров -->
@@ -526,7 +501,6 @@
                             <input type="number" id="minPrice" placeholder="От" min="0">
                             <input type="number" id="maxPrice" placeholder="До" min="0">
                         </div>
-                        <button class="btn btn-primary apply-filters" onclick="applyFilters()">Применить фильтры</button>
                     </div>
                 </div>
 
@@ -569,6 +543,8 @@
                         <!-- Динамически заполняется через JS -->
                     </div>
                 </div>
+
+                <button class="btn btn-primary apply-filters" onclick="applyFilters()">Применить фильтры</button>
             </aside>
 
             <!-- Основной контент - сетка автомобилей -->
@@ -618,7 +594,7 @@
         let allCars = [];
         let filteredCars = [];
         let currentPage = 1;
-        const carsPerPage = 9;
+        const carsPerPage = 30; // Изменено с 9 на 30 для 3х10 сетки
         let currentFilters = {};
 
         // Загрузка данных
@@ -637,17 +613,9 @@
         // Инициализация каталога
         function initCatalog() {
             filteredCars = [...allCars];
-            updateCarsCount();
             renderFilters();
             renderCars();
             setupPagination();
-        }
-
-        // Обновление счетчика автомобилей
-        function updateCarsCount() {
-            const countElement = document.getElementById('carsCount');
-            const count = filteredCars.length;
-            countElement.textContent = `Найдено ${count} автомобилей`;
         }
 
         // Рендер фильтров
@@ -768,7 +736,6 @@
             currentFilters = getCurrentFilters();
             filteredCars = allCars.filter(car => matchesFilters(car));
             currentPage = 1;
-            updateCarsCount();
             renderCars();
             setupPagination();
         }
