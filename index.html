@@ -60,9 +60,15 @@
 
         .hero h1 {
             font-size: 3rem;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             color: #E8DCC5;
             line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #D4C4A8;
         }
 
         .large-btn {
@@ -219,6 +225,7 @@
             border-radius: 5px;
             color: #F0E6D2;
             font-size: 14px;
+            box-sizing: border-box;
         }
 
         .filter-group select option {
@@ -380,14 +387,38 @@
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 60px;
+            margin-bottom: 20px;
             color: #E8DCC5;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #D4C4A8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .section-description {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: #D4C4A8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
         }
 
         .why-us-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .reason-card {
@@ -416,6 +447,78 @@
 
         .reason-card p {
             color: #D4C4A8;
+        }
+
+        .how-it-works {
+            padding: 80px 0;
+            background: rgba(30, 25, 20, 0.5);
+        }
+
+        .how-it-works-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .testimonials {
+            padding: 80px 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .testimonial-card {
+            background: rgba(40, 30, 25, 0.6);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: left;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #D4C4A8;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            color: #E8DCC5;
+            font-weight: 600;
+        }
+
+        .cta-form-section {
+            padding: 80px 0;
+            background: rgba(30, 25, 20, 0.6);
+            text-align: center;
+        }
+
+        .date-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .date-inputs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .date-inputs .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .form-note-center {
+            font-size: 12px;
+            color: #D4C4A8;
+            margin-top: 10px;
+            text-align: center;
         }
 
         .popular-cars {
@@ -590,6 +693,11 @@
 
             .hero h1 {
                 font-size: 2rem;
+                margin-bottom: 20px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
                 margin-bottom: 30px;
             }
 
@@ -608,6 +716,23 @@
 
             .carousel-item {
                 min-width: calc(50% - 10px);
+            }
+
+            .date-inputs {
+                flex-direction: column;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-us-grid,
+            .how-it-works-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-subtitle {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -691,13 +816,77 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Арендуй минивэн у частных владельцев на новогодние праздники на 40% дешевле, чем в прокате</h1>
+                <h1>Арендуйте минивэн у частных владельцев на 40% дешевле проката</h1>
+                <div class="hero-subtitle">120 минивэнов в наличии на новогодние праздники.</div>
                 
                 <div class="action-buttons">
                     <a href="catalog.html" class="btn btn-primary large-btn">
                         <span class="btn-icon">🔍</span>
-                        Смотреть все автомобили
+                        Подобрать минивэн
                     </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-us">
+        <div class="container">
+            <h2 class="section-title">MinivanRent — сервис аренды у частных владельцев</h2>
+            <div class="section-subtitle">Почему у нас дешевле, чем в прокате — и безопаснее, чем просто "у частников"</div>
+            <div class="section-description">
+                Мы соединяем владельцев, у которых машина простаивает, с людьми, которым она нужна на несколько дней.
+                Владельцы зарабатывают, арендаторы экономят.
+                Сделку сопровождаем мы: проверяем всех, держим залог и решаем споры.
+            </div>
+            
+            <div class="why-us-grid">
+                <div class="reason-card">
+                    <div class="reason-icon">💰</div>
+                    <h3>Выгодно</h3>
+                    <p>На 40% дешевле чем в прокате</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">🛡️</div>
+                    <h3>Надежно</h3>
+                    <p>Гарантируем сделку, удерживаем залог. Проверяем владельца и состояние авто.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">⚖️</div>
+                    <h3>Честно</h3>
+                    <p>В случае споров – честный арбитраж по фактам, а не "в пользу хозяина". В случае повреждения – ремонт по реальной цене, а не втридорого</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">🚗</div>
+                    <h3>Удобно</h3>
+                    <p>120 машин в одном месте. Реальные фото, машина та, которую выбрали, а не аналогичная. Доставка авто</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Как это работает</h2>
+            <div class="how-it-works-grid">
+                <div class="reason-card">
+                    <div class="reason-icon">🚗</div>
+                    <h3>Выбираете минивэн</h3>
+                    <p>Оставляете контакты — перезвоним, подтвердим наличие, ответим на вопросы.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">💬</div>
+                    <h3>Бронируете</h3>
+                    <p>Переводите оплату и залог нам. Деньги держим до конца аренды — владелец не "зажмёт".</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">📜</div>
+                    <h3>Получаете свою машину</h3>
+                    <p>Именно ту, что выбрали. В нужные даты. Забираете сами или доставит владелец. Подписываете договор.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">🔄</div>
+                    <h3>Ездите спокойно</h3>
+                    <p>Мы сопровождаем сделку. В споре поможем и решим по фактам. После возврата авто залог возвращается сразу.</p>
                 </div>
             </div>
         </div>
@@ -708,6 +897,56 @@
             <h2 class="section-title">Популярные модели</h2>
             <div class="carousel">
                 <div class="carousel-inner" id="carouselInner">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Отзывы арендаторов</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Ездили в Карелию с детьми. Просторно, тепло и спокойно. Дети спали весь путь! Аренда заняла 10 минут — всё удобно и безопасно."
+                    </div>
+                    <div class="testimonial-author">— Марина, Москва</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Отличная альтернатива прокату. Авто в идеале, хозяин приятный, оформили договор за 5 минут."
+                    </div>
+                    <div class="testimonial-author">— Александр и Татьяна, двое детей</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-form-section">
+        <div class="container">
+            <h2 class="section-title">Подберите минивэн под ваши даты</h2>
+            <div class="section-subtitle">
+                120 проверенных минивэнов в Москве.
+                Договор, поддержка и честное сопровождение сделки.
+            </div>
+            
+            <div class="date-form">
+                <div class="date-inputs">
+                    <div class="form-group">
+                        <label for="startDate">Дата начала</label>
+                        <input type="date" id="startDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">Дата окончания</label>
+                        <input type="date" id="endDate" required>
+                    </div>
+                </div>
+                <a href="catalog.html" class="btn btn-primary large-btn">
+                    <span class="btn-icon">🔍</span>
+                    Показать доступные минивэны
+                </a>
+                <div class="form-note-center">
+                    Без скрытых комиссий. Залог возвращаем сразу после сдачи машины.
                 </div>
             </div>
         </div>
@@ -798,33 +1037,10 @@
         </div>
     </section>
 
-    <section class="why-us">
-        <div class="container">
-            <h2 class="section-title">Почему выбирают нас</h2>
-            <div class="why-us-grid">
-                <div class="reason-card">
-                    <div class="reason-icon">💰</div>
-                    <h3>Честные цены</h3>
-                    <p>Указываем окончательную цену без доплат</p>
-                </div>
-                <div class="reason-card">
-                    <div class="reason-icon">🚗</div>
-                    <h3>Широкий выбор</h3>
-                    <p>120 минивэнов в наличии на новогодние каникулы</p>
-                </div>
-                <div class="reason-card">
-                    <div class="reason-icon">🤝</div>
-                    <h3>Честные условия</h3>
-                    <p>В случае повреждения ремонт по честной цене</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="owners-cta">
         <div class="container">
-            <h2>Сдайте свой минивэн в аренду</h2>
-            <p>Зарабатывайте на своем автомобиле, когда он не нужен вам. Простая регистрация и поддержка 24/7.</p>
+            <h2>Сдайте свой минивэн и зарабатывайте, пока он стоит</h2>
+            <p>Владельцы получают от 40 000 ₽ в месяц.<br>Мы проверяем арендаторов, держим залог и решаем споры.</p>
             <a href="forms/owner-application.html" class="btn btn-primary">Разместить автомобиль</a>
         </div>
     </section>
@@ -854,146 +1070,8 @@
         </div>
     </footer>
 
-    <script>
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'block';
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = 'none';
-            }
-        }
-
-        function submitCallbackForm(event) {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            const data = Object.fromEntries(formData);
-            
-            console.log('Данные звонка:', data);
-            alert('Спасибо! Мы свяжемся с вами в ближайшее время.');
-            closeModal('callbackModal');
-            event.target.reset();
-        }
-
-        function submitChatForm(event) {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            const data = Object.fromEntries(formData);
-            
-            console.log('Запрос авто:', data);
-            alert('Запрос отправлен! Мы подберем для вас автомобиль и свяжемся в течение 24 часов.');
-            closeModal('chatModal');
-            event.target.reset();
-        }
-
-        function applyFilters() {
-            const filters = {
-                brand: document.getElementById('brand').value,
-                model: document.getElementById('model').value,
-                year: document.getElementById('year').value,
-                transmission: document.getElementById('transmission').value,
-                engine: document.getElementById('engine').value,
-                priceFrom: document.getElementById('priceFrom').value,
-                priceTo: document.getElementById('priceTo').value,
-                deposit: document.getElementById('deposit').value
-            };
-            
-            const queryString = new URLSearchParams(filters).toString();
-            window.location.href = `catalog.html?${queryString}`;
-        }
-
-        function resetFilters() {
-            document.getElementById('brand').value = '';
-            document.getElementById('model').value = '';
-            document.getElementById('year').value = '';
-            document.getElementById('transmission').value = '';
-            document.getElementById('engine').value = '';
-            document.getElementById('priceFrom').value = '';
-            document.getElementById('priceTo').value = '';
-            document.getElementById('deposit').value = '';
-        }
-
-        async function loadCarouselData() {
-            try {
-                const response = await fetch('data/cars.json');
-                const cars = await response.json();
-                return cars.slice(0, 8);
-            } catch (error) {
-                console.error('Ошибка загрузки данных:', error);
-                return [];
-            }
-        }
-
-        function createCarCard(car) {
-            const transmissionText = car.transmission === 'automatic' ? 'Автоматическая' : 'Механическая';
-            
-            return `
-                <div class="carousel-item">
-                    <div class="car-card">
-                        <div class="car-image">
-                            ${car.images && car.images[0] ? 
-                                `<img src="${car.images[0]}" alt="${car.brand} ${car.model}">` :
-                                `<div class="image-placeholder">${car.brand} ${car.model}</div>`
-                            }
-                        </div>
-                        <div class="car-info">
-                            <h3>${car.brand} ${car.model}</h3>
-                            <p>${car.year} год, ${car.engine}</p>
-                            <p>${car.seats} мест, ${transmissionText}</p>
-                            <div class="car-price">${car.price} ₽/день</div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        let currentIndex = 0;
-
-        async function initCarousel() {
-            const carouselInner = document.getElementById('carouselInner');
-            const cars = await loadCarouselData();
-            
-            if (cars.length === 0) {
-                carouselInner.innerHTML = '<p style="text-align: center; color: #D4C4A8;">Автомобили загружаются...</p>';
-                return;
-            }
-            
-            carouselInner.innerHTML = cars.map(createCarCard).join('');
-            
-            if (carouselInner.children.length > 0) {
-                const firstItem = carouselInner.children[0].cloneNode(true);
-                carouselInner.appendChild(firstItem);
-            }
-            
-            updateCarousel();
-            setInterval(nextSlide, 3000);
-        }
-
-        function nextSlide() {
-            const carouselInner = document.getElementById('carouselInner');
-            const items = document.querySelectorAll('.carousel-item');
-            if (items.length <= 1) return;
-            
-            const totalRealItems = items.length - 1;
-            currentIndex = (currentIndex + 1) % totalRealItems;
-            updateCarousel();
-        }
-
-        function updateCarousel() {
-            const carouselInner = document.getElementById('carouselInner');
-            const items = document.querySelectorAll('.carousel-item');
-            if (items.length === 0) return;
-            
-            const itemWidth = items[0].offsetWidth + 20;
-            carouselInner.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-        }
-
-        document.addEventListener('DOMContentLoaded', initCarousel);
-    </script>
+    <script src="js/carousel.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
