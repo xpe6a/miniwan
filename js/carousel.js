@@ -1,4 +1,4 @@
-// carousel.js - Управление каруселями на сайте
+// carousel.js - Управление каруселью популярных автомобилей на главной странице
 
 class Carousel {
     constructor(containerId, options = {}) {
@@ -12,7 +12,7 @@ class Carousel {
             autoPlay: true,
             autoPlayInterval: 4000,
             infinite: true,
-            showDots: false,
+            showDots: true,
             showArrows: true,
             responsive: [
                 { breakpoint: 1024, itemsToShow: 3 },
@@ -137,7 +137,7 @@ class Carousel {
         this.dotsContainer = document.createElement('div');
         this.dotsContainer.className = 'carousel-dots';
         
-        for (let i = 0; i this.getTotalPages(); i++) {
+        for (let i = 0; i < this.getTotalPages(); i++) {
             const dot = document.createElement('button');
             dot.className = 'carousel-dot';
             dot.addEventListener('click', () => this.goToPage(i));
@@ -403,57 +403,101 @@ class Carousel {
     }
 }
 
-// ==================== ИНИЦИАЛИЗАЦИЯ КАРУСЕЛЕЙ НА СТРАНИЦЕ ====================
+// ==================== ФУНКЦИИ ДЛЯ ЗАГРУЗКИ АВТОМОБИЛЕЙ ====================
+
+// Функция для загрузки данных об автомобилях
+async function loadPopularCars() {
+    try {
+        const response = await fetch('data/cars.json');
+        if (!response.ok) {
+            throw new Error('Ошибка загрузки данных');
+        }
+        const cars = await response.json();
+        
+        // Фильтруем популярные автомобили (первые 8)
+        const popularCars = cars.filter(car => car.isPopular).slice(0, 8);
+        
+        const carouselInner = document.getElementById('carouselInner');
+        if (!carouselInner) {
+            console.error('Элемент карусели не найден');
+            return;
+        }
+        
+        // Создаем HTML для каждого автомобиля
+        carouselInner.innerHTML = popularCars.map(car => `
+            <div class="carousel-item">
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="${car.images[0]}" alt="${car.brand} ${car.model}" 
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="image-placeholder" style="display: none;">
+                            ${car.brand} ${car.model}
+                        </div>
+                    </div>
+                    <div class="car-info">
+                        <h3>${car.brand} ${car.model}</h3>
+                        <p>${car.year} год • ${car.seats} мест</p>
+                        <p>${car.transmission === 'automatic' ? 'Автомат' : 'Механика'} • ${car.fuelType}</p>
+                        <div class="car-price">${car.price.toLocaleString()} ₽/день</div>
+                        <div class="car-deposit">Залог: ${car.deposit.toLocaleString()} ₽</div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+        
+        return popularCars.length > 0;
+        
+    } catch (error) {
+        console.error('Ошибка загрузки автомобилей:', error);
+        
+        // Показываем заглушку при ошибке
+        const carouselInner = document.getElementById('carouselInner');
+        if (carouselInner) {
+            carouselInner.innerHTML = `
+                <div style="text-align: center; padding: 40px; color: #D4C4A8;">
+                    <p>Не удалось загрузить автомобили. Попробуйте обновить страницу.</p>
+                </div>
+            `;
+        }
+        return false;
+    }
+}
+
+// ==================== ИНИЦИАЛИЗАЦИЯ КАРУСЕЛИ ====================
 
 // Глобальная функция для инициализации карусели
 function initCarousel(containerId, options = {}) {
     return new Carousel(containerId, options);
 }
 
-// Автоматическая инициализация каруселей при загрузке страницы
-document.addEventListener('DOMContentLoaded', function() {
-    // Инициализация карусели на главной странице
-    const mainCarousel = document.getElementById('carouselInner');
-    if (mainCarousel) {
-        initCarousel('carouselInner', {
-            autoPlay: true,
-            autoPlayInterval: 4000,
-            infinite: true,
-            showArrows: true,
-            showDots: true,
-            responsive: [
-                { breakpoint: 1024, itemsToShow: 3 },
-                { breakpoint: 768, itemsToShow: 2 },
-                { breakpoint: 480, itemsToShow: 1 }
-            ]
-        });
-    }
+// Автоматическая инициализация карусели при загрузке страницы
+document.addEventListener('DOMContentLoaded', async function() {
+    // Загружаем автомобили и только потом инициализируем карусель
+    const carsLoaded = await loadPopularCars();
     
-    // Инициализация карусели похожих автомобилей
-    const similarCarousel = document.querySelector('.similar-grid');
-    if (similarCarousel && similarCarousel.children.length > 0) {
-        similarCarousel.id = 'similarCarousel';
-        similarCarousel.classList.add('carousel-inner');
-        similarCarousel.parentElement.classList.add('carousel');
-        
-        Array.from(similarCarousel.children).forEach(child => {
-            child.classList.add('carousel-item');
-        });
-        
-        initCarousel('similarCarousel', {
-            autoPlay: true,
-            autoPlayInterval: 5000,
-            infinite: true,
-            showArrows: true,
-            itemsToShow: 3,
-            responsive: [
-                { breakpoint: 1024, itemsToShow: 2 },
-                { breakpoint: 768, itemsToShow: 1 }
-            ]
-        });
+    if (carsLoaded) {
+        // Даем небольшую задержку для применения стилей
+        setTimeout(() => {
+            const mainCarousel = document.getElementById('carouselInner');
+            if (mainCarousel && mainCarousel.children.length > 0) {
+                initCarousel('carouselInner', {
+                    autoPlay: true,
+                    autoPlayInterval: 4000,
+                    infinite: true,
+                    showArrows: true,
+                    showDots: true,
+                    responsive: [
+                        { breakpoint: 1024, itemsToShow: 3 },
+                        { breakpoint: 768, itemsToShow: 2 },
+                        { breakpoint: 480, itemsToShow: 1 }
+                    ]
+                });
+            }
+        }, 100);
     }
 });
 
 // Экспорт для использования в других файлах
 window.initCarousel = initCarousel;
 window.Carousel = Carousel;
+window.loadPopularCars = loadPopularCars;
