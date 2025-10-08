@@ -153,7 +153,7 @@ class FiltersManager {
         if (!minPriceInput || !maxPriceInput) return;
         
         // Установка плейсхолдеров с минимальной и максимальной ценой
-        const prices = this.allCars.map(car => car.price);
+        const prices = this.allCars.map(car => car.prices["1"]);
         const minPrice = Math.min(...prices);
         const maxPrice = Math.max(...prices);
         
@@ -273,8 +273,10 @@ class FiltersManager {
         // Фильтр по количеству мест
         if (filters.seats && car.seats !== parseInt(filters.seats)) return false;
         
-        // Фильтр по цене
-        if (car.price < filters.minPrice || car.price > filters.maxPrice) return false;
+        // Фильтр по цене (используем цену за 1 день)
+        const carPrice = car.prices["1"];
+        if (filters.minPrice && carPrice < filters.minPrice) return false;
+        if (filters.maxPrice && carPrice > filters.maxPrice) return false;
         
         // Фильтр по залогу
         if (filters.deposit) {
@@ -366,7 +368,7 @@ class FiltersManager {
                     </div>
                     
                     <div class="car-price">
-                        ${window.formatPrice(car.price)} ₽ <span class="car-price-period">/ день</span>
+                        ${window.formatPrice(car.prices["1"])} ₽ <span class="car-price-period">/ день</span>
                     </div>
                     <div class="car-details">Залог: ${window.formatPrice(car.deposit)} ₽</div>
                     
@@ -542,6 +544,7 @@ class FiltersManager {
 let filtersManager;
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Инициализация только на странице каталога
     if (document.getElementById('carsGrid')) {
         filtersManager = new FiltersManager();
         
@@ -551,7 +554,70 @@ document.addEventListener('DOMContentLoaded', function() {
             filtersManager.applyFilters();
         }, 100);
     }
+    
+    // Инициализация фильтров на главной странице
+    initHomePageFilters();
 });
+
+// Функция для инициализации фильтров на главной странице
+function initHomePageFilters() {
+    const filtersSection = document.querySelector('.filters-section');
+    if (!filtersSection) return;
+    
+    const applyBtn = filtersSection.querySelector('.btn-primary');
+    const resetBtn = filtersSection.querySelector('.btn-secondary');
+    
+    if (applyBtn) {
+        applyBtn.addEventListener('click', function() {
+            // Собираем параметры фильтров для передачи в каталог
+            const filters = getHomePageFilters();
+            const queryParams = new URLSearchParams();
+            
+            Object.entries(filters).forEach(([key, value]) => {
+                if (value && value !== '') {
+                    queryParams.set(key, value);
+                }
+            });
+            
+            // Перенаправляем в каталог с примененными фильтрами
+            window.location.href = `catalog.html?${queryParams.toString()}`;
+        });
+    }
+    
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+            // Сбрасываем все фильтры на главной странице
+            const filterElements = filtersSection.querySelectorAll('select, input');
+            filterElements.forEach(element => {
+                if (element.type === 'text' || element.type === 'number') {
+                    element.value = '';
+                } else {
+                    element.selectedIndex = 0;
+                }
+            });
+            
+            if (window.showNotification) {
+                window.showNotification('Фильтры сброшены', 'success');
+            }
+        });
+    }
+}
+
+// Функция для получения фильтров с главной страницы
+function getHomePageFilters() {
+    const filters = {};
+    
+    filters.brand = document.getElementById('brand')?.value || '';
+    filters.model = document.getElementById('model')?.value || '';
+    filters.year = document.getElementById('year')?.value || '';
+    filters.transmission = document.getElementById('transmission')?.value || '';
+    filters.engine = document.getElementById('engine')?.value || '';
+    filters.minPrice = document.getElementById('priceFrom')?.value || '';
+    filters.maxPrice = document.getElementById('priceTo')?.value || '';
+    filters.maxDeposit = document.getElementById('deposit')?.value || '';
+    
+    return filters;
+}
 
 // Глобальные функции для использования в HTML
 function bookCar(carId) {
@@ -582,3 +648,5 @@ window.bookCar = bookCar;
 window.applyFilters = applyFilters;
 window.resetFilters = resetFilters;
 window.changePage = changePage;
+window.initHomePageFilters = initHomePageFilters;
+window.getHomePageFilters = getHomePageFilters;

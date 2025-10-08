@@ -13,11 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
 function initSite() {
     console.log('MinivanRent инициализирован');
     
-    // Инициализация чата поддержки
-    initChat();
-    
-    // Инициализация форм обратного звонка
-    initCallbacks();
+    // Инициализация модальных окон
+    initModals();
     
     // Загрузка данных для главной страницы
     if (document.getElementById('carouselInner')) {
@@ -28,197 +25,45 @@ function initSite() {
     if (document.getElementById('carsGrid')) {
         loadCatalogData();
     }
-}
-
-// ==================== ЧАТ ПОДДЕРЖКИ ====================
-
-function initChat() {
-    const chatButtons = document.querySelectorAll('.chat-button, [onclick*="openChat"]');
     
-    chatButtons.forEach(button => {
-        button.onclick = function(e) {
-            e.preventDefault();
-            openChatModal();
-        };
-    });
-}
-
-function openChatModal() {
-    const modalHTML = `
-        <div class="modal" id="chatModal" style="display: block;">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal('chatModal')">&times;</span>
-                <h2 style="color: #E8DCC5; margin-bottom: 20px;">Чат поддержки</h2>
-                <form id="chatForm" onsubmit="submitChatForm(event)">
-                    <div class="form-group">
-                        <label for="chatName">Ваше имя *</label>
-                        <input type="text" id="chatName" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="chatEmail">Email *</label>
-                        <input type="email" id="chatEmail" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="chatMessage">Сообщение *</label>
-                        <textarea id="chatMessage" name="message" required placeholder="Опишите ваш вопрос или проблему..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Отправить сообщение</button>
-                </form>
-            </div>
-        </div>
-    `;
-    
-    // Добавляем модальное окно в body
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
-    setupModalStyles();
-}
-
-// ==================== ОБРАТНЫЙ ЗВОНОК ====================
-
-function initCallbacks() {
-    const callbackButtons = document.querySelectorAll('.callback-btn, [onclick*="callback"]');
-    
-    callbackButtons.forEach(button => {
-        button.onclick = function(e) {
-            e.preventDefault();
-            openCallbackModal();
-        };
-    });
-}
-
-function openCallbackModal() {
-    const modalHTML = `
-        <div class="modal" id="callbackModal" style="display: block;">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal('callbackModal')">&times;</span>
-                <h2 style="color: #E8DCC5; margin-bottom: 20px;">Заказать звонок</h2>
-                <form id="callbackForm" onsubmit="submitCallbackForm(event)">
-                    <div class="form-group">
-                        <label for="callbackName">Ваше имя *</label>
-                        <input type="text" id="callbackName" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="callbackPhone">Телефон *</label>
-                        <input type="tel" id="callbackPhone" name="phone" required placeholder="+7 (XXX) XXX-XX-XX">
-                    </div>
-                    <div class="form-group">
-                        <label for="callbackTime">Удобное время для звонка</label>
-                        <select id="callbackTime" name="time">
-                            <option value="">В любое время</option>
-                            <option value="10:00-13:00">Утро (10:00-13:00)</option>
-                            <option value="13:00-17:00">День (13:00-17:00)</option>
-                            <option value="17:00-20:00">Вечер (17:00-20:00)</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="submit-btn">Позвоните мне</button>
-                </form>
-            </div>
-        </div>
-    `;
-    
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
-    setupModalStyles();
+    // Инициализация фильтров на главной странице
+    initHomePageFilters();
 }
 
 // ==================== УПРАВЛЕНИЕ МОДАЛЬНЫМИ ОКНАМИ ====================
 
-function setupModalStyles() {
-    if (!document.querySelector('#modalStyles')) {
-        const styles = `
-            <style id="modalStyles">
-                .modal {
-                    display: none;
-                    position: fixed;
-                    z-index: 1001;
-                    left: 0;
-                    top: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: rgba(0,0,0,0.8);
-                    backdrop-filter: blur(5px);
-                }
-                .modal-content {
-                    background: rgba(35, 26, 22, 0.95);
-                    margin: 5% auto;
-                    padding: 30px;
-                    border-radius: 10px;
-                    width: 90%;
-                    max-width: 500px;
-                    border: 1px solid #8B5A2B;
-                    position: relative;
-                }
-                .close {
-                    color: #D4C4A8;
-                    float: right;
-                    font-size: 28px;
-                    font-weight: bold;
-                    cursor: pointer;
-                    line-height: 1;
-                    position: absolute;
-                    top: 15px;
-                    right: 20px;
-                }
-                .close:hover {
-                    color: #E8DCC5;
-                }
-                .form-group {
-                    margin-bottom: 20px;
-                }
-                .form-group label {
-                    display: block;
-                    margin-bottom: 8px;
-                    color: #E8DCC5;
-                }
-                .form-group input,
-                .form-group select,
-                .form-group textarea {
-                    width: 100%;
-                    padding: 12px;
-                    background: rgba(40, 30, 25, 0.8);
-                    border: 1px solid #8B5A2B;
-                    border-radius: 5px;
-                    color: #F0E6D2;
-                    font-size: 14px;
-                    box-sizing: border-box;
-                }
-                .form-group textarea {
-                    height: 100px;
-                    resize: vertical;
-                }
-                .submit-btn {
-                    width: 100%;
-                    padding: 12px;
-                    background: #8B5A2B;
-                    color: white;
-                    border: none;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    font-size: 16px;
-                    font-weight: 600;
-                    transition: background 0.3s;
-                }
-                .submit-btn:hover {
-                    background: #A06A37;
-                }
-            </style>
-        `;
-        document.head.insertAdjacentHTML('beforeend', styles);
+function initModals() {
+    // Закрытие модальных окон при клике вне их
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('modal')) {
+            closeModal(e.target.id);
+        }
+    });
+
+    // Закрытие модальных окон при нажатии Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const openModals = document.querySelectorAll('.modal[style*="display: block"]');
+            openModals.forEach(modal => closeModal(modal.id));
+        }
+    });
+}
+
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
     }
 }
 
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
-        modal.remove();
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
     }
 }
-
-// Закрытие модальных окон при клике вне их
-document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('modal')) {
-        e.target.remove();
-    }
-});
 
 // ==================== ОТПРАВКА ФОРМ ====================
 
@@ -584,11 +429,43 @@ function setupFilters(cars) {
     // (можно добавить позже при необходимости)
 }
 
+// ==================== ФИЛЬТРЫ НА ГЛАВНОЙ СТРАНИЦЕ ====================
+
+function initHomePageFilters() {
+    // Инициализация фильтров только на главной странице
+    const filtersSection = document.querySelector('.filters-section');
+    if (!filtersSection) return;
+    
+    const applyBtn = filtersSection.querySelector('.btn-primary');
+    const resetBtn = filtersSection.querySelector('.btn-secondary');
+    
+    if (applyBtn) {
+        applyBtn.addEventListener('click', function() {
+            // Перенаправляем в каталог с примененными фильтрами
+            window.location.href = 'catalog.html';
+        });
+    }
+    
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+            // Сбрасываем все фильтры
+            const filterElements = filtersSection.querySelectorAll('select, input');
+            filterElements.forEach(element => {
+                if (element.type === 'text' || element.type === 'number') {
+                    element.value = '';
+                } else {
+                    element.selectedIndex = 0;
+                }
+            });
+            showNotification('Фильтры сброшены', 'success');
+        });
+    }
+}
+
 // ==================== ЭКСПОРТ ФУНКЦИЙ ДЛЯ ИСПОЛЬЗОВАНИЯ В ДРУГИХ ФАЙЛАХ ====================
 
 // Делаем функции доступными глобально для использования в HTML
-window.openChatModal = openChatModal;
-window.openCallbackModal = openCallbackModal;
+window.openModal = openModal;
 window.closeModal = closeModal;
 window.submitChatForm = submitChatForm;
 window.submitCallbackForm = submitCallbackForm;
