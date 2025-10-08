@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сдать машину в аренду | MinivanRent</title>
+    <style>
+        /* Основные стили как на главной */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #231A16;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23E8DCC5' stroke-opacity='0.12' stroke-width='1' fill='none'%3E%3Cpath d='M0,20 L100,20 M20,0 L20,100 M0,80 L100,80 M80,0 L80,100 M0,0 L100,100 M100,0 L0,100'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 100px 100px;
+            min-height: 100vh;
+            color: #F0E6D2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            position: relative;
+            z-index: 10;
+            background: rgba(35, 26, 22, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #E8DCC5;
+            text-decoration: none;
+        }
+
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .phone {
+            color: #D4C4A8;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .phone:hover {
+            color: #E8DCC5;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #8B5A2B;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #A06A37;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #E8DCC5;
+            border: 1px solid #8B5A2B;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(139, 90, 43, 0.1);
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 16px;
+            min-width: 200px;
+        }
+
+        /* Хлебные крошки */
+        .breadcrumbs {
+            padding: 20px 0;
+            color: #D4C4A8;
+            font-size: 14px;
+        }
+
+        .breadcrumbs a {
+            color: #8B5A2B;
+            text-decoration: none;
+        }
+
+        .breadcrumbs a:hover {
+            color: #A06A37;
+        }
+
+        /* Основной контент */
+        .application-content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 0 60px;
+        }
+
+        .application-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .application-title {
+            font-size: 2.5rem;
+            color: #E8DCC5;
+            margin-bottom: 20px;
+        }
+
+        .application-subtitle {
+            font-size: 1.2rem;
+            color: #D4C4A8;
+            line-height: 1.6;
+        }
+
+        /* Форма */
+        .application-form {
+            background: rgba(40, 30, 25, 0.8);
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #E8DCC5;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(35, 26, 22, 0.8);
+            border: 1px solid #8B5A2B;
+            border-radius: 5px;
+            color: #F0E6D2;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #A06A37;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 25px 0;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #8B5A2B;
+            margin-top: 2px;
+        }
+
+        .checkbox-group label {
+            color: #D4C4A8;
+            font-size: 14px;
+            line-height: 1.4;
+            font-weight: normal;
+        }
+
+        .checkbox-group a {
+            color: #8B5A2B;
+            text-decoration: none;
+        }
+
+        .checkbox-group a:hover {
+            color: #A06A37;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: #8B5A2B;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #A06A37;
+        }
+
+        .submit-btn:disabled {
+            background: #443A30;
+            cursor: not-allowed;
+        }
+
+        /* Преимущества */
+        .benefits-section {
+            background: rgba(40, 30, 25, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .benefits-title {
+            font-size: 1.5rem;
+            color: #E8DCC5;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(35, 26, 22, 0.6);
+            border-radius: 8px;
+        }
+
+        .benefit-icon {
+            font-size: 1.5rem;
+            color: #8B5A2B;
+            flex-shrink: 0;
+        }
+
+        .benefit-content h4 {
+            color: #E8DCC5;
+            margin: 0 0 5px 0;
+            font-size: 1.1rem;
+        }
+
+        .benefit-content p {
+            color: #D4C4A8;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Уведомление */
+        .notification {
+            background: rgba(139, 90, 43, 0.2);
+            border: 1px solid #8B5A2B;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .notification p {
+            color: #D4C4A8;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .application-title {
+                font-size: 2rem;
+            }
+
+            .application-form {
+                padding: 30px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        footer {
+            padding: 60px 0 20px;
+            background: rgba(20, 15, 12, 0.95);
+            border-top: 1px solid #443A30;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: #E8DCC5;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #D4C4A8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #E8DCC5;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #443A30;
+            color: #D4C4A8;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">MinivanRent</a>
+                <div class="header-contact">
+                    <a href="tel:+71234567890" class="phone">+7 (123) 456-78-90</a>
+                    <a href="../catalog.html" class="btn btn-secondary">← Назад к каталогу</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Хлебные крошки -->
+        <div class="breadcrumbs">
+            <a href="../index.html">Главная</a> > 
+            <span>Сдать машину в аренду</span>
+        </div>
+
+        <!-- Основной контент -->
+        <div class="application-content">
+            <div class="application-header">
+                <h1 class="application-title">Сдайте свой минивэн в аренду</h1>
+                <p class="application-subtitle">
+                    Зарабатывайте от 40 000 ₽ в месяц, пока ваш автомобиль простаивает.<br>
+                    Мы найдем проверенных арендаторов и возьмем на себя все заботы.
+                </p>
+            </div>
+
+            <div class="notification">
+                <p>🚗 <strong>Менеджер свяжется с вами в течение 2 часов</strong> после отправки заявки для уточнения деталей</p>
+            </div>
+
+            <form class="application-form" id="ownerApplicationForm" onsubmit="submitApplication(event)">
+                <div class="form-group">
+                    <label for="ownerName">Ваше имя *</label>
+                    <input type="text" id="ownerName" name="ownerName" required placeholder="Иван Иванов">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ownerPhone">Телефон *</label>
+                        <input type="tel" id="ownerPhone" name="ownerPhone" required placeholder="+7 (999) 123-45-67">
+                    </div>
+                    <div class="form-group">
+                        <label for="ownerEmail">Email *</label>
+                        <input type="email" id="ownerEmail" name="ownerEmail" required placeholder="ivan@example.com">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="carBrand">Марка автомобиля *</label>
+                        <select id="carBrand" name="carBrand" required>
+                            <option value="">Выберите марку</option>
+                            <option value="toyota">Toyota</option>
+                            <option value="honda">Honda</option>
+                            <option value="volkswagen">Volkswagen</option>
+                            <option value="mercedes">Mercedes-Benz</option>
+                            <option value="kia">Kia</option>
+                            <option value="hyundai">Hyundai</option>
+                            <option value="ford">Ford</option>
+                            <option value="nissan">Nissan</option>
+                            <option value="chrysler">Chrysler</option>
+                            <option value="other">Другая</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="carModel">Модель автомобиля *</label>
+                        <input type="text" id="carModel" name="carModel" required placeholder="Alphard">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="carYear">Год выпуска *</label>
+                        <select id="carYear" name="carYear" required>
+                            <option value="">Выберите год</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="carSeats">Количество мест *</label>
+                        <select id="carSeats" name="carSeats" required>
+                            <option value="">Выберите количество</option>
+                            <option value="7">7 мест</option>
+                            <option value="8">8 мест</option>
+                            <option value="9">9 мест</option>
+                            <option value="10">10+ мест</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="carLocation">Город, где находится автомобиль *</label>
+                    <input type="text" id="carLocation" name="carLocation" required placeholder="Москва">
+                </div>
+
+                <div class="form-group">
+                    <label for="additionalInfo">Дополнительная информация</label>
+                    <textarea id="additionalInfo" name="additionalInfo" placeholder="Состояние автомобиля, особенности, удобное время для связи..."></textarea>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="agreement" name="agreement" required>
+                    <label for="agreement">
+                        Я соглашаюсь на обработку персональных данных и ознакомлен с 
+                        <a href="../privacy-policy.html">политикой конфиденциальности</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    Отправить заявку
+                </button>
+            </form>
+
+            <div class="benefits-section">
+                <h3 class="benefits-title">Почему владельцы выбирают нас</h3>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💰</div>
+                        <div class="benefit-content">
+                            <h4>Стабильный доход</h4>
+                            <p>От 40 000 ₽ в месяц за автомобиль, который простаивает</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🛡️</div>
+                        <div class="benefit-content">
+                            <h4>Полная защита</h4>
+                            <p>Страхование, проверка арендаторов, залоги до 100 000 ₽</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">⚡</div>
+                        <div class="benefit-content">
+                            <h4>Быстрый старт</h4>
+                            <p>Первый арендатор через 3-7 дней после регистрации</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">📞</div>
+                        <div class="benefit-content">
+                            <h4>Поддержка 24/7</h4>
+                            <p>Решаем все вопросы, вам нужно только передать ключи</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><a href="mailto:info@minivanrent.ru">info@minivanrent.ru</a></li>
+                        <li><a href="tel:+71234567890">+7 (123) 456-78-90</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Правовая информация</h3>
+                    <ul>
+                        <li><a href="../privacy-policy.html">Политика конфиденциальности</a></li>
+                        <li><a href="../cookies.html">Политика cookies</a></li>
+                        <li><a href="#">Условия использования</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MinivanRent. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function submitApplication(event) {
+            event.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.textContent;
+            
+            // Блокируем кнопку и меняем текст
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Отправка...';
+            
+            // Собираем данные формы
+            const formData = {
+                name: document.getElementById('ownerName').value,
+                phone: document.getElementById('ownerPhone').value,
+                email: document.getElementById('ownerEmail').value,
+                brand: document.getElementById('carBrand').value,
+                model: document.getElementById('carModel').value,
+                year: document.getElementById('carYear').value,
+                seats: document.getElementById('carSeats').value,
+                location: document.getElementById('carLocation').value,
+                additionalInfo: document.getElementById('additionalInfo').value
+            };
+            
+            // В реальном приложении здесь будет отправка на сервер
+            console.log('Application submitted:', formData);
+            
+            // Имитация отправки
+            setTimeout(() => {
+                // Показываем успешное сообщение
+                alert('✅ Заявка успешно отправлена!\n\nМенеджер свяжется с вами в течение 2 часов для уточнения деталей.');
+                
+                // Очищаем форму
+                document.getElementById('ownerApplicationForm').reset();
+                
+                // Возвращаем кнопку в исходное состояние
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+                
+                // Перенаправляем на главную
+                window.location.href = '../index.html';
+            }, 2000);
+        }
+
+        // Валидация телефона
+        document.getElementById('ownerPhone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value[0] === '7' || value[0] === '8') {
+                    value = value.substring(1);
+                }
+                value = '+7 (' + value.substring(0, 3) + ') ' + value.substring(3, 6) + '-' + value.substring(6, 8) + '-' + value.substring(8, 10);
+                value = value.replace(/-$/, '').replace(/\) $/, '');
+            }
+            e.target.value = value;
+        });
+
+        // Динамическое обновление моделей при выборе марки
+        document.getElementById('carBrand').addEventListener('change', function(e) {
+            const modelInput = document.getElementById('carModel');
+            const brand = e.target.value;
+            
+            // В реальном приложении здесь может быть загрузка моделей по API
+            const modelPlaceholders = {
+                'toyota': 'Alphard',
+                'honda': 'Odyssey',
+                'volkswagen': 'Multivan',
+                'mercedes': 'V-Class',
+                'kia': 'Carnival',
+                'hyundai': 'Staria',
+                'ford': 'Tourneo',
+                'nissan': 'Serena',
+                'chrysler': 'Pacifica',
+                'other': 'Модель'
+            };
+            
+            modelInput.placeholder = modelPlaceholders[brand] || 'Модель';
+        });
+    </script>
+</body>
+</html>
