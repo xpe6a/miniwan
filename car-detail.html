@@ -669,6 +669,7 @@
         </div>
     </footer>
 
+    <script src="js/main.js"></script>
     <script>
         // Глобальные переменные
         let currentCar = null;
@@ -711,9 +712,9 @@
             document.getElementById('carTitle').textContent = `${currentCar.brand} ${currentCar.model}`;
             document.getElementById('breadcrumbCurrent').textContent = `${currentCar.brand} ${currentCar.model}`;
             document.getElementById('carSubtitle').textContent = `${currentCar.year} год • ${currentCar.engine} • ${getTransmissionLabel(currentCar.transmission)}`;
-            document.getElementById('carDeposit').textContent = `${currentCar.deposit} ₽`;
+            document.getElementById('carDeposit').textContent = `${formatPrice(currentCar.deposit)} ₽`;
 
-            // Цены (временная логика - на основе базовой цены)
+            // Цены
             renderPrices();
 
             // Галерея
@@ -732,24 +733,27 @@
             renderOwnerInfo();
         }
 
-        // Временная функция для расчета цен (будет заменена когда обновим cars.json)
+        // Рендер цен
         function renderPrices() {
             const pricesGrid = document.getElementById('pricesGrid');
-            const basePrice = currentCar.price;
             
-            // Временные коэффициенты для демонстрации
+            if (!currentCar.prices) {
+                pricesGrid.innerHTML = '<div class="price-item" style="grid-column: 1 / -1; text-align: center; color: #D4C4A8;">Цены не указаны</div>';
+                return;
+            }
+
             const priceTiers = [
-                { days: 1, price: basePrice },
-                { days: 4, price: Math.round(basePrice * 0.95) },
-                { days: 7, price: Math.round(basePrice * 0.9) },
-                { days: 14, price: Math.round(basePrice * 0.85) },
-                { days: 21, price: Math.round(basePrice * 0.8) }
+                { days: 1, price: currentCar.prices["1"] },
+                { days: 4, price: currentCar.prices["4"] },
+                { days: 7, price: currentCar.prices["7"] },
+                { days: 14, price: currentCar.prices["14"] },
+                { days: 21, price: currentCar.prices["21"] }
             ];
 
             pricesGrid.innerHTML = priceTiers.map(tier => `
                 <div class="price-item">
                     <span class="price-label">от ${tier.days} суток</span>
-                    <span class="price-value">${tier.price} ₽/день</span>
+                    <span class="price-value">${formatPrice(tier.price)} ₽/день</span>
                 </div>
             `).join('');
         }
@@ -779,12 +783,7 @@
         function renderRentalRules() {
             const rentalRules = document.getElementById('rentalRules');
             
-            // Временные данные (будут заменены когда обновим cars.json)
-            const rules = [
-                { label: 'Депозит', value: `${currentCar.deposit} ₽` },
-                { label: 'Минимальный стаж вождения', value: '3 года' },
-                { label: 'Минимальный возраст', value: '23 года' }
-            ];
+            const rules = getCarRentalRules(currentCar);
 
             rentalRules.innerHTML = rules.map(rule => `
                 <div class="rule-item">
@@ -876,7 +875,7 @@
                     </div>
                     <div class="similar-car-info">
                         <h3 class="similar-car-title">${car.brand} ${car.model}</h3>
-                        <div class="similar-car-price">${car.price} ₽/день</div>
+                        <div class="similar-car-price">${formatPrice(car.prices["1"])} ₽/день</div>
                     </div>
                 </div>
             `).join('');
@@ -917,17 +916,9 @@
 
         function calculateTotal() {
             const days = parseInt(document.getElementById('rentalDays').value) || 1;
-            const basePrice = currentCar.price;
-            
-            // Временная логика расчета цены (будет заменена когда обновим cars.json)
-            let pricePerDay = basePrice;
-            if (days >= 21) pricePerDay = Math.round(basePrice * 0.8);
-            else if (days >= 14) pricePerDay = Math.round(basePrice * 0.85);
-            else if (days >= 7) pricePerDay = Math.round(basePrice * 0.9);
-            else if (days >= 4) pricePerDay = Math.round(basePrice * 0.95);
-            
+            const pricePerDay = getCarPrice(currentCar, days);
             const total = pricePerDay * days;
-            document.getElementById('totalAmount').textContent = `${total} ₽`;
+            document.getElementById('totalAmount').textContent = `${formatPrice(total)} ₽`;
         }
 
         function proceedToBooking() {
