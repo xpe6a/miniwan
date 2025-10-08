@@ -317,6 +317,92 @@ async function loadCarsData() {
     }
 }
 
+// Получение цены автомобиля в зависимости от количества дней
+function getCarPrice(car, days = 1) {
+    if (!car.prices) {
+        console.warn('У автомобиля нет данных о ценах', car);
+        return 0;
+    }
+    
+    // Определяем подходящую цену в зависимости от количества дней
+    if (days >= 21 && car.prices["21"]) {
+        return car.prices["21"];
+    } else if (days >= 14 && car.prices["14"]) {
+        return car.prices["14"];
+    } else if (days >= 7 && car.prices["7"]) {
+        return car.prices["7"];
+    } else if (days >= 4 && car.prices["4"]) {
+        return car.prices["4"];
+    } else {
+        return car.prices["1"];
+    }
+}
+
+// Получение всех цен автомобиля для отображения
+function getCarAllPrices(car) {
+    if (!car.prices) {
+        return [];
+    }
+    
+    return [
+        { days: 1, price: car.prices["1"] },
+        { days: 4, price: car.prices["4"] },
+        { days: 7, price: car.prices["7"] },
+        { days: 14, price: car.prices["14"] },
+        { days: 21, price: car.prices["21"] }
+    ];
+}
+
+// Получение правил аренды автомобиля
+function getCarRentalRules(car) {
+    const rules = [];
+    
+    // Депозит
+    rules.push({
+        label: 'Депозит',
+        value: `${formatPrice(car.deposit)} ₽`
+    });
+    
+    // Минимальный стаж вождения
+    if (car.rentalRules && car.rentalRules.minExperience) {
+        rules.push({
+            label: 'Минимальный стаж вождения',
+            value: `${car.rentalRules.minExperience} ${getYearsText(car.rentalRules.minExperience)}`
+        });
+    } else {
+        rules.push({
+            label: 'Минимальный стаж вождения',
+            value: '3 года'
+        });
+    }
+    
+    // Минимальный возраст
+    if (car.rentalRules && car.rentalRules.minAge) {
+        rules.push({
+            label: 'Минимальный возраст',
+            value: `${car.rentalRules.minAge} ${getYearsText(car.rentalRules.minAge)}`
+        });
+    } else {
+        rules.push({
+            label: 'Минимальный возраст',
+            value: '23 года'
+        });
+    }
+    
+    return rules;
+}
+
+// Вспомогательная функция для правильного склонения "лет/года/год"
+function getYearsText(number) {
+    if (number % 10 === 1 && number % 100 !== 11) {
+        return 'год';
+    } else if ([2, 3, 4].includes(number % 10) && ![12, 13, 14].includes(number % 100)) {
+        return 'года';
+    } else {
+        return 'лет';
+    }
+}
+
 // Утилиты для работы с автомобилями
 function getTransmissionLabel(transmission) {
     return transmission === 'automatic' ? 'Автоматическая' : 'Механическая';
@@ -340,7 +426,7 @@ function findCarById(carId, cars) {
     return cars.find(car => car.id == carId);
 }
 
-// Фильтрация автомобилей
+// Фильтрация автомобилей (обновленная для работы с новой структурой цен)
 function filterCars(cars, filters) {
     return cars.filter(car => {
         // Фильтр по марке
@@ -358,9 +444,10 @@ function filterCars(cars, filters) {
             return false;
         }
         
-        // Фильтр по цене
-        if (filters.minPrice && car.price < filters.minPrice) return false;
-        if (filters.maxPrice && car.price > filters.maxPrice) return false;
+        // Фильтр по цене (используем цену за 1 день для фильтрации)
+        const basePrice = car.prices ? car.prices["1"] : 0;
+        if (filters.minPrice && basePrice < filters.minPrice) return false;
+        if (filters.maxPrice && basePrice > filters.maxPrice) return false;
         
         // Фильтр по количеству мест
         if (filters.seats && filters.seats.length > 0 && !filters.seats.includes(car.seats)) {
@@ -410,6 +497,93 @@ function loadFromLocalStorage(key) {
     }
 }
 
+// ==================== ФУНКЦИИ ДЛЯ КАРУСЕЛИ И КАТАЛОГА ====================
+
+// Загрузка данных для карусели (если есть на странице)
+async function loadCarouselData() {
+    try {
+        const cars = await loadCarsData();
+        const popularCars = cars.filter(car => car.isPopular).slice(0, 5);
+        
+        if (popularCars.length > 0) {
+            renderCarousel(popularCars);
+        }
+    } catch (error) {
+        console.error('Ошибка загрузки данных для карусели:', error);
+    }
+}
+
+// Загрузка данных для каталога (если есть на странице)
+async function loadCatalogData() {
+    try {
+        const cars = await loadCarsData();
+        currentCars = cars;
+        renderCarsGrid(cars);
+        setupFilters(cars);
+    } catch (error) {
+        console.error('Ошибка загрузки данных для каталога:', error);
+    }
+}
+
+// Рендер карусели
+function renderCarousel(cars) {
+    const carouselInner = document.getElementById('carouselInner');
+    if (!carouselInner) return;
+    
+    carouselInner.innerHTML = cars.map((car, index) => `
+        <div class="carousel-item ${index === 0 ? 'active' : ''}">
+            <div class="car-card">
+                <div class="car-image">
+                    <img src="${car.images[0]}" alt="${car.brand} ${car.model}" 
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                    <div class="image-placeholder" style="display: none;">${car.brand} ${car.model}</div>
+                </div>
+                <div class="car-info">
+                    <h3>${car.brand} ${car.model}</h3>
+                    <p class="car-year">${car.year} год</p>
+                    <p class="car-specs">${car.engine} • ${getTransmissionLabel(car.transmission)} • ${car.seats} мест</p>
+                    <div class="car-price">${formatPrice(car.prices["1"])} ₽/день</div>
+                    <a href="car-detail.html?id=${car.id}" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Рендер сетки автомобилей
+function renderCarsGrid(cars) {
+    const carsGrid = document.getElementById('carsGrid');
+    if (!carsGrid) return;
+    
+    if (cars.length === 0) {
+        carsGrid.innerHTML = '<div class="no-results"><p>По вашему запросу ничего не найдено</p></div>';
+        return;
+    }
+    
+    carsGrid.innerHTML = cars.map(car => `
+        <div class="car-card" onclick="window.location.href='car-detail.html?id=${car.id}'">
+            <div class="car-image">
+                <img src="${car.images[0]}" alt="${car.brand} ${car.model}" 
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="image-placeholder">${car.brand} ${car.model}</div>
+                ${car.isPopular ? '<div class="popular-badge">Популярный</div>' : ''}
+            </div>
+            <div class="car-info">
+                <h3>${car.brand} ${car.model}</h3>
+                <p class="car-year">${car.year} год</p>
+                <p class="car-specs">${car.engine} • ${getTransmissionLabel(car.transmission)} • ${car.seats} мест</p>
+                <div class="car-price">от ${formatPrice(car.prices["1"])} ₽/день</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Настройка фильтров
+function setupFilters(cars) {
+    // Здесь будет логика для инициализации фильтров
+    // (можно добавить позже при необходимости)
+}
+
 // ==================== ЭКСПОРТ ФУНКЦИЙ ДЛЯ ИСПОЛЬЗОВАНИЯ В ДРУГИХ ФАЙЛАХ ====================
 
 // Делаем функции доступными глобально для использования в HTML
@@ -430,3 +604,6 @@ window.isValidPhone = isValidPhone;
 window.generateBookingId = generateBookingId;
 window.saveToLocalStorage = saveToLocalStorage;
 window.loadFromLocalStorage = loadFromLocalStorage;
+window.getCarPrice = getCarPrice;
+window.getCarAllPrices = getCarAllPrices;
+window.getCarRentalRules = getCarRentalRules;
