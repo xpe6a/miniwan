@@ -847,7 +847,7 @@
             if (f.seats.length > 0 && !f.seats.includes(car.seats)) return false;
             
             // Проверка цены
-            if (car.price < f.minPrice || car.price > f.maxPrice) return false;
+            if (car.prices["21"] < f.minPrice || car.prices["21"] > f.maxPrice) return false;
             
             // Проверка залога
             if (f.depositRanges.length > 0) {
@@ -909,7 +909,7 @@
                         </div>
                         
                         <div class="car-price">
-                            ${car.price} ₽ <span class="car-price-period">/ день</span>
+                            от ${car.prices["21"]} ₽ <span class="car-price-period">/ день</span>
                         </div>
                         <div class="car-details">Залог: ${car.deposit} ₽</div>
                         
