@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бронирование | MinivanRent</title>
+    <style>
+        /* Основные стили как на главной */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #231A16;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23E8DCC5' stroke-opacity='0.12' stroke-width='1' fill='none'%3E%3Cpath d='M0,20 L100,20 M20,0 L20,100 M0,80 L100,80 M80,0 L80,100 M0,0 L100,100 M100,0 L0,100'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 100px 100px;
+            min-height: 100vh;
+            color: #F0E6D2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            position: relative;
+            z-index: 10;
+            background: rgba(35, 26, 22, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #E8DCC5;
+            text-decoration: none;
+        }
+
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .phone {
+            color: #D4C4A8;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .phone:hover {
+            color: #E8DCC5;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #8B5A2B;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #A06A37;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #E8DCC5;
+            border: 1px solid #8B5A2B;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(139, 90, 43, 0.1);
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        /* Хлебные крошки */
+        .breadcrumbs {
+            padding: 20px 0;
+            color: #D4C4A8;
+            font-size: 14px;
+        }
+
+        .breadcrumbs a {
+            color: #8B5A2B;
+            text-decoration: none;
+        }
+
+        .breadcrumbs a:hover {
+            color: #A06A37;
+        }
+
+        /* Основной контент */
+        .booking-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 40px;
+            padding: 20px 0 60px;
+        }
+
+        /* Форма бронирования */
+        .booking-form {
+            background: rgba(40, 30, 25, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #443A30;
+        }
+
+        .form-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .form-section h2 {
+            color: #E8DCC5;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #E8DCC5;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(35, 26, 22, 0.8);
+            border: 1px solid #8B5A2B;
+            border-radius: 5px;
+            color: #F0E6D2;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #A06A37;
+        }
+
+        .form-group textarea {
+            height: 80px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #8B5A2B;
+            margin-top: 2px;
+        }
+
+        .checkbox-group label {
+            color: #D4C4A8;
+            font-weight: normal;
+            line-height: 1.4;
+        }
+
+        .checkbox-group a {
+            color: #8B5A2B;
+            text-decoration: none;
+        }
+
+        .checkbox-group a:hover {
+            color: #A06A37;
+            text-decoration: underline;
+        }
+
+        /* Информация о заказе */
+        .order-summary {
+            background: rgba(40, 30, 25, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .car-preview {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #443A30;
+        }
+
+        .car-image {
+            width: 100px;
+            height: 80px;
+            background: #5D4037;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .car-details h3 {
+            color: #E8DCC5;
+            margin: 0 0 5px 0;
+            font-size: 1.1rem;
+        }
+
+        .car-details p {
+            color: #D4C4A8;
+            margin: 2px 0;
+            font-size: 0.9rem;
+        }
+
+        .rental-dates {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #443A30;
+        }
+
+        .date-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .date-label {
+            color: #D4C4A8;
+        }
+
+        .date-value {
+            color: #E8DCC5;
+            font-weight: 600;
+        }
+
+        .price-breakdown {
+            margin-bottom: 25px;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .price-label {
+            color: #D4C4A8;
+        }
+
+        .price-value {
+            color: #E8DCC5;
+        }
+
+        .total-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 2px solid #8B5A2B;
+            margin-top: 15px;
+        }
+
+        .total-label {
+            color: #E8DCC5;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .total-amount {
+            color: #8B5A2B;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Шаги процесса */
+        .booking-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .booking-steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #443A30;
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #443A30;
+            color: #D4C4A8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 8px;
+            transition: all 0.3s;
+        }
+
+        .step.active .step-circle {
+            background: #8B5A2B;
+            color: white;
+        }
+
+        .step.completed .step-circle {
+            background: #5D8B2B;
+            color: white;
+        }
+
+        .step-label {
+            color: #D4C4A8;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        .step.active .step-label {
+            color: #E8DCC5;
+            font-weight: 600;
+        }
+
+        /* Уведомления */
+        .notification {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .notification.info {
+            background: rgba(139, 90, 43, 0.2);
+            border-left: 4px solid #8B5A2B;
+        }
+
+        .notification.warning {
+            background: rgba(180, 120, 43, 0.2);
+            border-left: 4px solid #B4782B;
+        }
+
+        .notification-icon {
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-content h4 {
+            color: #E8DCC5;
+            margin: 0 0 5px 0;
+            font-size: 1rem;
+        }
+
+        .notification-content p {
+            color: #D4C4A8;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .booking-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .order-summary {
+                position: static;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .booking-steps {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .booking-steps::before {
+                display: none;
+            }
+            
+            .step {
+                flex: 1;
+                min-width: 80px;
+            }
+        }
+
+        footer {
+            padding: 60px 0 20px;
+            background: rgba(20, 15, 12, 0.95);
+            border-top: 1px solid #443A30;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: #E8DCC5;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #D4C4A8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #E8DCC5;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #443A30;
+            color: #D4C4A8;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">MinivanRent</a>
+                <div class="header-contact">
+                    <a href="tel:+71234567890" class="phone">+7 (123) 456-78-90</a>
+                    <a href="catalog.html" class="btn btn-secondary">← Назад к каталогу</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Хлебные крошки -->
+        <div class="breadcrumbs">
+            <a href="index.html">Главная</a> > 
+            <a href="catalog.html">Каталог</a> > 
+            <a href="#" id="breadcrumbCarLink">Автомобиль</a> > 
+            <span>Бронирование</span>
+        </div>
+
+        <!-- Шаги процесса -->
+        <div class="booking-steps">
+            <div class="step active">
+                <div class="step-circle">1</div>
+                <div class="step-label">Данные для бронирования</div>
+            </div>
+            <div class="step">
+                <div class="step-circle">2</div>
+                <div class="step-label">Подтверждение</div>
+            </div>
+            <div class="step">
+                <div class="step-circle">3</div>
+                <div class="step-label">Завершение</div>
+            </div>
+        </div>
+
+        <!-- Основной контент -->
+        <div class="booking-content">
+            <!-- Левая колонка - форма -->
+            <div class="left-column">
+                <div class="booking-form">
+                    <!-- Уведомление -->
+                    <div class="notification info">
+                        <div class="notification-icon">ℹ️</div>
+                        <div class="notification-content">
+                            <h4>Ваша бронь будет подтверждена после связи с оператором</h4>
+                            <p>Мы свяжемся с вами в течение 30 минут для уточнения деталей и подтверждения бронирования.</p>
+                        </div>
+                    </div>
+
+                    <!-- Личные данные -->
+                    <div class="form-section">
+                        <h2>Личные данные</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">Имя *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Фамилия *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Телефон *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Паспортные данные -->
+                    <div class="form-section">
+                        <h2>Паспортные данные</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="passportSeries">Серия паспорта *</label>
+                                <input type="text" id="passportSeries" name="passportSeries" required maxlength="4">
+                            </div>
+                            <div class="form-group">
+                                <label for="passportNumber">Номер паспорта *</label>
+                                <input type="text" id="passportNumber" name="passportNumber" required maxlength="6">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="passportIssued">Кем выдан *</label>
+                            <input type="text" id="passportIssued" name="passportIssued" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="passportDate">Дата выдачи *</label>
+                            <input type="date" id="passportDate" name="passportDate" required>
+                        </div>
+                    </div>
+
+                    <!-- Водительское удостоверение -->
+                    <div class="form-section">
+                        <h2>Водительское удостоверение</h2>
+                        <div class="form-group">
+                            <label for="licenseNumber">Номер в/у *</label>
+                            <input type="text" id="licenseNumber" name="licenseNumber" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="licenseDate">Дата выдачи *</label>
+                                <input type="date" id="licenseDate" name="licenseDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="licenseExpiry">Срок действия *</label>
+                                <input type="date" id="licenseExpiry" name="licenseExpiry" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Дополнительная информация -->
+                    <div class="form-section">
+                        <h2>Дополнительная информация</h2>
+                        <div class="form-group">
+                            <label for="comments">Комментарий к заказу</label>
+                            <textarea id="comments" name="comments" placeholder="Укажите дополнительные пожелания или информацию..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Соглашения -->
+                    <div class="form-section">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                            <label for="agreeTerms">
+                                Я соглашаюсь с <a href="terms.html">условиями аренды</a> и 
+                                <a href="privacy-policy.html">политикой конфиденциальности</a> *
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="agreeProcessing" name="agreeProcessing" required>
+                            <label for="agreeProcessing">
+                                Я даю согласие на обработку моих персональных данных *
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="agreeDeposit" name="agreeDeposit" required>
+                            <label for="agreeDeposit">
+                                Я понимаю, что при получении автомобиля потребуется внести залог в размере, указанном в заказе
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Кнопка отправки -->
+                    <button type="submit" class="btn btn-primary btn-large" onclick="submitBooking()">
+                        Отправить заявку на бронирование
+                    </button>
+                </div>
+            </div>
+
+            <!-- Правая колонка - сводка заказа -->
+            <div class="right-column">
+                <div class="order-summary">
+                    <div class="car-preview">
+                        <div class="car-image" id="carImage">
+                            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #D4C4A8; font-size: 0.8rem;">
+                                Фото
+                            </div>
+                        </div>
+                        <div class="car-details">
+                            <h3 id="carTitle">Загрузка...</h3>
+                            <p id="carDetails">Год, двигатель, коробка</p>
+                            <p id="carFeatures">Мест, топливо</p>
+                        </div>
+                    </div>
+
+                    <div class="rental-dates">
+                        <div class="date-item">
+                            <span class="date-label">Начало аренды:</span>
+                            <span class="date-value" id="startDateValue">-</span>
+                        </div>
+                        <div class="date-item">
+                            <span class="date-label">Окончание аренды:</span>
+                            <span class="date-value" id="endDateValue">-</span>
+                        </div>
+                        <div class="date-item">
+                            <span class="date-label">Количество дней:</span>
+                            <span class="date-value" id="daysCount">-</span>
+                        </div>
+                    </div>
+
+                    <div class="price-breakdown">
+                        <div class="price-item">
+                            <span class="price-label">Аренда (<span id="priceDays">0</span> дней)</span>
+                            <span class="price-value" id="rentalPrice">0 ₽</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-label">Комиссия сервиса</span>
+                            <span class="price-value" id="serviceFee">0 ₽</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-label">Страхование</span>
+                            <span class="price-value">Включено</span>
+                        </div>
+                    </div>
+
+                    <div class="total-price">
+                        <span class="total-label">Итого к оплате:</span>
+                        <span class="total-amount" id="totalAmount">0 ₽</span>
+                    </div>
+
+                    <div class="notification warning" style="margin-top: 20px; margin-bottom: 0;">
+                        <div class="notification-icon">💳</div>
+                        <div class="notification-content">
+                            <h4>Залог при получении</h4>
+                            <p id="depositAmount">0 ₽</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><a href="mailto:info@minivanrent.ru">info@minivanrent.ru</a></li>
+                        <li><a href="tel:+71234567890">+7 (123) 456-78-90</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Правовая информация</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Политика конфиденциальности</a></li>
+                        <li><a href="terms.html">Условия аренды</a></li>
+                        <li><a href="#">Политика cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MinivanRent. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Глобальные переменные
+        let currentCar = null;
+        let startDate = null;
+        let endDate = null;
+        let rentalDays = 0;
+
+        // Загрузка данных
+        async function loadBookingData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const carId = urlParams.get('carId');
+            startDate = urlParams.get('startDate');
+            endDate = urlParams.get('endDate');
+
+            if (!carId || !startDate || !endDate) {
+                window.location.href = 'catalog.html';
+                return;
+            }
+
+            try {
+                const response = await fetch('data/cars.json');
+                const cars = await response.json();
+                
+                currentCar = cars.find(car => car.id == carId);
+                
+                if (!currentCar) {
+                    window.location.href = 'catalog.html';
+                    return;
+                }
+
+                calculateRentalDays();
+                renderOrderSummary();
+                setupFormValidation();
+            } catch (error) {
+                console.error('Ошибка загрузки данных:', error);
+                document.getElementById('carTitle').textContent = 'Ошибка загрузки данных';
+            }
+        }
+
+        // Расчет количества дней аренды
+        function calculateRentalDays() {
+            const start = new Date(startDate);
+            const end = new Date(endDate);
+            rentalDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
+        }
+
+        // Рендер сводки заказа
+        function renderOrderSummary() {
+            // Информация об автомобиле
+            document.getElementById('carTitle').textContent = `${currentCar.brand} ${currentCar.model}`;
+            document.getElementById('carDetails').textContent = `${currentCar.year} год • ${currentCar.engine} • ${getTransmissionLabel(currentCar.transmission)}`;
+            document.getElementById('carFeatures').textContent = `${currentCar.seats} мест • ${currentCar.fuelType}`;
+            
+            // Установка изображения
+            const carImage = document.getElementById('carImage');
+            if (currentCar.images && currentCar.images.length > 0) {
+                carImage.innerHTML = `<img src="${currentCar.images[0]}" alt="${currentCar.brand} ${currentCar.model}" 
+                    onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'display: flex; align-items: center; justify-content: center; height: 100%; color: #D4C4A8; font-size: 0.8rem;\\'>${currentCar.brand} ${currentCar.model}</div>'">`;
+            }
+
+            // Даты
+            document.getElementById('startDateValue').textContent = formatDate(startDate);
+            document.getElementById('endDateValue').textContent = formatDate(endDate);
+            document.getElementById('daysCount').textContent = `${rentalDays} дней`;
+
+            // Цены
+            const rentalPrice = currentCar.price * rentalDays;
+            const serviceFee = Math.round(rentalPrice * 0.1); // 10% комиссия
+            const totalAmount = rentalPrice + serviceFee;
+
+            document.getElementById('priceDays').textContent = rentalDays;
+            document.getElementById('rentalPrice').textContent = `${rentalPrice} ₽`;
+            document.getElementById('serviceFee').textContent = `${serviceFee} ₽`;
+            document.getElementById('totalAmount').textContent = `${totalAmount} ₽`;
+            document.getElementById('depositAmount').textContent = `${currentCar.deposit} ₽`;
+
+            // Хлебные крошки
+            document.getElementById('breadcrumbCarLink').textContent = `${currentCar.brand} ${currentCar.model}`;
+            document.getElementById('breadcrumbCarLink').href = `car-detail.html?id=${currentCar.id}`;
+        }
+
+        function getTransmissionLabel(transmission) {
+            return transmission === 'automatic' ? 'Автоматическая' : 'Механическая';
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ru-RU', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+        }
+
+        // Валидация формы
+        function setupFormValidation() {
+            const form = document.querySelector('.booking-form');
+            const inputs = form.querySelectorAll('input[required], textarea[required]');
+            
+            inputs.forEach(input => {
+                input.addEventListener('blur', validateField);
+                input.addEventListener('input', clearError);
+            });
+        }
+
+        function validateField(e) {
+            const field = e.target;
+            const value = field.value.trim();
+            
+            clearError(field);
+            
+            if (!value) {
+                showError(field, 'Это поле обязательно для заполнения');
+                return false;
+            }
+            
+            switch(field.type) {
+                case 'email':
+                    if (!isValidEmail(value)) {
+                        showError(field, 'Введите корректный email адрес');
+                        return false;
+                    }
+                    break;
+                case 'tel':
+                    if (!isValidPhone(value)) {
+                        showError(field, 'Введите корректный номер телефона');
+                        return false;
+                    }
+                    break;
+                case 'text':
+                    if (field.id === 'passportSeries' && !isValidPassportSeries(value)) {
+                        showError(field, 'Серия паспорта должна содержать 4 цифры');
+                        return false;
+                    }
+                    if (field.id === 'passportNumber' && !isValidPassportNumber(value)) {
+                        showError(field, 'Номер паспорта должен содержать 6 цифр');
+                        return false;
+                    }
+                    break;
+                case 'date':
+                    if (!isValidDate(field)) {
+                        showError(field, 'Введите корректную дату');
+                        return false;
+                    }
+                    break;
+            }
+            
+            return true;
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function isValidPhone(phone) {
+            return /^[\+]?[78][\s\(]?\d{3}[\)\s]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/.test(phone);
+        }
+
+        function isValidPassportSeries(series) {
+            return /^\d{4}$/.test(series);
+        }
+
+        function isValidPassportNumber(number) {
+            return /^\d{6}$/.test(number);
+        }
+
+        function isValidDate(dateField) {
+            return dateField.value && new Date(dateField.value) <= new Date();
+        }
+
+        function showError(field, message) {
+            field.style.borderColor = '#ff6b6b';
+            
+            let errorElement = field.parentNode.querySelector('.error-message');
+            if (!errorElement) {
+                errorElement = document.createElement('div');
+                errorElement.className = 'error-message';
+                errorElement.style.color = '#ff6b6b';
+                errorElement.style.fontSize = '0.8rem';
+                errorElement.style.marginTop = '5px';
+                field.parentNode.appendChild(errorElement);
+            }
+            errorElement.textContent = message;
+        }
+
+        function clearError(e) {
+            const field = e.target || e;
+            field.style.borderColor = '#8B5A2B';
+            
+            const errorElement = field.parentNode.querySelector('.error-message');
+            if (errorElement) {
+                errorElement.remove();
+            }
+        }
+
+        // Отправка формы
+        function submitBooking() {
+            const form = document.querySelector('.booking-form');
+            const requiredFields = form.querySelectorAll('input[required], textarea[required]');
+            let isValid = true;
+
+            // Валидация всех полей
+            requiredFields.forEach(field => {
+                if (!validateField({ target: field })) {
+                    isValid = false;
+                }
+            });
+
+            // Проверка чекбоксов
+            const agreeTerms = document.getElementById('agreeTerms').checked;
+            const agreeProcessing = document.getElementById('agreeProcessing').checked;
+            
+            if (!agreeTerms || !agreeProcessing) {
+                alert('Пожалуйста, примите условия аренды и согласие на обработку данных');
+                isValid = false;
+            }
+
+            if (!isValid) {
+                alert('Пожалуйста, заполните все обязательные поля корректно');
+                return;
+            }
+
+            // Сбор данных формы
+            const formData = {
+                car: currentCar,
+                dates: { start: startDate, end: endDate, days: rentalDays },
+                customer: {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    passport: {
+                        series: document.getElementById('passportSeries').value,
+                        number: document.getElementById('passportNumber').value,
+                        issued: document.getElementById('passportIssued').value,
+                        date: document.getElementById('passportDate').value
+                    },
+                    license: {
+                        number: document.getElementById('licenseNumber').value,
+                        date: document.getElementById('licenseDate').value,
+                        expiry: document.getElementById('licenseExpiry').value
+                    },
+                    comments: document.getElementById('comments').value
+                },
+                total: calculateTotalAmount()
+            };
+
+            // Сохранение в localStorage и переход на страницу успеха
+            localStorage.setItem('bookingData', JSON.stringify(formData));
+            window.location.href = 'success.html';
+        }
+
+        function calculateTotalAmount() {
+            const rentalPrice = currentCar.price * rentalDays;
+            const serviceFee = Math.round(rentalPrice * 0.1);
+            return rentalPrice + serviceFee;
+        }
+
+        // Загрузка данных при загрузке страницы
+        document.addEventListener('DOMContentLoaded', loadBookingData);
+    </script>
+</body>
+</html>
