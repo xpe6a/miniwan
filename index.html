@@ -763,7 +763,7 @@
     <div id="chatModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('chatModal')">&times;</span>
-            <h2 style="color: #E8DCC5; margin-bottom: 20px;">Запрос авто</h2>
+            <h2 style="color: #E8DCC5; margin-bottom: 20px;">Задайте любой вопрос</h2>
             <form id="chatForm" onsubmit="submitChatForm(event)">
                 <div class="form-group">
                     <label for="chatName">Ваше имя</label>
@@ -775,7 +775,7 @@
                 </div>
                 <div class="form-group">
                     <label for="chatMessage">Сообщение</label>
-                    <textarea id="chatMessage" name="message" required></textarea>
+                    <textarea id="chatMessage" name="message" placeholder="Например, опишите, какой автомобиль вам нужен словами - мы подберем подходящий и свяжемся" required></textarea>
                     <div class="form-note">Например: нужен минивэн для поездки в Минск с 29.12 до 06.01 не старше 7 лет в хорошем состоянии, до 7000 в день</div>
                 </div>
                 <div class="checkbox-group">
@@ -800,9 +800,9 @@
                 
                 <nav class="header-nav">
                     <a href="catalog.html" class="nav-link">Каталог авто</a>
-                    <a href="booking.html" class="nav-link">Бронирование</a>
+                    <a href="#why-us" class="nav-link">О нас</a>
+                    <a href="#how-it-works" class="nav-link">Как это работает</a>
                     <a href="forms/owner-application.html" class="nav-link">Сдать авто</a>
-                    <a href="privacy-policy.html" class="nav-link">Политика</a>
                 </nav>
                 
                 <div class="header-contact">
@@ -829,7 +829,7 @@
         </div>
     </section>
 
-    <section class="why-us">
+    <section class="why-us" id="why-us">
         <div class="container">
             <h2 class="section-title">MinivanRent — сервис аренды у частных владельцев</h2>
             <div class="section-subtitle">Почему у нас дешевле, чем в прокате — и безопаснее, чем просто "у частников"</div>
@@ -864,7 +864,7 @@
         </div>
     </section>
 
-    <section class="how-it-works">
+    <section class="how-it-works" id="how-it-works">
         <div class="container">
             <h2 class="section-title">Как это работает</h2>
             <div class="how-it-works-grid">
@@ -1059,8 +1059,7 @@
                     <h3>Правовая информация</h3>
                     <ul>
                         <li><a href="privacy-policy.html">Политика конфиденциальности</a></li>
-                        <li><a href="#">Условия использования</a></li>
-                        <li><a href="#">Политика cookies</a></li>
+                        <li><a href="cookies.html">Политика cookies</a></li>
                     </ul>
                 </div>
             </div>
