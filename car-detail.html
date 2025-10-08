@@ -180,20 +180,33 @@
             border-radius: 8px;
             margin-bottom: 25px;
         }
-        .price {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #8B5A2B;
-            margin-bottom: 5px;
+        .prices-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 15px;
         }
-        .price-period {
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(139, 90, 43, 0.3);
+        }
+        .price-label {
             color: #D4C4A8;
+            font-size: 0.9rem;
+        }
+        .price-value {
+            color: #8B5A2B;
+            font-weight: bold;
             font-size: 1rem;
         }
         .deposit {
             color: #D4C4A8;
             margin-top: 10px;
             font-size: 0.9rem;
+            text-align: center;
         }
         .booking-widget {
             margin-bottom: 30px;
@@ -246,6 +259,33 @@
             font-weight: bold;
             color: #E8DCC5;
         }
+        /* Правила аренды */
+        .rental-rules {
+            background: rgba(40, 30, 25, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .rules-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .rule-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(139, 90, 43, 0.3);
+        }
+        .rule-label {
+            color: #D4C4A8;
+            font-size: 1rem;
+        }
+        .rule-value {
+            color: #E8DCC5;
+            font-weight: 600;
+        }
         /* Детали автомобиля */
         .car-specs {
             background: rgba(40, 30, 25, 0.8);
@@ -253,34 +293,25 @@
             padding: 30px;
             margin-bottom: 30px;
         }
-        .specs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+        .specs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
         .spec-item {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            text-align: center;
-            padding: 20px;
-            background: rgba(35, 26, 22, 0.6);
-            border-radius: 8px;
-        }
-        .spec-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            color: #8B5A2B;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(139, 90, 43, 0.3);
         }
         .spec-label {
             color: #D4C4A8;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
+            font-size: 1rem;
         }
         .spec-value {
             color: #E8DCC5;
             font-weight: 600;
-            font-size: 1.1rem;
         }
         /* Описание */
         .description {
@@ -298,32 +329,6 @@
             color: #D4C4A8;
             line-height: 1.6;
             margin-bottom: 15px;
-        }
-        /* Особенности */
-        .features {
-            background: rgba(40, 30, 25, 0.8);
-            border-radius: 10px;
-            padding: 30px;
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px;
-            background: rgba(35, 26, 22, 0.6);
-            border-radius: 5px;
-        }
-        .feature-icon {
-            color: #8B5A2B;
-            font-size: 1.2rem;
-        }
-        .feature-text {
-            color: #D4C4A8;
         }
         /* Владелец */
         .owner-info {
@@ -412,7 +417,7 @@
             padding: 20px;
         }
         .similar-car-title {
-            color: #E8DCC5;
+            color: #E8C4A8;
             margin: 0 0 10px 0;
             font-size: 1.1rem;
         }
@@ -442,11 +447,7 @@
                 font-size: 1.5rem;
             }
             
-            .specs-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .features-grid {
+            .prices-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -531,10 +532,17 @@
                         <!-- Динамически заполняется через JS -->
                     </div>
                 </div>
+                <!-- Правила аренды -->
+                <div class="rental-rules">
+                    <h2>Правила аренды</h2>
+                    <div class="rules-list" id="rentalRules">
+                        <!-- Динамически заполняется через JS -->
+                    </div>
+                </div>
                 <!-- Характеристики -->
                 <div class="car-specs">
                     <h2>Технические характеристики</h2>
-                    <div class="specs-grid" id="specsGrid">
+                    <div class="specs-list" id="specsList">
                         <!-- Динамически заполняется через JS -->
                     </div>
                 </div>
@@ -542,13 +550,6 @@
                 <div class="description">
                     <h2>Описание автомобиля</h2>
                     <div id="carDescription">
-                        <!-- Динамически заполняется через JS -->
-                    </div>
-                </div>
-                <!-- Особенности -->
-                <div class="features">
-                    <h2>Особенности и опции</h2>
-                    <div class="features-grid" id="featuresGrid">
                         <!-- Динамически заполняется через JS -->
                     </div>
                 </div>
@@ -585,8 +586,9 @@
                     <div class="car-subtitle" id="carSubtitle"></div>
 
                     <div class="price-section">
-                        <div class="price" id="carPrice">0 ₽</div>
-                        <div class="price-period">за день аренды</div>
+                        <div class="prices-grid" id="pricesGrid">
+                            <!-- Динамически заполняется через JS -->
+                        </div>
                         <div class="deposit">Залог: <span id="carDeposit">0 ₽</span></div>
                     </div>
 
@@ -623,11 +625,8 @@
                     <!-- Контакты -->
                     <div class="contact-info">
                         <h3>Контакты</h3>
-                        <div style="display: flex; gap: 10px; margin-top: 15px;">
-                            <button class="btn btn-secondary" onclick="contactOwner()" style="flex: 1;">
-                                📞 Связаться
-                            </button>
-                            <button class="btn btn-secondary" onclick="showLocation()" style="flex: 1;">
+                        <div style="margin-top: 15px;">
+                            <button class="btn btn-secondary" onclick="showLocation()" style="width: 100%;">
                                 📍 Местоположение
                             </button>
                         </div>
@@ -712,11 +711,16 @@
             document.getElementById('carTitle').textContent = `${currentCar.brand} ${currentCar.model}`;
             document.getElementById('breadcrumbCurrent').textContent = `${currentCar.brand} ${currentCar.model}`;
             document.getElementById('carSubtitle').textContent = `${currentCar.year} год • ${currentCar.engine} • ${getTransmissionLabel(currentCar.transmission)}`;
-            document.getElementById('carPrice').textContent = `${currentCar.price} ₽`;
             document.getElementById('carDeposit').textContent = `${currentCar.deposit} ₽`;
+
+            // Цены (временная логика - на основе базовой цены)
+            renderPrices();
 
             // Галерея
             renderGallery();
+
+            // Правила аренды
+            renderRentalRules();
 
             // Характеристики
             renderSpecs();
@@ -724,11 +728,30 @@
             // Описание
             renderDescription();
 
-            // Особенности
-            renderFeatures();
-
             // Информация о владельце
             renderOwnerInfo();
+        }
+
+        // Временная функция для расчета цен (будет заменена когда обновим cars.json)
+        function renderPrices() {
+            const pricesGrid = document.getElementById('pricesGrid');
+            const basePrice = currentCar.price;
+            
+            // Временные коэффициенты для демонстрации
+            const priceTiers = [
+                { days: 1, price: basePrice },
+                { days: 4, price: Math.round(basePrice * 0.95) },
+                { days: 7, price: Math.round(basePrice * 0.9) },
+                { days: 14, price: Math.round(basePrice * 0.85) },
+                { days: 21, price: Math.round(basePrice * 0.8) }
+            ];
+
+            pricesGrid.innerHTML = priceTiers.map(tier => `
+                <div class="price-item">
+                    <span class="price-label">от ${tier.days} суток</span>
+                    <span class="price-value">${tier.price} ₽/день</span>
+                </div>
+            `).join('');
         }
 
         function renderGallery() {
@@ -753,6 +776,45 @@
             }
         }
 
+        function renderRentalRules() {
+            const rentalRules = document.getElementById('rentalRules');
+            
+            // Временные данные (будут заменены когда обновим cars.json)
+            const rules = [
+                { label: 'Депозит', value: `${currentCar.deposit} ₽` },
+                { label: 'Минимальный стаж вождения', value: '3 года' },
+                { label: 'Минимальный возраст', value: '23 года' }
+            ];
+
+            rentalRules.innerHTML = rules.map(rule => `
+                <div class="rule-item">
+                    <span class="rule-label">${rule.label}</span>
+                    <span class="rule-value">${rule.value}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderSpecs() {
+            const specsList = document.getElementById('specsList');
+            const specs = [
+                { label: 'Год выпуска', value: currentCar.year },
+                { label: 'Двигатель', value: currentCar.engine },
+                { label: 'Коробка передач', value: getTransmissionLabel(currentCar.transmission) },
+                { label: 'Количество мест', value: `${currentCar.seats}` },
+                { label: 'Тип топлива', value: currentCar.fuelType },
+                { label: 'Количество дверей', value: `${currentCar.doors || '4'}` },
+                { label: 'Цвет', value: currentCar.color || 'Белый' },
+                { label: 'Тип кузова', value: currentCar.bodyType || 'Минивэн' }
+            ];
+
+            specsList.innerHTML = specs.map(spec => `
+                <div class="spec-item">
+                    <span class="spec-label">${spec.label}</span>
+                    <span class="spec-value">${spec.value}</span>
+                </div>
+            `).join('');
+        }
+
         function changeMainImage(index) {
             const mainImage = document.getElementById('mainImage');
             const thumbnails = document.querySelectorAll('.thumbnail');
@@ -768,28 +830,6 @@
             currentImageIndex = index;
         }
 
-        function renderSpecs() {
-            const specsGrid = document.getElementById('specsGrid');
-            const specs = [
-                { icon: '⏱️', label: 'Год выпуска', value: currentCar.year },
-                { icon: '⚙️', label: 'Двигатель', value: currentCar.engine },
-                { icon: '🎛️', label: 'Коробка', value: getTransmissionLabel(currentCar.transmission) },
-                { icon: '👥', label: 'Мест', value: `${currentCar.seats}` },
-                { icon: '⛽', label: 'Топливо', value: currentCar.fuelType },
-                { icon: '🚪', label: 'Двери', value: `${currentCar.doors || '4'}` },
-                { icon: '🎨', label: 'Цвет', value: currentCar.color || 'Белый' },
-                { icon: '📏', label: 'Кузов', value: currentCar.bodyType || 'Минивэн' }
-            ];
-
-            specsGrid.innerHTML = specs.map(spec => `
-                <div class="spec-item">
-                    <div class="spec-icon">${spec.icon}</div>
-                    <div class="spec-label">${spec.label}</div>
-                    <div class="spec-value">${spec.value}</div>
-                </div>
-            `).join('');
-        }
-
         function renderDescription() {
             const description = document.getElementById('carDescription');
             description.innerHTML = `
@@ -797,27 +837,6 @@
                 <p>Автомобиль регулярно проходит техническое обслуживание и полностью готов к эксплуатации. Чистый салон, исправная техника, все документы в порядке.</p>
                 <p><strong>Условия аренды:</strong> минимальный срок аренды - 1 день, залог возвращается при возврате автомобиля в исходном состоянии.</p>
             `;
-        }
-
-        function renderFeatures() {
-            const featuresGrid = document.getElementById('featuresGrid');
-            const features = [
-                { icon: '❄️', text: 'Кондиционер' },
-                { icon: '🎵', text: 'Музыкальная система' },
-                { icon: '📱', text: 'Bluetooth' },
-                { icon: '🛡️', text: 'ABS' },
-                { icon: '🔄', text: 'ESP' },
-                { icon: '🛣️', text: 'Круиз-контроль' },
-                { icon: '🪑', text: 'Кожаный салон' },
-                { icon: '🔒', text: 'Центральный замок' }
-            ];
-
-            featuresGrid.innerHTML = features.map(feature => `
-                <div class="feature-item">
-                    <span class="feature-icon">${feature.icon}</span>
-                    <span class="feature-text">${feature.text}</span>
-                </div>
-            `).join('');
         }
 
         function renderOwnerInfo() {
@@ -898,7 +917,16 @@
 
         function calculateTotal() {
             const days = parseInt(document.getElementById('rentalDays').value) || 1;
-            const total = currentCar.price * days;
+            const basePrice = currentCar.price;
+            
+            // Временная логика расчета цены (будет заменена когда обновим cars.json)
+            let pricePerDay = basePrice;
+            if (days >= 21) pricePerDay = Math.round(basePrice * 0.8);
+            else if (days >= 14) pricePerDay = Math.round(basePrice * 0.85);
+            else if (days >= 7) pricePerDay = Math.round(basePrice * 0.9);
+            else if (days >= 4) pricePerDay = Math.round(basePrice * 0.95);
+            
+            const total = pricePerDay * days;
             document.getElementById('totalAmount').textContent = `${total} ₽`;
         }
 
@@ -912,10 +940,6 @@
             }
 
             window.location.href = `booking.html?carId=${currentCar.id}&startDate=${startDate}&endDate=${endDate}`;
-        }
-
-        function contactOwner() {
-            alert('Функция связи с владельцем будет реализована в ближайшее время');
         }
 
         function showLocation() {
