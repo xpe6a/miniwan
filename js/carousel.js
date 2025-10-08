@@ -438,7 +438,7 @@ async function loadPopularCars() {
                         <h3>${car.brand} ${car.model}</h3>
                         <p>${car.year} год • ${car.seats} мест</p>
                         <p>${car.transmission === 'automatic' ? 'Автомат' : 'Механика'} • ${car.fuelType}</p>
-                        <div class="car-price">${car.price.toLocaleString()} ₽/день</div>
+                        <div class="car-price">${car.prices["1"].toLocaleString()} ₽/день</div>
                         <div class="car-deposit">Залог: ${car.deposit.toLocaleString()} ₽</div>
                     </div>
                 </div>
