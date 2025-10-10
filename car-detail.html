@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -183,33 +183,20 @@
             border-radius: 8px;
             margin-bottom: 25px;
         }
-        .prices-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 15px;
-        }
-        .price-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(139, 90, 43, 0.3);
-        }
-        .price-label {
-            color: #D4C4A8;
-            font-size: 0.9rem;
-        }
-        .price-value {
-            color: #8B5A2B;
+        .price {
+            font-size: 2rem;
             font-weight: bold;
+            color: #8B5A2B;
+            margin-bottom: 5px;
+        }
+        .price-period {
+            color: #D4C4A8;
             font-size: 1rem;
         }
         .deposit {
             color: #D4C4A8;
             margin-top: 10px;
             font-size: 0.9rem;
-            text-align: center;
         }
         .booking-widget {
             margin-bottom: 30px;
@@ -262,33 +249,6 @@
             font-weight: bold;
             color: #E8DCC5;
         }
-        /* Правила аренды */
-        .rental-rules {
-            background: rgba(40, 30, 25, 0.8);
-            border-radius: 10px;
-            padding: 30px;
-            margin-bottom: 30px;
-        }
-        .rules-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .rule-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(139, 90, 43, 0.3);
-        }
-        .rule-label {
-            color: #D4C4A8;
-            font-size: 1rem;
-        }
-        .rule-value {
-            color: #E8DCC5;
-            font-weight: 600;
-        }
         /* Детали автомобиля */
         .car-specs {
             background: rgba(40, 30, 25, 0.8);
@@ -296,25 +256,34 @@
             padding: 30px;
             margin-bottom: 30px;
         }
-        .specs-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
         }
         .spec-item {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(139, 90, 43, 0.3);
+            text-align: center;
+            padding: 20px;
+            background: rgba(35, 26, 22, 0.6);
+            border-radius: 8px;
+        }
+        .spec-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #8B5A2B;
         }
         .spec-label {
             color: #D4C4A8;
-            font-size: 1rem;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
         }
         .spec-value {
             color: #E8DCC5;
             font-weight: 600;
+            font-size: 1.1rem;
         }
         /* Описание */
         .description {
@@ -332,6 +301,32 @@
             color: #D4C4A8;
             line-height: 1.6;
             margin-bottom: 15px;
+        }
+        /* Особенности */
+        .features {
+            background: rgba(40, 30, 25, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(35, 26, 22, 0.6);
+            border-radius: 5px;
+        }
+        .feature-icon {
+            color: #8B5A2B;
+            font-size: 1.2rem;
+        }
+        .feature-text {
+            color: #D4C4A8;
         }
         /* Владелец */
         .owner-info {
@@ -420,7 +415,7 @@
             padding: 20px;
         }
         .similar-car-title {
-            color: #E8C4A8;
+            color: #E8DCC5;
             margin: 0 0 10px 0;
             font-size: 1.1rem;
         }
@@ -435,7 +430,6 @@
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
-            
             .main-image {
                 height: 350px;
             }
@@ -445,19 +439,18 @@
                 flex-direction: column;
                 gap: 15px;
             }
-            
             .car-title {
                 font-size: 1.5rem;
             }
-            
-            .prices-grid {
+            .specs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .features-grid {
                 grid-template-columns: 1fr;
             }
-            
             .date-inputs {
                 grid-template-columns: 1fr;
             }
-            
             .owner-stats {
                 grid-template-columns: 1fr;
             }
@@ -514,7 +507,6 @@
             </div>
         </div>
     </header>
-
     <div class="container">
         <!-- Хлебные крошки -->
         <div class="breadcrumbs">
@@ -535,17 +527,10 @@
                         <!-- Динамически заполняется через JS -->
                     </div>
                 </div>
-                <!-- Правила аренды -->
-                <div class="rental-rules">
-                    <h2>Правила аренды</h2>
-                    <div class="rules-list" id="rentalRules">
-                        <!-- Динамически заполняется через JS -->
-                    </div>
-                </div>
                 <!-- Характеристики -->
                 <div class="car-specs">
                     <h2>Технические характеристики</h2>
-                    <div class="specs-list" id="specsList">
+                    <div class="specs-grid" id="specsGrid">
                         <!-- Динамически заполняется через JS -->
                     </div>
                 </div>
@@ -553,6 +538,13 @@
                 <div class="description">
                     <h2>Описание автомобиля</h2>
                     <div id="carDescription">
+                        <!-- Динамически заполняется через JS -->
+                    </div>
+                </div>
+                <!-- Особенности -->
+                <div class="features">
+                    <h2>Особенности и опции</h2>
+                    <div class="features-grid" id="featuresGrid">
                         <!-- Динамически заполняется через JS -->
                     </div>
                 </div>
@@ -581,24 +573,19 @@
                     </div>
                 </div>
             </div>
-
             <!-- Правая колонка - бронирование -->
             <div class="right-column">
                 <div class="car-info">
                     <h1 class="car-title" id="carTitle">Загрузка...</h1>
                     <div class="car-subtitle" id="carSubtitle"></div>
-
                     <div class="price-section">
-                        <div class="prices-grid" id="pricesGrid">
-                            <!-- Динамически заполняется через JS -->
-                        </div>
+                        <div class="price" id="carPrice">0 ₽</div>
+                        <div class="price-period">за день аренды</div>
                         <div class="deposit">Залог: <span id="carDeposit">0 ₽</span></div>
                     </div>
-
                     <!-- Виджет бронирования -->
                     <div class="booking-widget">
                         <h3>Забронировать автомобиль</h3>
-                        
                         <div class="date-inputs">
                             <div class="form-group">
                                 <label for="startDate">Дата начала</label>
@@ -609,27 +596,26 @@
                                 <input type="date" id="endDate" min="">
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="rentalDays">Количество дней</label>
                             <input type="number" id="rentalDays" min="1" value="1" readonly>
                         </div>
-
                         <div class="total-price">
                             <div class="total-label">Общая стоимость</div>
                             <div class="total-amount" id="totalAmount">0 ₽</div>
                         </div>
-
                         <button class="btn btn-primary btn-large" onclick="proceedToBooking()" style="width: 100%;">
                             Перейти к бронированию
                         </button>
                     </div>
-
                     <!-- Контакты -->
                     <div class="contact-info">
                         <h3>Контакты</h3>
-                        <div style="margin-top: 15px;">
-                            <button class="btn btn-secondary" onclick="showLocation()" style="width: 100%;">
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <button class="btn btn-secondary" onclick="contactOwner()" style="flex: 1;">
+                                📞 Связаться
+                            </button>
+                            <button class="btn btn-secondary" onclick="showLocation()" style="flex: 1;">
                                 📍 Местоположение
                             </button>
                         </div>
@@ -637,7 +623,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Похожие автомобили -->
         <section class="similar-cars">
             <h2>Похожие автомобили</h2>
@@ -646,14 +631,13 @@
             </div>
         </section>
     </div>
-
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Контакты</h3>
                     <ul>
-                        <li><a href="mailto:info@Miniwan.store">info@Miniwan.store</a></li>
+                        <li><a href="mailto:info@miniwan.store">info@miniwan.store</a></li>
                         <li><a href="tel:+79268237180">+7 (926) 8237180</a></li>
                     </ul>
                 </div>
@@ -661,8 +645,7 @@
                     <h3>Правовая информация</h3>
                     <ul>
                         <li><a href="privacy-policy.html">Политика конфиденциальности</a></li>
-                        <li><a href="#">Условия использования</a></li>
-                        <li><a href="#">Политика cookies</a></li>
+                        <li><a href="cookies.html">Политика cookies</a></li>
                     </ul>
                 </div>
             </div>
@@ -671,14 +654,11 @@
             </div>
         </div>
     </footer>
-
-    <script src="js/main.js"></script>
     <script>
         // Глобальные переменные
         let currentCar = null;
         let allCars = [];
         let currentImageIndex = 0;
-
         // Загрузка данных автомобиля
         async function loadCarData() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -687,18 +667,14 @@
                 window.location.href = 'catalog.html';
                 return;
             }
-
             try {
                 const response = await fetch('data/cars.json');
                 allCars = await response.json();
-                
                 currentCar = allCars.find(car => car.id == carId);
-                
                 if (!currentCar) {
                     window.location.href = 'catalog.html';
                     return;
                 }
-
                 renderCarDetails();
                 loadSimilarCars();
                 setupDateInputs();
@@ -708,68 +684,32 @@
                 document.getElementById('carTitle').textContent = 'Ошибка загрузки данных';
             }
         }
-
         // Рендер деталей автомобиля
         function renderCarDetails() {
             // Основная информация
             document.getElementById('carTitle').textContent = `${currentCar.brand} ${currentCar.model}`;
             document.getElementById('breadcrumbCurrent').textContent = `${currentCar.brand} ${currentCar.model}`;
             document.getElementById('carSubtitle').textContent = `${currentCar.year} год • ${currentCar.engine} • ${getTransmissionLabel(currentCar.transmission)}`;
-            document.getElementById('carDeposit').textContent = `${formatPrice(currentCar.deposit)} ₽`;
-
-            // Цены
-            renderPrices();
-
+            document.getElementById('carPrice').textContent = `${currentCar.prices["21"]} ₽`;
+            document.getElementById('carDeposit').textContent = `${currentCar.deposit} ₽`;
             // Галерея
             renderGallery();
-
-            // Правила аренды
-            renderRentalRules();
-
             // Характеристики
             renderSpecs();
-
             // Описание
             renderDescription();
-
+            // Особенности
+            renderFeatures();
             // Информация о владельце
             renderOwnerInfo();
         }
-
-        // Рендер цен
-        function renderPrices() {
-            const pricesGrid = document.getElementById('pricesGrid');
-            
-            if (!currentCar.prices) {
-                pricesGrid.innerHTML = '<div class="price-item" style="grid-column: 1 / -1; text-align: center; color: #D4C4A8;">Цены не указаны</div>';
-                return;
-            }
-
-            const priceTiers = [
-                { days: 1, price: currentCar.prices["1"] },
-                { days: 4, price: currentCar.prices["4"] },
-                { days: 7, price: currentCar.prices["7"] },
-                { days: 14, price: currentCar.prices["14"] },
-                { days: 21, price: currentCar.prices["21"] }
-            ];
-
-            pricesGrid.innerHTML = priceTiers.map(tier => `
-                <div class="price-item">
-                    <span class="price-label">от ${tier.days} суток</span>
-                    <span class="price-value">${formatPrice(tier.price)} ₽/день</span>
-                </div>
-            `).join('');
-        }
-
         function renderGallery() {
             const mainImage = document.getElementById('mainImage');
             const thumbnails = document.getElementById('thumbnails');
-
             if (currentCar.images && currentCar.images.length > 0) {
                 // Главное изображение
                 mainImage.innerHTML = `<img src="${currentCar.images[0]}" alt="${currentCar.brand} ${currentCar.model}" 
                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">`;
-
                 // Миниатюры
                 thumbnails.innerHTML = currentCar.images.map((image, index) => `
                     <div class="thumbnail ${index === 0 ? 'active' : ''}" onclick="changeMainImage(${index})">
@@ -782,56 +722,38 @@
                 thumbnails.innerHTML = '';
             }
         }
-
-        function renderRentalRules() {
-            const rentalRules = document.getElementById('rentalRules');
-            
-            const rules = getCarRentalRules(currentCar);
-
-            rentalRules.innerHTML = rules.map(rule => `
-                <div class="rule-item">
-                    <span class="rule-label">${rule.label}</span>
-                    <span class="rule-value">${rule.value}</span>
-                </div>
-            `).join('');
-        }
-
-        function renderSpecs() {
-            const specsList = document.getElementById('specsList');
-            const specs = [
-                { label: 'Год выпуска', value: currentCar.year },
-                { label: 'Двигатель', value: currentCar.engine },
-                { label: 'Коробка передач', value: getTransmissionLabel(currentCar.transmission) },
-                { label: 'Количество мест', value: `${currentCar.seats}` },
-                { label: 'Тип топлива', value: currentCar.fuelType },
-                { label: 'Количество дверей', value: `${currentCar.doors || '4'}` },
-                { label: 'Цвет', value: currentCar.color || 'Белый' },
-                { label: 'Тип кузова', value: currentCar.bodyType || 'Минивэн' }
-            ];
-
-            specsList.innerHTML = specs.map(spec => `
-                <div class="spec-item">
-                    <span class="spec-label">${spec.label}</span>
-                    <span class="spec-value">${spec.value}</span>
-                </div>
-            `).join('');
-        }
-
         function changeMainImage(index) {
             const mainImage = document.getElementById('mainImage');
             const thumbnails = document.querySelectorAll('.thumbnail');
-            
             // Обновляем главное изображение
             mainImage.innerHTML = `<img src="${currentCar.images[index]}" alt="${currentCar.brand} ${currentCar.model}">`;
-            
             // Обновляем активную миниатюру
             thumbnails.forEach((thumb, i) => {
                 thumb.classList.toggle('active', i === index);
             });
-            
             currentImageIndex = index;
         }
-
+        function renderSpecs() {
+            const specsGrid = document.getElementById('specsGrid');
+            const specs = [
+                { icon: '⏱️', label: 'Год выпуска', value: currentCar.year },
+                { icon: '⚙️', label: 'Двигатель', value: currentCar.engine },
+                { icon: '🎛️', label: 'Коробка', value: getTransmissionLabel(currentCar.transmission) },
+                { icon: '👥', label: 'Мест', value: `${currentCar.seats}` },
+                { icon: '⛽', label: 'Топливо', value: currentCar.fuelType },
+                { icon: '🚗', label: 'Привод', value: currentCar.driveType || 'н/д' },
+                { icon: '🛣️', label: 'Пробег', value: currentCar.mileage || 'н/д' },
+                { icon: '📋', label: 'Вкл. пробег', value: currentCar.includedMileage || 'н/д' },
+                { icon: '🛡️', label: 'Страховка', value: currentCar.insurance || 'н/д' }
+            ];
+            specsGrid.innerHTML = specs.map(spec => `
+                <div class="spec-item">
+                    <div class="spec-icon">${spec.icon}</div>
+                    <div class="spec-label">${spec.label}</div>
+                    <div class="spec-value">${spec.value}</div>
+                </div>
+            `).join('');
+        }
         function renderDescription() {
             const description = document.getElementById('carDescription');
             description.innerHTML = `
@@ -840,36 +762,41 @@
                 <p><strong>Условия аренды:</strong> минимальный срок аренды - 1 день, залог возвращается при возврате автомобиля в исходном состоянии.</p>
             `;
         }
-
+        function renderFeatures() {
+            const featuresGrid = document.getElementById('featuresGrid');
+            const features = currentCar.features.map(feature => ({
+                icon: '✅',
+                text: feature
+            }));
+            featuresGrid.innerHTML = features.map(feature => `
+                <div class="feature-item">
+                    <span class="feature-icon">${feature.icon}</span>
+                    <span class="feature-text">${feature.text}</span>
+                </div>
+            `).join('');
+        }
         function renderOwnerInfo() {
-            // В реальном приложении эти данные должны приходить из базы
             document.getElementById('ownerName').textContent = currentCar.owner?.name || 'Алексей Петров';
             document.getElementById('ownerAvatar').textContent = getInitials(currentCar.owner?.name || 'Алексей Петров');
             document.getElementById('ownerCars').textContent = currentCar.owner?.carsCount || '3';
             document.getElementById('ownerRentals').textContent = currentCar.owner?.rentalsCount || '24';
         }
-
         function getInitials(name) {
             return name.split(' ').map(word => word[0]).join('').toUpperCase();
         }
-
         function getTransmissionLabel(transmission) {
             return transmission === 'automatic' ? 'Автоматическая' : 'Механическая';
         }
-
         // Похожие автомобили
         function loadSimilarCars() {
             const similarCars = allCars
                 .filter(car => car.id != currentCar.id && car.brand === currentCar.brand)
                 .slice(0, 3);
-
             const similarGrid = document.getElementById('similarCars');
-            
             if (similarCars.length === 0) {
                 similarGrid.innerHTML = '<p style="text-align: center; color: #D4C4A8; grid-column: 1 / -1;">Нет похожих автомобилей</p>';
                 return;
             }
-
             similarGrid.innerHTML = similarCars.map(car => `
                 <div class="similar-car-card" onclick="window.location.href='car-detail.html?id=${car.id}'">
                     <div class="similar-car-image">
@@ -878,22 +805,19 @@
                     </div>
                     <div class="similar-car-info">
                         <h3 class="similar-car-title">${car.brand} ${car.model}</h3>
-                        <div class="similar-car-price">${formatPrice(car.prices["1"])} ₽/день</div>
+                        <div class="similar-car-price">${car.prices["21"]} ₽/день</div>
                     </div>
                 </div>
             `).join('');
         }
-
         // Бронирование
         function setupDateInputs() {
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('startDate').min = today;
             document.getElementById('endDate').min = today;
-
             document.getElementById('startDate').addEventListener('change', updateEndDateMin);
             document.getElementById('endDate').addEventListener('change', calculateRentalDays);
         }
-
         function updateEndDateMin() {
             const startDate = document.getElementById('startDate').value;
             if (startDate) {
@@ -902,11 +826,9 @@
                 calculateRentalDays();
             }
         }
-
         function calculateRentalDays() {
             const startDate = new Date(document.getElementById('startDate').value);
             const endDate = new Date(document.getElementById('endDate').value);
-            
             if (startDate && endDate && endDate >= startDate) {
                 const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
                 document.getElementById('rentalDays').value = days;
@@ -916,30 +838,26 @@
                 calculateTotal();
             }
         }
-
         function calculateTotal() {
             const days = parseInt(document.getElementById('rentalDays').value) || 1;
-            const pricePerDay = getCarPrice(currentCar, days);
-            const total = pricePerDay * days;
-            document.getElementById('totalAmount').textContent = `${formatPrice(total)} ₽`;
+            const total = currentCar.prices["21"] * days;
+            document.getElementById('totalAmount').textContent = `${total} ₽`;
         }
-
         function proceedToBooking() {
             const startDate = document.getElementById('startDate').value;
             const endDate = document.getElementById('endDate').value;
-            
             if (!startDate || !endDate) {
                 alert('Пожалуйста, выберите даты аренды');
                 return;
             }
-
             window.location.href = `booking.html?carId=${currentCar.id}&startDate=${startDate}&endDate=${endDate}`;
         }
-
+        function contactOwner() {
+            alert('Функция связи с владельцем будет реализована в ближайшее время');
+        }
         function showLocation() {
             alert('Карта с местоположением автомобиля будет показана здесь');
         }
-
         // Загрузка данных при загрузке страницы
         document.addEventListener('DOMContentLoaded', loadCarData);
     </script>
