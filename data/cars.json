@@ -1,4 +1,4 @@
-﻿[
+[
   {
     "id": 1,
     "brand": "Renault",
@@ -8,9 +8,6 @@
     "transmission": "automatic",
     "fuelType": "Бензин",
     "seats": 7,
-    "doors": 5,
-    "color": "Белый",
-    "bodyType": "Минивэн",
     "prices": {
       "1": 5490,
       "4": 5215,
@@ -48,7 +45,11 @@
       "rentalsCount": 47
     },
     "location": "Москва, ЦАО",
-    "available": true
+    "available": true,
+    "driveType": "н/д",
+    "mileage": "н/д",
+    "includedMileage": "н/д",
+    "insurance": "н/д"
   },
   {
     "id": 2,
@@ -59,9 +60,6 @@
     "transmission": "manual",
     "fuelType": "Дизель",
     "seats": 7,
-    "doors": 5,
-    "color": "Серый",
-    "bodyType": "Минивэн",
     "prices": {
       "1": 4000,
       "4": 3800,
@@ -95,7 +93,11 @@
       "rentalsCount": 32
     },
     "location": "Москва, СВАО",
-    "available": true
+    "available": true,
+    "driveType": "н/д",
+    "mileage": "н/д",
+    "includedMileage": "н/д",
+    "insurance": "н/д"
   },
   {
     "id": 3,
@@ -106,9 +108,6 @@
     "transmission": "automatic",
     "fuelType": "Бензин",
     "seats": 7,
-    "doors": 5,
-    "color": "Черный",
-    "bodyType": "А и светодиодная оптика подчеркивают уверенный характер автомобиля, созданного для больших семей и деловых поездок.",
     "prices": {
       "1": 5490,
       "4": 5215,
@@ -146,7 +145,11 @@
       "rentalsCount": 89
     },
     "location": "Москва, ЗАО",
-    "available": true
+    "available": true,
+    "driveType": "н/д",
+    "mileage": "н/д",
+    "includedMileage": "н/д",
+    "insurance": "н/д"
   },
   {
     "id": 4,
@@ -157,9 +160,6 @@
     "transmission": "automatic",
     "fuelType": "Дизель",
     "seats": 7,
-    "doors": 5,
-    "color": "Серебристый",
-    "bodyType": "Минивэн",
     "prices": {
       "1": 6990,
       "4": 6640,
@@ -197,7 +197,11 @@
       "rentalsCount": 18
     },
     "location": "Москва, ЮАО",
-    "available": true
+    "available": true,
+    "driveType": "н/д",
+    "mileage": "н/д",
+    "includedMileage": "н/д",
+    "insurance": "н/д"
   },
   {
     "id": 5,
@@ -208,9 +212,6 @@
     "transmission": "automatic",
     "fuelType": "Дизель",
     "seats": 8,
-    "doors": 5,
-    "color": "Синий",
-    "bodyType": "Минивэн",
     "prices": {
       "1": 6590,
       "4": 6260,
@@ -247,7 +248,11 @@
       "rentalsCount": 41
     },
     "location": "Москва, САО",
-    "available": true
+    "available": true,
+    "driveType": "н/д",
+    "mileage": "н/д",
+    "includedMileage": "н/д",
+    "insurance": "н/д"
   },
   {
     "id": 6,
@@ -258,9 +263,6 @@
     "transmission": "automatic",
     "fuelType": "Бензин",
     "seats": 7,
-    "doors": 5,
-    "color": "Белый",
-    "bodyType": "Минивэн",
     "prices": {
       "1": 4490,
       "4": 4265,
@@ -298,7 +300,11 @@
       "rentalsCount": 12
     },
     "location": "Москва, ЮЗАО",
-    "available": true
+    "available": true,
+    "driveType": "н/д",
+    "mileage": "н/д",
+    "includedMileage": "н/д",
+    "insurance": "н/д"
   },
   {
     "id": 7,
@@ -309,9 +315,6 @@
     "transmission": "automatic",
     "fuelType": "Дизель",
     "seats": 7,
-    "doors": 4,
-    "color": "Белый",
-    "bodyType": "Минивэн",
     "prices": {
       "1": 4490,
       "4": 4265,
@@ -348,7 +351,11 @@
       "rentalsCount": 156
     },
     "location": "Москва, ВАО",
-    "available": true
+    "available": true,
+    "driveType": "н/д",
+    "mileage": "н/д",
+    "includedMileage": "н/д",
+    "insurance": "н/д"
   },
   {
     "id": 8,
@@ -359,9 +366,6 @@
     "transmission": "automatic",
     "fuelType": "Бензин",
     "seats": 6,
-    "doors": 5,
-    "color": "Серый",
-    "bodyType": "Минивэн",
     "prices": {
       "1": 5490,
       "4": 5215,
@@ -399,6 +403,10 @@
       "rentalsCount": 29
     },
     "location": "Москва, СЗАО",
-    "available": true
+    "available": true,
+    "driveType": "н/д",
+    "mileage": "н/д",
+    "includedMileage": "н/д",
+    "insurance": "н/д"
   }
 ]
