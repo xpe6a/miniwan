@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "id": 1,
     "brand": "Renault",
@@ -404,9 +404,9 @@
     },
     "location": "Москва, СЗАО",
     "available": true,
-    "driveType": "н/д",
-    "mileage": "н/д",
-    "includedMileage": "н/д",
-    "insurance": "н/д"
+    "driveType": "Полный",
+    "mileage": "40000",
+    "includedMileage": "250",
+    "insurance": "КАСКО"
   }
 ]
