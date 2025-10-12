@@ -417,7 +417,9 @@
                 <p>🚗 <strong>Менеджер свяжется с вами в течение 2 часов</strong> после отправки заявки для уточнения деталей</p>
             </div>
 
-            <form class="application-form" id="ownerApplicationForm" onsubmit="submitApplication(event)">
+            <form class="application-form" id="ownerApplicationForm" action="https://formspree.io/f/xqayyvov" method="POST">
+                <input type="hidden" name="_next" value="https://miniwan.store/sucess.html">
+                <input type="hidden" name="_subject" value="Новая заявка от владельца автомобиля">
                 <div class="form-group">
                     <label for="ownerName">Ваше имя *</label>
                     <input type="text" id="ownerName" name="ownerName" required placeholder="Иван Иванов">
@@ -570,82 +572,41 @@
     </footer>
 
     <script>
-        function submitApplication(event) {
-            event.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const originalText = submitBtn.textContent;
-            
-            // Блокируем кнопку и меняем текст
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Отправка...';
-            
-            // Собираем данные формы
-            const formData = {
-                name: document.getElementById('ownerName').value,
-                phone: document.getElementById('ownerPhone').value,
-                email: document.getElementById('ownerEmail').value,
-                brand: document.getElementById('carBrand').value,
-                model: document.getElementById('carModel').value,
-                year: document.getElementById('carYear').value,
-                seats: document.getElementById('carSeats').value,
-                location: document.getElementById('carLocation').value,
-                additionalInfo: document.getElementById('additionalInfo').value
-            };
-            
-            // В реальном приложении здесь будет отправка на сервер
-            console.log('Application submitted:', formData);
-            
-            // Имитация отправки
-            setTimeout(() => {
-                // Показываем успешное сообщение
-                alert('✅ Заявка успешно отправлена!\n\nМенеджер свяжется с вами в течение 2 часов для уточнения деталей.');
-                
-                // Очищаем форму
-                document.getElementById('ownerApplicationForm').reset();
-                
-                // Возвращаем кнопку в исходное состояние
-                submitBtn.disabled = false;
-                submitBtn.textContent = originalText;
-                
-                // Перенаправляем на главную
-                window.location.href = '../index.html';
-            }, 2000);
-        }
-
         // Валидация телефона
-        document.getElementById('ownerPhone').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 0) {
-                if (value[0] === '7' || value[0] === '8') {
-                    value = value.substring(1);
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('ownerPhone').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 0) {
+                    if (value[0] === '7' || value[0] === '8') {
+                        value = value.substring(1);
+                    }
+                    value = '+7 (' + value.substring(0, 3) + ') ' + value.substring(3, 6) + '-' + value.substring(6, 8) + '-' + value.substring(8, 10);
+                    value = value.replace(/-$/, '').replace(/\) $/, '');
                 }
-                value = '+7 (' + value.substring(0, 3) + ') ' + value.substring(3, 6) + '-' + value.substring(6, 8) + '-' + value.substring(8, 10);
-                value = value.replace(/-$/, '').replace(/\) $/, '');
-            }
-            e.target.value = value;
-        });
+                e.target.value = value;
+            });
 
-        // Динамическое обновление моделей при выборе марки
-        document.getElementById('carBrand').addEventListener('change', function(e) {
-            const modelInput = document.getElementById('carModel');
-            const brand = e.target.value;
-            
-            // В реальном приложении здесь может быть загрузка моделей по API
-            const modelPlaceholders = {
-                'toyota': 'Alphard',
-                'honda': 'Odyssey',
-                'volkswagen': 'Multivan',
-                'mercedes': 'V-Class',
-                'kia': 'Carnival',
-                'hyundai': 'Staria',
-                'ford': 'Tourneo',
-                'nissan': 'Serena',
-                'chrysler': 'Pacifica',
-                'other': 'Модель'
-            };
-            
-            modelInput.placeholder = modelPlaceholders[brand] || 'Модель';
+            // Динамическое обновление моделей при выборе марки
+            document.getElementById('carBrand').addEventListener('change', function(e) {
+                const modelInput = document.getElementById('carModel');
+                const brand = e.target.value;
+                
+                // В реальном приложении здесь может быть загрузка моделей по API
+                const modelPlaceholders = {
+                    'toyota': 'Alphard',
+                    'honda': 'Odyssey',
+                    'volkswagen': 'Multivan',
+                    'mercedes': 'V-Class',
+                    'kia': 'Carnival',
+                    'hyundai': 'Staria',
+                    'ford': 'Tourneo',
+                    'nissan': 'Serena',
+                    'chrysler': 'Pacifica',
+                    'other': 'Модель'
+                };
+                
+                modelInput.placeholder = modelPlaceholders[brand] || 'Модель';
+            });
         });
     </script>
 </body>
