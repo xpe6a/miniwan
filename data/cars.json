@@ -373,7 +373,7 @@
       "14": 4666,
       "21": 4392
     },
-    "deposit": 40000,
+    "deposit": 20000,
     "rentalRules": {
       "minExperience": 3,
       "minAge": 23
@@ -409,4 +409,112 @@
     "includedMileage": "250",
     "insurance": "КАСКО"
   }
+  {
+    "id": 9,
+    "brand": "Dodge",
+    "model": "Grand Caravan",
+    "year": 2004,
+    "engine": "3,8 ",
+    "transmission": "automatic",
+    "fuelType": "Бензин",
+    "seats": 7,
+    "prices": {
+      "1": 10000,
+      "4": 4000,
+      "7": 4000,
+      "14": 3900,
+      "21": 3800
+    },
+    "deposit": 20000,
+    "rentalRules": {
+      "minExperience": 5,
+      "minAge": 23
+    },
+    "isPopular": false,
+    "description": "Dоdge Grand Саrаvаn IV 3.8. Aвто в oтличном теxничеcком сoстoянии. Koндициoнeр, круиз контроль. 7 посaдочных мecт. Приезжайте прокатиться и оценить настоящий американский автомобиль. При необходимости предоставим детские автокресла.”
+    "features": [
+      "Кондиционер",
+      "Круиз-контроль",
+      "Парктроник",
+    ],
+    "images": [
+      "images/cars/009-1.jpg",
+      "images/cars/009-2.jpg",
+      "images/cars/009-3.jpg",
+      "images/cars/009-4.jpg",
+      "images/cars/009-5.jpg",
+      "images/cars/009-6.jpg",
+      "images/cars/009-7.jpg",
+      "images/cars/008-8.jpg"
+    ],
+    "owner": {
+      "name": "Роман",
+      "rating": 4.7,
+      "carsCount": 1,
+      "rentalsCount": 29
+    },
+    "location": "Москва, Академика Янгеля",
+    "available": true,
+    "driveType": "Передний",
+    "mileage": "40000",
+    "includedMileage": "250",
+    "insurance": "ОСАГО"
+  }
+  {
+    "id": 10,
+    "brand": "Chrysler",
+    "model": "Voyager",
+    "year": 2003,
+    "engine": "2,4 ",
+    "transmission": "automatic",
+    "fuelType": "Бензин",
+    "seats": 7,
+    "prices": {
+      "1": 2490,
+      "4": 2240,
+      "7": 1990,
+      "14": 1740,
+      "21": 1490
+    },
+    "deposit": 15000,
+    "rentalRules": {
+      "minExperience": 5,
+      "minAge": 23
+    },
+    "isPopular": false,
+    "description": "7 мест, отличное состояние, круиз контроль, багажник на крыше, фаркоп, готов к дальним поездкам.
+Согласованный пробег:
+100 км в день +700 руб. к стоимости аренды в сутки
+200 км в день +1200 руб. к стоимости аренды в сутки
+300 км в день +1500 руб. к стоимости аренды в сутки
+Либо предоплаченный пробег:
+300 км 2100 руб.
+500 км 3000 руб.
+1000 км 5000 руб.
+Стоимость несогласованного пробега 1 км 9 руб. Кому нужен минимальный you are welcome.”
+    "features": [
+      "Кондиционер",
+      "Круиз-контроль",
+    ],
+    "images": [
+      "images/cars/010-1.jpg",
+      "images/cars/010-2.jpg",
+      "images/cars/010-3.jpg",
+      "images/cars/010-4.jpg",
+      "images/cars/010-5.jpg",
+    ],
+    "owner": {
+      "name": "Алан",
+      "rating": 4.7,
+      "carsCount": 1,
+      "rentalsCount": 29
+    },
+    "location": "Москва, Кантемировская",
+    "available": true,
+    "driveType": "Передний",
+    "mileage": "н/д",
+    "includedMileage": "100",
+    "insurance": "ОСАГО"
+  }
+
 ]
