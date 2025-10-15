@@ -1,8 +1,8 @@
-﻿[
+[
   {
     "id": 1,
     "brand": "Renault",
-    "model": "Scenic,",
+    "model": "Scenic",
     "year": 2020,
     "engine": "1.5L Бензин",
     "transmission": "automatic",
@@ -54,7 +54,7 @@
   {
     "id": 2,
     "brand": "Mercedes-Benz",
-    "model": "Vito,",
+    "model": "Vito",
     "year": 2006,
     "engine": "2.1L Дизель",
     "transmission": "manual",
@@ -102,7 +102,7 @@
   {
     "id": 3,
     "brand": "GAC",
-    "model": "M8,",
+    "model": "M8",
     "year": 2021,
     "engine": "1.5L Бензин",
     "transmission": "automatic",
@@ -154,7 +154,7 @@
   {
     "id": 4,
     "brand": "Mercedes-Benz",
-    "model": "V-Класс,",
+    "model": "V-Класс",
     "year": 2014,
     "engine": "2.2L Дизель",
     "transmission": "automatic",
@@ -206,7 +206,7 @@
   {
     "id": 5,
     "brand": "Hyundai",
-    "model": "H-1,",
+    "model": "H-1",
     "year": 2019,
     "engine": "2.5L Дизель",
     "transmission": "automatic",
@@ -257,7 +257,7 @@
   {
     "id": 6,
     "brand": "BYD",
-    "model": "Song Pro,",
+    "model": "Song Pro",
     "year": 2021,
     "engine": "1.5L Бензин",
     "transmission": "automatic",
@@ -309,7 +309,7 @@
   {
     "id": 7,
     "brand": "Citroen",
-    "model": "C4 Picasso,",
+    "model": "C4 Picasso",
     "year": 2014,
     "engine": "1.6L Дизель",
     "transmission": "automatic",
@@ -360,7 +360,7 @@
   {
     "id": 8,
     "brand": "Chevrolet",
-    "model": "Orlando,",
+    "model": "Orlando",
     "year": 2012,
     "engine": "2.0L Бензин",
     "transmission": "automatic",
@@ -414,7 +414,7 @@
   "brand": "Dodge",
   "model": "Grand Caravan",
   "year": 2004,
-  "engine": "3,8 ",
+  "engine": "3.8L Бензин",
   "transmission": "automatic",
   "fuelType": "Бензин",
   "seats": 7,
@@ -465,7 +465,7 @@
   "brand": "Chrysler",
   "model": "Voyager",
   "year": 2003,
-  "engine": "2,4 ",
+  "engine": "2.4L Бензин",
   "transmission": "automatic",
   "fuelType": "Бензин",
   "seats": 7,
@@ -512,7 +512,7 @@
     "brand": "Chery",
     "model": "Tiggo 8 Pro",
     "year": 2023,
-    "engine": "1,6 ",
+    "engine": "1.6L Бензин",
     "transmission": "automatic",
     "fuelType": "Бензин",
     "seats": 7,
