@@ -1,0 +1,1007 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miniwan Store | Аренда минивэнов у частных лиц</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #231A16;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23E8DCC5' stroke-opacity='0.12' stroke-width='1' fill='none'%3E%3Cpath d='M0,20 L100,20 M20,0 L20,100 M0,80 L100,80 M80,0 L80,100 M0,0 L100,100 M100,0 L0,100'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 100px 100px;
+            min-height: 100vh;
+            color: #F0E6D2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+        .header-nav {
+            display: flex;
+            gap: 25px;
+            margin: 0 40px;
+        }
+        .nav-link {
+            color: #D4C4A8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            white-space: nowrap;
+        }
+        .nav-link:hover {
+            color: #E8DCC5;
+        }
+        .hero {
+            min-height: 80vh;
+            padding: 60px 0;
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('images/hero-bg.jpg');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        .hero-content {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #E8DCC5;
+            line-height: 1.2;
+        }
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #D4C4A8;
+        }
+        .large-btn {
+            min-width: 320px;
+            padding: 20px 40px;
+            font-size: 18px;
+            margin: 0 auto;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 2px;
+        }
+        .checkbox-group label {
+            font-size: 12px;
+            color: #D4C4A8;
+            line-height: 1.4;
+        }
+        .checkbox-group a {
+            color: #8B5A2B;
+            text-decoration: none;
+        }
+        .checkbox-group a:hover {
+            color: #A06A37;
+        }
+        .form-note {
+            font-size: 12px;
+            color: #D4C4A8;
+            margin-top: -10px;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: rgba(35, 26, 22, 0.95);
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid #8B5A2B;
+        }
+        .close {
+            color: #D4C4A8;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .close:hover {
+            color: #E8DCC5;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #E8DCC5;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(40, 30, 25, 0.8);
+            border: 1px solid #8B5A2B;
+            border-radius: 5px;
+            color: #F0E6D2;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #8B5A2B;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .submit-btn:hover {
+            background: #A06A37;
+        }
+        .filters-section {
+            padding: 60px 0;
+            background: rgba(30, 25, 20, 0.6);
+        }
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .filter-group {
+            margin-bottom: 15px;
+        }
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #E8DCC5;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(40, 30, 25, 0.8);
+            border: 1px solid #8B5A2B;
+            border-radius: 5px;
+            color: #F0E6D2;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .filter-group select option {
+            background: #231A16;
+            color: #F0E6D2;
+        }
+        .filter-actions {
+            grid-column: 1 / -1;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 12px;
+        }
+        .chat-button {
+            width: 60px;
+            height: 60px;
+            background: #8B5A2B;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            border: none;
+        }
+        .chat-button:hover {
+            background: #A06A37;
+            transform: scale(1.1);
+        }
+        .chat-icon {
+            font-size: 24px;
+            color: white;
+        }
+        .telegram-button {
+            width: 60px;
+            height: 60px;
+            background: #0088cc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+        }
+        .telegram-button:hover {
+            background: #0077b5;
+            transform: scale(1.1);
+        }
+        .telegram-icon {
+            font-size: 24px;
+            color: white;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            padding: 20px 0;
+            position: relative;
+            z-index: 10;
+            background: rgba(35, 26, 22, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #E8DCC5;
+            text-decoration: none;
+        }
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .phone {
+            color: #D4C4A8;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .phone:hover {
+            color: #E8DCC5;
+        }
+        .callback-btn {
+            background: #8B5A2B;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        .callback-btn:hover {
+            background: #A06A37;
+        }
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: auto;
+        }
+        .btn-primary {
+            background: #8B5A2B;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #A06A37;
+            transform: translateY(-1px);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: #E8DCC5;
+            border: 1px solid #8B5A2B;
+        }
+        .btn-secondary:hover {
+            background: rgba(139, 90, 43, 0.1);
+            transform: translateY(-1px);
+        }
+        .btn-icon {
+            font-size: 16px;
+        }
+        .why-us {
+            padding: 80px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #E8DCC5;
+        }
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #D4C4A8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        .section-description {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: #D4C4A8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .reason-card {
+            background: rgba(40, 30, 25, 0.6);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .reason-card:hover {
+            transform: translateY(-10px);
+        }
+        .reason-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #8B5A2B;
+        }
+        .reason-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #E8DCC5;
+        }
+        .reason-card p {
+            color: #D4C4A8;
+        }
+        .how-it-works {
+            padding: 80px 0;
+            background: rgba(30, 25, 20, 0.5);
+        }
+        .how-it-works-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .testimonials {
+            padding: 80px 0;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .testimonial-card {
+            background: rgba(40, 30, 25, 0.6);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: left;
+        }
+        .testimonial-text {
+            font-style: italic;
+            color: #D4C4A8;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .testimonial-author {
+            color: #E8DCC5;
+            font-weight: 600;
+        }
+        .cta-form-section {
+            padding: 80px 0;
+            background: rgba(30, 25, 20, 0.6);
+            text-align: center;
+        }
+        .date-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .date-inputs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .date-inputs .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        .form-note-center {
+            font-size: 12px;
+            color: #D4C4A8;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .popular-cars {
+            padding: 80px 0;
+            background: rgba(30, 25, 20, 0.5);
+        }
+        .carousel {
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 20px;
+        }
+        .carousel-item {
+            min-width: calc(25% - 15px);
+            flex-shrink: 0;
+        }
+        .car-card {
+            background: rgba(40, 30, 25, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            height: 100%;
+        }
+        .car-image {
+            height: 180px;
+            background: #5D4037;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .image-placeholder {
+            color: #D4C4A8;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .car-info {
+            padding: 15px;
+        }
+        .car-info h3 {
+            margin: 0 0 8px 0;
+            color: #E8DCC5;
+            font-size: 1.1rem;
+        }
+        .car-info p {
+            color: #D4C4A8;
+            margin: 4px 0;
+            font-size: 0.85rem;
+        }
+        .car-price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #8B5A2B;
+            margin-top: 8px;
+        }
+        .owners-cta {
+            padding: 100px 0;
+            text-align: center;
+            background: rgba(35, 26, 22, 0.9);
+        }
+        .owners-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #E8DCC5;
+        }
+        .owners-cta p {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: #D4C4A8;
+            font-size: 1.1rem;
+        }
+        footer {
+            padding: 60px 0 20px;
+            background: rgba(20, 15, 12, 0.95);
+            border-top: 1px solid #443A30;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-section h3 {
+            color: #E8DCC5;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section a {
+            color: #D4C4A8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-section a:hover {
+            color: #E8DCC5;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #443A30;
+            color: #D4C4A8;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .header-nav {
+                margin: 10px 0;
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero {
+                background-image: 
+                    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                    url('images/hero-bg.jpg');
+                background-position: center;
+                background-size: cover;
+                min-height: auto;
+                padding: 40px 0;
+            }
+            .hero-content {
+                max-width: 100%;
+                min-height: auto;
+                text-align: center;
+            }
+            .hero h1 {
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 30px;
+            }
+            .large-btn {
+                min-width: 280px;
+                padding: 16px 30px;
+            }
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .carousel-item {
+                min-width: calc(50% - 10px);
+            }
+            .date-inputs {
+                flex-direction: column;
+            }
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            .why-us-grid,
+            .how-it-works-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-subtitle {
+                font-size: 1.2rem;
+            }
+            .chat-widget {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="callbackModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('callbackModal')">&times;</span>
+            <h2 style="color: #E8DCC5; margin-bottom: 20px;">Заказать звонок</h2>
+            <form id="callbackForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-group">
+                    <label for="callbackName">Ваше имя</label>
+                    <input type="text" id="callbackName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="callbackPhone">Телефон</label>
+                    <input type="tel" id="callbackPhone" name="phone" required>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="callbackAgreement" required>
+                    <label for="callbackAgreement">Соглашаюсь на обработку персональных данных в соответствии с <a href="privacy-policy.html">политикой конфиденциальности</a></label>
+                </div>
+                <button type="submit" class="submit-btn">Позвоните мне</button>
+            </form>
+        </div>
+    </div>
+    <div id="chatModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('chatModal')">&times;</span>
+            <h2 style="color: #E8DCC5; margin-bottom: 20px;">Задайте любой вопрос</h2>
+            <form id="chatForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-group">
+                    <label for="chatName">Ваше имя</label>
+                    <input type="text" id="chatName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="chatEmail">Email</label>
+                    <input type="email" id="chatEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="chatMessage">Сообщение</label>
+                    <textarea id="chatMessage" name="message" placeholder="Например, опишите, какой автомобиль вам нужен словами - мы подберем подходящий и свяжемся" required></textarea>
+                    <div class="form-note"> </div>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="chatAgreement" required>
+                    <label for="chatAgreement">Соглашаюсь на обработку персональных данных в соответствии с <a href="privacy-policy.html">политикой конфиденциальности</a></label>
+                </div>
+                <button type="submit" class="submit-btn">Отправить запрос</button>
+            </form>
+        </div>
+    </div>
+    <div class="chat-widget">
+        <a href="https://t.me/YOUR_TELEGRAM_USERNAME" class="telegram-button" title="Написать в Telegram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/>
+        </svg>
+        </a>
+        <button class="chat-button" onclick="openModal('chatModal')" title="Задать вопрос">
+            <span class="chat-icon">💬</span>
+        </button>
+    </div>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">miniwan.store</a>
+                <nav class="header-nav">
+                    <a href="catalog.html" class="nav-link">Каталог авто</a>
+                    <a href="#why-us" class="nav-link">О нас</a>
+                    <a href="#how-it-works" class="nav-link">Как это работает</a>
+                    <a href="forms/owner-application.html" class="nav-link">Сдать авто</a>
+                </nav>
+                <div class="header-contact">
+                    <a href="tel:+79268237180" class="phone">+7 (926) 823-71-80</a>
+                    <button class="callback-btn" onclick="openModal('callbackModal')">Заказать звонок</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Арендуй минивэн у частного владельца. Без подмен, без прокатных сюрпризов.</h1>
+                <div class="hero-subtitle">Ты выбираешь конкретную машину — именно её и получаешь. С той же комплектацией, тем же салоном и тем же хозяином. Никаких “аналогов”, как в прокате.</div>
+                <div class="action-buttons">
+                    <a href="catalog.html" class="btn btn-primary large-btn">
+                        <span class="btn-icon">🔍</span>
+                        Подобрать минивэн
+                    </a>
+                </div>
+                <div class="form-note-center">
+                    🎤 Не хочешь искать — <b>мы подберём</b>.<br>
+                    Опиши, какой минивэн тебе нужен — или скажи голосом в Telegram. Мы сами подберём варианты, свяжемся с владельцем, подтвердим даты и всё оформим.
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="why-us" id="why-us">
+        <div class="container">
+            <h2 class="section-title">Miniwan Store — не прокат. Это аренда у людей, у которых есть свой минивэн.</h2>
+            <div class="section-subtitle">Почему с нами спокойнее, чем в прокате: ты бронируешь конкретную машину, получаешь конкретную машину. Никто не подменит её на «аналог». И это делает всю поездку предсказуемой.</div>
+            <div class="section-description">
+                Мы соединяем владельцев, у которых машина уже есть и за ней следят, с теми, кому она нужна на несколько дней. Владельцы не держат автопарк и офис — поэтому аренда выходит в среднем на 40% дешевле, чем у классического проката.
+            </div>
+            <div class="why-us-grid">
+                <div class="reason-card">
+                    <div class="reason-icon">🚫</div>
+                    <h3>Без подмены</h3>
+                    <p>Забронировал конкретную машину — получаешь именно её. Это важно: если поездка планируется под одну конкретную машину — замена = провал всей поездки.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">💰</div>
+                    <h3>На 40% дешевле проката</h3>
+                    <p>Владельцы не несут расходов на офисы и парки — их авто уже обслужены. Мы просто подключаем проверенных людей и делаем безопасную сделку.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">💎</div>
+                    <h3>Живые машины</h3>
+                    <p>Это личные авто, не прокатные «рабочие лошадки». На них меньше километров, их берегут — значит реальное состояние лучше, чем в прокате.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">🧩</div>
+                    <h3>Контроль и поддержка</h3>
+                    <p>Мы проверяем владельцев, держим залог и решаем проблемы. Если что-то сломалось — мы найдём замену и не сорвём поездку.</p>
+                </div>
+            </div>
+            <div class="section-description" style="text-align:center; margin-top:20px;">
+                <a href="about.html" style="color:#8B5A2B; text-decoration:none;">Как работает p2p аренда →</a>
+            </div>
+        </div>
+    </section>
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Как это работает</h2>
+            <div class="how-it-works-grid">
+                <div class="reason-card">
+                    <div class="reason-icon">🔍</div>
+                    <h3>Выбираешь конкретную машину</h3>
+                    <p>Реальные фото, точная комплектация и описание. Мы не продаём «класс» — мы продаём машину.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">📞</div>
+                    <h3>Подтверждаем личным звонком</h3>
+                    <p>Мы связываемся с владельцем, фиксируем даты и статус машины. Бронь подтверждена личным контактом — не по автомату.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">🛠️</div>
+                    <h3>Решаем форс-мажор</h3>
+                    <p>Владелец подводит или машина сломалась — мы подбираем замену такого же уровня и закрываем вопрос в тот же день.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">🚗</div>
+                    <h3>Едешь без сюрпризов</h3>
+                    <p>Твоя поездка должна состояться. Мы сопровождаем сделку и возвращаем залог сразу после сдачи.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="popular-cars">
+        <div class="container">
+            <h2 class="section-title">Популярные модели</h2>
+            <div class="carousel">
+                <div class="carousel-inner" id="carouselInner">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Отзывы арендаторов</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        “Мы собирались всей семьёй в Карелию. За день до выезда у владельца потекла коробка. Владельцу неудобно было менять машину самому — но ребята из Miniwan оперативно подобрали практически ту же модель, согласовали все детали и в 11 утра мы уже выехали. Без лишних звонков и нервов. Спасибо — именно так и должно быть.” 
+                    </div>
+                    <div class="testimonial-author">— Дмитрий, Москва</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        “Три дня обзванивал прокаты: везде то нет машин, то дорого, то нельзя ехать в Беларусь. Написал в Telegram, отправил голосовое — «еду в Минск, надо дешевле и чтоб не сломалась». Через час прислали три варианта, один подтвердили сразу. Через полтора часа договор оформлен. Раньше на это ушло бы 2 дня.” 
+                    </div>
+                    <div class="testimonial-author">— Артём, Смоленск</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        “У меня трое детей. Для нас важно не 'класс', а салон, кресла и возможность спать в дороге. Бронировала конкретный Multivan — всё совпало: и комплектация, и кондиционер, и место для колясок. Никаких сюрпризов.” 
+                    </div>
+                    <div class="testimonial-author">— Ксения, Санкт-Петербург</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        “Я сам владелец Toyota Alphard. Сдаю 1–2 раза в месяц на Miniwan — спокойно, потому что они держат сделку и помогают в спорных случаях. Арендаторы возвращаются довольные, машина в порядке, мне тоже выгодно.” 
+                    </div>
+                    <div class="testimonial-author">— Андрей, владелец</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="cta-form-section">
+        <div class="container">
+            <h2 class="section-title">Подберите минивэн под ваши даты</h2>
+            <div class="section-subtitle">
+                120 проверенных минивэнов в Москве.
+                Договор, поддержка и честное сопровождение сделки.
+            </div>
+            <div class="date-form">
+                <div class="date-inputs">
+                    <div class="form-group">
+                        <label for="startDate">Дата начала</label>
+                        <input type="date" id="startDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">Дата окончания</label>
+                        <input type="date" id="endDate" required>
+                    </div>
+                </div>
+                <a href="catalog.html" class="btn btn-primary large-btn">
+                    <span class="btn-icon">🔍</span>
+                    Показать доступные минивэны
+                </a>
+                <div class="form-note-center">
+                    Без скрытых комиссий. Залог возвращаем сразу после сдачи машины.
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="filters-section">
+        <div class="container">
+            <h2 class="section-title">Поиск по параметрам</h2>
+<div class="filters-grid">
+    <div class="filter-group">
+        <label for="brand">Марка</label>
+        <select id="brand">
+            <option value="">Любая марка</option>
+            <option value="toyota">Toyota</option>
+            <option value="honda">Honda</option>
+            <option value="volkswagen">Volkswagen</option>
+            <option value="mercedes">Mercedes-Benz</option>
+            <option value="bmw">BMW</option>
+        </select>
+    </div>
+    <div class="filter-group">
+        <label for="model">Модель</label>
+        <select id="model">
+            <option value="">Любая модель</option>
+        </select>
+    </div>
+    <div class="filter-group">
+        <label for="year">Год выпуска</label>
+        <select id="year">
+            <option value="">Любой год</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+        </select>
+    </div>
+    <div class="filter-group">
+        <label for="transmission">Коробка передач</label>
+        <select id="transmission">
+            <option value="">Любая</option>
+            <option value="automatic">Автоматическая</option>
+            <option value="manual">Механическая</option>
+        </select>
+    </div>
+    <div class="filter-group">
+        <label for="engine">Объем двигателя</label>
+        <select id="engine">
+            <option value="">Любой</option>
+            <option value="1.6">до 1.6 л</option>
+            <option value="2.0">1.6-2.0 л</option>
+            <option value="2.5">2.0-2.5 л</option>
+            <option value="3.0">2.5-3.0 л</option>
+            <option value="3.5">свыше 3.0 л</option>
+        </select>
+    </div>
+    <div class="filter-group">
+        <label for="priceFrom">Цена за день от (₽)</label>
+        <input type="number" id="priceFrom" placeholder="0">
+    </div>
+    <div class="filter-group">
+        <label for="priceTo">Цена за день до (₽)</label>
+        <input type="number" id="priceTo" placeholder="10000">
+    </div>
+    <div class="filter-group">
+        <label for="deposit">Сумма залога до (₽)</label>
+        <input type="number" id="deposit" placeholder="50000">
+    </div>
+    <div class="filter-actions">
+        <button class="btn btn-primary" onclick="applyFilters()">
+            <span class="btn-icon">🔍</span>
+            Найти автомобили
+        </button>
+        <button class="btn btn-secondary" onclick="resetFilters()">
+            <span class="btn-icon">🔄</span>
+            Сбросить фильтры
+        </button>
+    </div>
+</div>
+        </div>
+    </section>
+    <section class="owners-cta">
+        <div class="container">
+            <h2>Сдайте свой минивэн и зарабатывайте, пока он стоит</h2>
+            <p>Владельцы получают от 40 000 ₽ в месяц.<br>Мы проверяем арендаторов, проводим безопасную сделку и решаем споры.</p>
+            <a href="forms/owner-application.html" class="btn btn-primary">Разместить автомобиль</a>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><a href="mailto:info@miniwan.store">info@miniwan.store</a></li>
+                        <li><a href="tel:+79268237180">+7 (926) 823-71-80</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Правовая информация</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Политика конфиденциальности</a></li>
+                        <li><a href="cookies.html">Политика cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Miniwan Store. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/carousel.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Заглушка для Formspree — замените YOUR_FORM_ID на реальный ID после регистрации
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>
