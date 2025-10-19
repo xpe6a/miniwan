@@ -521,15 +521,12 @@
                     <div class="date-inputs">
                         <div class="date-input-group">
                             <label for="startDate">Дата начала</label>
-                            <input type="date" id="startDate" onchange="handleDateChange()" onblur="handleDateChange()" readonly>
+                            <input type="date" id="startDate" readonly>
                         </div>
                         <div class="date-input-group">
                             <label for="endDate">Дата окончания</label>
-                            <input type="date" id="endDate" onchange="handleDateChange()" onblur="handleDateChange()" readonly>
+                            <input type="date" id="endDate" readonly>
                         </div>
-                        <button type="button" class="btn btn-secondary" onclick="toggleDateInputs()" style="margin-top: 10px; font-size: 12px; padding: 8px 12px;">
-                            <span id="dateToggleText">Изменить даты</span>
-                        </button>
                     </div>
                 </div>
                 <!-- Фильтр по марке -->
@@ -681,27 +678,11 @@
                 startDate: todayStr,
                 endDate: tomorrowStr
             });
+            
+            // Применяем фильтры с установленными датами
+            applyFilters();
         }
         
-        // Переключение режима редактирования дат
-        function toggleDateInputs() {
-            const startDateInput = document.getElementById('startDate');
-            const endDateInput = document.getElementById('endDate');
-            const toggleText = document.getElementById('dateToggleText');
-            
-            if (startDateInput.readOnly) {
-                // Включаем редактирование
-                startDateInput.readOnly = false;
-                endDateInput.readOnly = false;
-                toggleText.textContent = 'Заблокировать даты';
-                startDateInput.focus();
-            } else {
-                // Блокируем редактирование
-                startDateInput.readOnly = true;
-                endDateInput.readOnly = true;
-                toggleText.textContent = 'Изменить даты';
-            }
-        }
         // Рендер фильтров
         function renderFilters() {
             renderBrandFilter();
@@ -840,57 +821,6 @@
             applyFilters();
         }
         
-        // Переменная для задержки валидации
-        let dateValidationTimeout = null;
-        
-        // Обработка изменений дат
-        function handleDateChange() {
-            // Очищаем предыдущий таймаут
-            if (dateValidationTimeout) {
-                clearTimeout(dateValidationTimeout);
-            }
-            
-            // Устанавливаем задержку для валидации
-            dateValidationTimeout = setTimeout(() => {
-                const startDate = document.getElementById('startDate').value;
-                const endDate = document.getElementById('endDate').value;
-                
-                // Отладочная информация
-                console.log('Выбранные даты:', {
-                    startDate: startDate,
-                    endDate: endDate,
-                    startDateObj: new Date(startDate),
-                    endDateObj: new Date(endDate)
-                });
-                
-                // Проверяем, что обе даты полностью введены (формат YYYY-MM-DD)
-                const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-                const isStartDateValid = startDate && dateRegex.test(startDate);
-                const isEndDateValid = endDate && dateRegex.test(endDate);
-                
-                // Валидация дат только если обе даты полностью введены
-                if (isStartDateValid && isEndDateValid) {
-                    const startDateObj = new Date(startDate);
-                    const endDateObj = new Date(endDate);
-                    
-                    // Проверяем, что даты валидны (не NaN)
-                    if (isNaN(startDateObj.getTime()) || isNaN(endDateObj.getTime())) {
-                        return; // Невалидные даты, не показываем ошибку
-                    }
-                    
-                    if (startDateObj >= endDateObj) {
-                        alert('Дата окончания должна быть позже даты начала');
-                        document.getElementById('endDate').value = '';
-                        return;
-                    }
-                }
-                
-                // Применяем фильтры только если хотя бы одна дата введена
-                if (startDate || endDate) {
-                    applyFilters();
-                }
-            }, 300); // Задержка 300мс
-        }
         
         // Проверка доступности автомобиля в выбранные даты
         function isCarAvailableInDates(car, startDate, endDate) {
