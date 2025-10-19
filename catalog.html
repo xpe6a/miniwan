@@ -195,6 +195,49 @@
             width: 100%;
             margin-top: 15px;
         }
+        
+        /* Стили для выбора дат */
+        .date-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .date-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .date-input-group label {
+            color: #E8DCC5;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .date-input-group input[type="date"] {
+            width: 100%;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #8B5A2B;
+            border-radius: 5px;
+            color: #333;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+        }
+        
+        .date-input-group input[type="date"]:focus {
+            outline: none;
+            border-color: #A06A37;
+            box-shadow: 0 0 0 2px rgba(139, 90, 43, 0.2);
+            background: rgba(255, 255, 255, 1);
+        }
+        
+        .date-input-group input[type="date"]:hover {
+            border-color: #A06A37;
+            background: rgba(255, 255, 255, 1);
+        }
+        
         /* Стили сетки автомобилей */
         .cars-grid {
             display: grid;
@@ -467,6 +510,21 @@
                     <h2>Фильтры</h2>
                     <button class="clear-filters" onclick="clearAllFilters()">Сбросить все</button>
                 </div>
+                
+                <!-- Выбор дат -->
+                <div class="filter-group">
+                    <h3>Период аренды</h3>
+                    <div class="date-inputs">
+                        <div class="date-input-group">
+                            <label for="startDate">Дата начала</label>
+                            <input type="date" id="startDate" onchange="handleDateChange()" onblur="handleDateChange()">
+                        </div>
+                        <div class="date-input-group">
+                            <label for="endDate">Дата окончания</label>
+                            <input type="date" id="endDate" onchange="handleDateChange()" onblur="handleDateChange()">
+                        </div>
+                    </div>
+                </div>
                 <!-- Фильтр по марке -->
                 <div class="filter-group">
                     <h3>Марка</h3>
@@ -594,10 +652,33 @@
         // Инициализация каталога
         function initCatalog() {
             filteredCars = [...allCars];
+            setDefaultDates();
             renderFilters();
             renderCars();
             setupPagination();
         }
+        
+        // Установка дат по умолчанию (сегодня и завтра)
+        function setDefaultDates() {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            
+            const todayStr = today.toISOString().split('T')[0];
+            const tomorrowStr = tomorrow.toISOString().split('T')[0];
+            
+            document.getElementById('startDate').value = todayStr;
+            document.getElementById('endDate').value = tomorrowStr;
+            
+            console.log('Установлены даты по умолчанию:', {
+                startDate: todayStr,
+                endDate: tomorrowStr
+            });
+            
+            // Применяем фильтры с установленными датами
+            applyFilters();
+        }
+        
         // Рендер фильтров
         function renderFilters() {
             renderBrandFilter();
@@ -735,6 +816,58 @@
         function handleFilterChange() {
             applyFilters();
         }
+        
+        // Обработка изменений дат
+        function handleDateChange() {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            
+            // Валидация дат
+            if (startDate && endDate) {
+                const startDateObj = new Date(startDate);
+                const endDateObj = new Date(endDate);
+                
+                if (startDateObj >= endDateObj) {
+                    alert('Дата окончания должна быть позже даты начала');
+                    document.getElementById('endDate').value = '';
+                    return;
+                }
+            }
+            
+            // Применяем фильтры
+            applyFilters();
+        }
+        
+        
+        // Проверка доступности автомобиля в выбранные даты
+        function isCarAvailableInDates(car, startDate, endDate) {
+            if (!startDate || !endDate) return true; // Если даты не выбраны, показываем все
+            
+            if (!car.availability || !car.availability.isAvailable) return false;
+            
+            const carStartDate = new Date(car.availability.startDate);
+            const carEndDate = new Date(car.availability.endDate);
+            const selectedStartDate = new Date(startDate);
+            const selectedEndDate = new Date(endDate);
+            
+            // Отладочная информация для первой машины
+            if (car.id === 1) {
+                console.log('Проверка доступности для машины 1:', {
+                    carStartDate: car.availability.startDate,
+                    carEndDate: car.availability.endDate,
+                    selectedStartDate: startDate,
+                    selectedEndDate: endDate,
+                    carStartDateObj: carStartDate,
+                    carEndDateObj: carEndDate,
+                    selectedStartDateObj: selectedStartDate,
+                    selectedEndDateObj: selectedEndDate,
+                    isAvailable: selectedStartDate >= carStartDate && selectedEndDate <= carEndDate
+                });
+            }
+            
+            // Проверяем, что выбранный период полностью входит в доступный период автомобиля
+            return selectedStartDate >= carStartDate && selectedEndDate <= carEndDate;
+        }
         function applyFilters() {
             currentFilters = getCurrentFilters();
             filteredCars = allCars.filter(car => matchesFilters(car));
@@ -771,6 +904,12 @@
         }
         function matchesFilters(car) {
             const f = currentFilters;
+            
+            // Проверка доступности по датам
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            if (!isCarAvailableInDates(car, startDate, endDate)) return false;
+            
             // Проверка бренда
             if (f.brands.length > 0 && !f.brands.includes(car.brand)) return false;
             // Проверка года
@@ -806,6 +945,8 @@
             // Сброс полей цены
             document.getElementById('minPrice').value = '';
             document.getElementById('maxPrice').value = '';
+            // Сброс дат к значениям по умолчанию
+            setDefaultDates();
             applyFilters();
         }
         // Рендер автомобилей
