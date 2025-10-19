@@ -811,6 +811,32 @@
             rentalDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
         }
 
+        // Получение цены автомобиля в зависимости от количества дней
+        function getCarPrice(car, days) {
+            if (!car.prices) {
+                console.error('У автомобиля нет данных о ценах:', car);
+                return 0;
+            }
+            
+            // Определяем подходящую цену в зависимости от количества дней
+            if (days >= 21 && car.prices["21"]) {
+                return car.prices["21"];
+            } else if (days >= 14 && car.prices["14"]) {
+                return car.prices["14"];
+            } else if (days >= 7 && car.prices["7"]) {
+                return car.prices["7"];
+            } else if (days >= 4 && car.prices["4"]) {
+                return car.prices["4"];
+            } else {
+                return car.prices["1"];
+            }
+        }
+
+        // Форматирование цены
+        function formatPrice(price) {
+            return new Intl.NumberFormat('ru-RU').format(price);
+        }
+
         // Рендер сводки заказа
         function renderOrderSummary() {
             // Информация об автомобиле
@@ -831,15 +857,16 @@
             document.getElementById('daysCount').textContent = `${rentalDays} дней`;
 
             // Цены
-            const rentalPrice = currentCar.price * rentalDays;
+            const dailyPrice = getCarPrice(currentCar, rentalDays);
+            const rentalPrice = dailyPrice * rentalDays;
             const serviceFee = Math.round(rentalPrice * 0.1); // 10% комиссия
             const totalAmount = rentalPrice + serviceFee;
 
             document.getElementById('priceDays').textContent = rentalDays;
-            document.getElementById('rentalPrice').textContent = `${rentalPrice} ₽`;
-            document.getElementById('serviceFee').textContent = `${serviceFee} ₽`;
-            document.getElementById('totalAmount').textContent = `${totalAmount} ₽`;
-            document.getElementById('depositAmount').textContent = `${currentCar.deposit} ₽`;
+            document.getElementById('rentalPrice').textContent = `${formatPrice(rentalPrice)} ₽`;
+            document.getElementById('serviceFee').textContent = `${formatPrice(serviceFee)} ₽`;
+            document.getElementById('totalAmount').textContent = `${formatPrice(totalAmount)} ₽`;
+            document.getElementById('depositAmount').textContent = `${formatPrice(currentCar.deposit)} ₽`;
 
             // Хлебные крошки
             document.getElementById('breadcrumbCarLink').textContent = `${currentCar.brand} ${currentCar.model}`;
@@ -1018,7 +1045,8 @@
         }
 
         function calculateTotalAmount() {
-            const rentalPrice = currentCar.price * rentalDays;
+            const dailyPrice = getCarPrice(currentCar, rentalDays);
+            const rentalPrice = dailyPrice * rentalDays;
             const serviceFee = Math.round(rentalPrice * 0.1);
             return rentalPrice + serviceFee;
         }
