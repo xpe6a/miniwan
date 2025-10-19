@@ -19,7 +19,7 @@
 - `js/` - JavaScript файлы
 
 ### Интеграции
-- Formspree: https://formspree.io/f/mdkwjzen
+- Formspree: https://formspree.io/f/mjkazryn
 - Все заявки на бронирование отправляются на Formspree
 - Данные сохраняются в localStorage как резервная копия
 
