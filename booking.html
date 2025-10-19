@@ -924,7 +924,7 @@
         }
 
         // Отправка формы
-        function submitBooking() {
+        async function submitBooking() {
             const form = document.querySelector('.booking-form');
             const requiredFields = form.querySelectorAll('input[required], textarea[required]');
             let isValid = true;
@@ -964,9 +964,67 @@
                 total: calculateTotalAmount()
             };
 
-            // Сохранение в localStorage и переход на страницу успеха
-            localStorage.setItem('bookingData', JSON.stringify(formData));
-            window.location.href = 'sucess.html';
+            // Показываем индикатор загрузки
+            const submitButton = document.querySelector('button[onclick="submitBooking()"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Отправка...';
+            submitButton.disabled = true;
+
+            try {
+                // Отправка на Formspree
+                const response = await fetch('https://formspree.io/f/mdkwjzen', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        // Основная информация
+                        'Имя': formData.customer.firstName,
+                        'Фамилия': formData.customer.lastName,
+                        'Email': formData.customer.email,
+                        'Телефон': formData.customer.phone,
+                        'Комментарий': formData.customer.comments,
+                        
+                        // Информация об автомобиле
+                        'Автомобиль': `${formData.car.brand} ${formData.car.model}`,
+                        'Год': formData.car.year,
+                        'Двигатель': formData.car.engine,
+                        'Коробка': formData.car.transmission === 'automatic' ? 'Автоматическая' : 'Механическая',
+                        'Мест': formData.car.seats,
+                        'Топливо': formData.car.fuelType,
+                        
+                        // Даты аренды
+                        'Дата начала': formatDate(formData.dates.start),
+                        'Дата окончания': formatDate(formData.dates.end),
+                        'Количество дней': formData.dates.days,
+                        
+                        // Цены
+                        'Стоимость аренды': `${formatPrice(formData.total)} ₽`,
+                        'Залог': `${formatPrice(formData.car.deposit)} ₽`,
+                        
+                        // Дополнительная информация
+                        'Тип заявки': 'Бронирование автомобиля',
+                        'Источник': 'Сайт Miniwan Store'
+                    })
+                });
+
+                if (response.ok) {
+                    // Сохранение в localStorage для резервной копии
+                    localStorage.setItem('bookingData', JSON.stringify(formData));
+                    
+                    // Переход на страницу успеха
+                    window.location.href = 'sucess.html';
+                } else {
+                    throw new Error('Ошибка отправки формы');
+                }
+            } catch (error) {
+                console.error('Ошибка отправки:', error);
+                alert('Произошла ошибка при отправке формы. Попробуйте еще раз или свяжитесь с нами по телефону.');
+                
+                // Восстанавливаем кнопку
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }
         }
 
         function calculateTotalAmount() {
