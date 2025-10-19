@@ -596,47 +596,6 @@
                         </div>
                     </div>
 
-                    <!-- Паспортные данные -->
-                    <div class="form-section">
-                        <h2>Паспортные данные</h2>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="passportSeries">Серия паспорта *</label>
-                                <input type="text" id="passportSeries" name="passportSeries" required maxlength="4">
-                            </div>
-                            <div class="form-group">
-                                <label for="passportNumber">Номер паспорта *</label>
-                                <input type="text" id="passportNumber" name="passportNumber" required maxlength="6">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="passportIssued">Кем выдан *</label>
-                            <input type="text" id="passportIssued" name="passportIssued" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="passportDate">Дата выдачи *</label>
-                            <input type="date" id="passportDate" name="passportDate" required>
-                        </div>
-                    </div>
-
-                    <!-- Водительское удостоверение -->
-                    <div class="form-section">
-                        <h2>Водительское удостоверение</h2>
-                        <div class="form-group">
-                            <label for="licenseNumber">Номер в/у *</label>
-                            <input type="text" id="licenseNumber" name="licenseNumber" required>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="licenseDate">Дата выдачи *</label>
-                                <input type="date" id="licenseDate" name="licenseDate" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="licenseExpiry">Срок действия *</label>
-                                <input type="date" id="licenseExpiry" name="licenseExpiry" required>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- Дополнительная информация -->
                     <div class="form-section">
@@ -654,12 +613,6 @@
                             <label for="agreeTerms">
                                 Я соглашаюсь с <a href="terms.html">условиями аренды</a> и 
                                 <a href="privacy-policy.html">политикой конфиденциальности</a> *
-                            </label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="agreeProcessing" name="agreeProcessing" required>
-                            <label for="agreeProcessing">
-                                Я даю согласие на обработку моих персональных данных *
                             </label>
                         </div>
                         <div class="checkbox-group">
@@ -921,16 +874,6 @@
                         return false;
                     }
                     break;
-                case 'text':
-                    if (field.id === 'passportSeries' && !isValidPassportSeries(value)) {
-                        showError(field, 'Серия паспорта должна содержать 4 цифры');
-                        return false;
-                    }
-                    if (field.id === 'passportNumber' && !isValidPassportNumber(value)) {
-                        showError(field, 'Номер паспорта должен содержать 6 цифр');
-                        return false;
-                    }
-                    break;
                 case 'date':
                     if (!isValidDate(field)) {
                         showError(field, 'Введите корректную дату');
@@ -950,13 +893,6 @@
             return /^[\+]?[78][\s\(]?\d{3}[\)\s]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/.test(phone);
         }
 
-        function isValidPassportSeries(series) {
-            return /^\d{4}$/.test(series);
-        }
-
-        function isValidPassportNumber(number) {
-            return /^\d{6}$/.test(number);
-        }
 
         function isValidDate(dateField) {
             return dateField.value && new Date(dateField.value) <= new Date();
@@ -1002,10 +938,10 @@
 
             // Проверка чекбоксов
             const agreeTerms = document.getElementById('agreeTerms').checked;
-            const agreeProcessing = document.getElementById('agreeProcessing').checked;
+            const agreeDeposit = document.getElementById('agreeDeposit').checked;
             
-            if (!agreeTerms || !agreeProcessing) {
-                alert('Пожалуйста, примите условия аренды и согласие на обработку данных');
+            if (!agreeTerms || !agreeDeposit) {
+                alert('Пожалуйста, примите условия аренды и согласие на залог');
                 isValid = false;
             }
 
@@ -1023,17 +959,6 @@
                     lastName: document.getElementById('lastName').value,
                     email: document.getElementById('email').value,
                     phone: document.getElementById('phone').value,
-                    passport: {
-                        series: document.getElementById('passportSeries').value,
-                        number: document.getElementById('passportNumber').value,
-                        issued: document.getElementById('passportIssued').value,
-                        date: document.getElementById('passportDate').value
-                    },
-                    license: {
-                        number: document.getElementById('licenseNumber').value,
-                        date: document.getElementById('licenseDate').value,
-                        expiry: document.getElementById('licenseExpiry').value
-                    },
                     comments: document.getElementById('comments').value
                 },
                 total: calculateTotalAmount()
