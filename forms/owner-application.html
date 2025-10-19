@@ -417,7 +417,7 @@
                 <p>🚗 <strong>Менеджер свяжется с вами в течение 2 часов</strong> после отправки заявки для уточнения деталей</p>
             </div>
 
-            <form class="application-form" id="ownerApplicationForm" action="https://formspree.io/f/xqayyvov" method="POST">
+            <form class="application-form" id="ownerApplicationForm" action="https://formspree.io/f/mjkazryn" method="POST">
                 <input type="hidden" name="_next" value="https://miniwan.store/sucess.html">
                 <input type="hidden" name="_subject" value="Новая заявка от владельца автомобиля">
                 <div class="form-group">
@@ -425,76 +425,14 @@
                     <input type="text" id="ownerName" name="ownerName" required placeholder="Иван Иванов">
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="ownerPhone">Телефон *</label>
-                        <input type="tel" id="ownerPhone" name="ownerPhone" required placeholder="+7 (999) 123-45-67">
-                    </div>
-                    <div class="form-group">
-                        <label for="ownerEmail">Email *</label>
-                        <input type="email" id="ownerEmail" name="ownerEmail" required placeholder="ivan@example.com">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="carBrand">Марка автомобиля *</label>
-                        <select id="carBrand" name="carBrand" required>
-                            <option value="">Выберите марку</option>
-                            <option value="toyota">Toyota</option>
-                            <option value="honda">Honda</option>
-                            <option value="volkswagen">Volkswagen</option>
-                            <option value="mercedes">Mercedes-Benz</option>
-                            <option value="kia">Kia</option>
-                            <option value="hyundai">Hyundai</option>
-                            <option value="ford">Ford</option>
-                            <option value="nissan">Nissan</option>
-                            <option value="chrysler">Chrysler</option>
-                            <option value="other">Другая</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="carModel">Модель автомобиля *</label>
-                        <input type="text" id="carModel" name="carModel" required placeholder="Alphard">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="carYear">Год выпуска *</label>
-                        <select id="carYear" name="carYear" required>
-                            <option value="">Выберите год</option>
-                            <option value="2024">2024</option>
-                            <option value="2023">2023</option>
-                            <option value="2022">2022</option>
-                            <option value="2021">2021</option>
-                            <option value="2020">2020</option>
-                            <option value="2019">2019</option>
-                            <option value="2018">2018</option>
-                            <option value="2017">2017</option>
-                            <option value="2016">2016</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="carSeats">Количество мест *</label>
-                        <select id="carSeats" name="carSeats" required>
-                            <option value="">Выберите количество</option>
-                            <option value="7">7 мест</option>
-                            <option value="8">8 мест</option>
-                            <option value="9">9 мест</option>
-                            <option value="10">10+ мест</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label for="ownerPhone">Телефон *</label>
+                    <input type="tel" id="ownerPhone" name="ownerPhone" required placeholder="+7 (999) 123-45-67">
                 </div>
 
                 <div class="form-group">
                     <label for="carLocation">Город, где находится автомобиль *</label>
                     <input type="text" id="carLocation" name="carLocation" required placeholder="Москва">
-                </div>
-
-                <div class="form-group">
-                    <label for="additionalInfo">Дополнительная информация</label>
-                    <textarea id="additionalInfo" name="additionalInfo" placeholder="Состояние автомобиля, особенности, удобное время для связи..."></textarea>
                 </div>
 
                 <div class="checkbox-group">
@@ -584,28 +522,6 @@
                     value = value.replace(/-$/, '').replace(/\) $/, '');
                 }
                 e.target.value = value;
-            });
-
-            // Динамическое обновление моделей при выборе марки
-            document.getElementById('carBrand').addEventListener('change', function(e) {
-                const modelInput = document.getElementById('carModel');
-                const brand = e.target.value;
-                
-                // В реальном приложении здесь может быть загрузка моделей по API
-                const modelPlaceholders = {
-                    'toyota': 'Alphard',
-                    'honda': 'Odyssey',
-                    'volkswagen': 'Multivan',
-                    'mercedes': 'V-Class',
-                    'kia': 'Carnival',
-                    'hyundai': 'Staria',
-                    'ford': 'Tourneo',
-                    'nissan': 'Serena',
-                    'chrysler': 'Pacifica',
-                    'other': 'Модель'
-                };
-                
-                modelInput.placeholder = modelPlaceholders[brand] || 'Модель';
             });
         });
     </script>
