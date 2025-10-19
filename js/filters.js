@@ -621,7 +621,29 @@ function getHomePageFilters() {
 
 // Глобальные функции для использования в HTML
 function bookCar(carId) {
-    window.location.href = `booking.html?carId=${carId}`;
+    // Получаем даты из формы на главной странице или устанавливаем по умолчанию
+    const startDateInput = document.getElementById('startDate');
+    const endDateInput = document.getElementById('endDate');
+    
+    let startDate = '';
+    let endDate = '';
+    
+    if (startDateInput && endDateInput) {
+        startDate = startDateInput.value || '';
+        endDate = endDateInput.value || '';
+    }
+    
+    // Если даты не выбраны, устанавливаем значения по умолчанию
+    if (!startDate || !endDate) {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        
+        startDate = today.toISOString().split('T')[0];
+        endDate = tomorrow.toISOString().split('T')[0];
+    }
+    
+    window.location.href = `booking.html?carId=${carId}&startDate=${startDate}&endDate=${endDate}`;
 }
 
 function applyFilters() {
