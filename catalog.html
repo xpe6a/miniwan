@@ -868,11 +868,17 @@
             return selectedStartDate >= carStartDate && selectedEndDate <= carEndDate;
         }
         function applyFilters() {
+            // Сохраняем текущую позицию скролла
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
             currentFilters = getCurrentFilters();
             filteredCars = allCars.filter(car => matchesFilters(car));
             currentPage = 1;
             renderCars();
             setupPagination();
+            
+            // Восстанавливаем позицию скролла
+            window.scrollTo(0, scrollTop);
         }
         function getCurrentFilters() {
             const filters = {};
