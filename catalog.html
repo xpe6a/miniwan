@@ -191,10 +191,6 @@
             color: #F0E6D2;
             font-size: 0.9rem;
         }
-        .apply-filters {
-            width: 100%;
-            margin-top: 15px;
-        }
         
         /* Стили для выбора дат */
         .date-inputs {
@@ -591,7 +587,6 @@
                         <!-- Динамически заполняется через JS -->
                     </div>
                 </div>
-                <button class="btn btn-primary apply-filters" onclick="applyFilters()">Применить фильтры</button>
             </aside>
             <!-- Основной контент - сетка автомобилей -->
             <main>
@@ -761,7 +756,7 @@
             }).join('');
         }
         function renderDepositFilter() {
-            const deposits = ['0-10000', '10000-25000', '25000-50000', '50000+'];
+            const deposits = ['0-10000', '10000-15000', '15000-20000', '20000+'];
             const container = document.getElementById('depositFilter');
             container.innerHTML = deposits.map(range => {
                 return `
@@ -805,9 +800,9 @@
         function getDepositLabel(range) {
             const labels = {
                 '0-10000': 'до 10 000 ₽',
-                '10000-25000': '10 000-25 000 ₽',
-                '25000-50000': '25 000-50 000 ₽',
-                '50000+': 'свыше 50 000 ₽'
+                '10000-15000': '10 000-15 000 ₽',
+                '15000-20000': '15 000-20 000 ₽',
+                '20000+': 'свыше 20 000 ₽'
             };
             return labels[range];
         }
@@ -868,11 +863,17 @@
             return selectedStartDate >= carStartDate && selectedEndDate <= carEndDate;
         }
         function applyFilters() {
+            // Сохраняем текущую позицию скролла
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
             currentFilters = getCurrentFilters();
             filteredCars = allCars.filter(car => matchesFilters(car));
             currentPage = 1;
             renderCars();
             setupPagination();
+            
+            // Восстанавливаем позицию скролла
+            window.scrollTo(0, scrollTop);
         }
         function getCurrentFilters() {
             const filters = {};
@@ -924,7 +925,7 @@
             // Проверка залога
             if (f.depositRanges.length > 0) {
                 const depositMatch = f.depositRanges.some(range => {
-                    const [min, max] = range === '50000+' ? [50000, Infinity] : range.split('-').map(Number);
+                    const [min, max] = range === '20000+' ? [20000, Infinity] : range.split('-').map(Number);
                     return car.deposit >= min && car.deposit <= max;
                 });
                 if (!depositMatch) return false;
