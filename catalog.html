@@ -231,6 +231,17 @@
             border-color: #A06A37;
             box-shadow: 0 0 0 2px rgba(139, 90, 43, 0.2);
         }
+        
+        .date-input-group input[type="date"]:read-only {
+            background: rgba(30, 25, 20, 0.6);
+            color: #8B7D6B;
+            cursor: not-allowed;
+        }
+        
+        .date-input-group input[type="date"]:read-only:focus {
+            border-color: #8B5A2B;
+            box-shadow: none;
+        }
         /* Стили сетки автомобилей */
         .cars-grid {
             display: grid;
@@ -510,12 +521,15 @@
                     <div class="date-inputs">
                         <div class="date-input-group">
                             <label for="startDate">Дата начала</label>
-                            <input type="date" id="startDate" onchange="handleDateChange()" onblur="handleDateChange()">
+                            <input type="date" id="startDate" onchange="handleDateChange()" onblur="handleDateChange()" readonly>
                         </div>
                         <div class="date-input-group">
                             <label for="endDate">Дата окончания</label>
-                            <input type="date" id="endDate" onchange="handleDateChange()" onblur="handleDateChange()">
+                            <input type="date" id="endDate" onchange="handleDateChange()" onblur="handleDateChange()" readonly>
                         </div>
+                        <button type="button" class="btn btn-secondary" onclick="toggleDateInputs()" style="margin-top: 10px; font-size: 12px; padding: 8px 12px;">
+                            <span id="dateToggleText">Изменить даты</span>
+                        </button>
                     </div>
                 </div>
                 <!-- Фильтр по марке -->
@@ -645,9 +659,48 @@
         // Инициализация каталога
         function initCatalog() {
             filteredCars = [...allCars];
+            setDefaultDates();
             renderFilters();
             renderCars();
             setupPagination();
+        }
+        
+        // Установка дат по умолчанию (сегодня и завтра)
+        function setDefaultDates() {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            
+            const todayStr = today.toISOString().split('T')[0];
+            const tomorrowStr = tomorrow.toISOString().split('T')[0];
+            
+            document.getElementById('startDate').value = todayStr;
+            document.getElementById('endDate').value = tomorrowStr;
+            
+            console.log('Установлены даты по умолчанию:', {
+                startDate: todayStr,
+                endDate: tomorrowStr
+            });
+        }
+        
+        // Переключение режима редактирования дат
+        function toggleDateInputs() {
+            const startDateInput = document.getElementById('startDate');
+            const endDateInput = document.getElementById('endDate');
+            const toggleText = document.getElementById('dateToggleText');
+            
+            if (startDateInput.readOnly) {
+                // Включаем редактирование
+                startDateInput.readOnly = false;
+                endDateInput.readOnly = false;
+                toggleText.textContent = 'Заблокировать даты';
+                startDateInput.focus();
+            } else {
+                // Блокируем редактирование
+                startDateInput.readOnly = true;
+                endDateInput.readOnly = true;
+                toggleText.textContent = 'Изменить даты';
+            }
         }
         // Рендер фильтров
         function renderFilters() {
@@ -945,9 +998,8 @@
             // Сброс полей цены
             document.getElementById('minPrice').value = '';
             document.getElementById('maxPrice').value = '';
-            // Сброс полей дат
-            document.getElementById('startDate').value = '';
-            document.getElementById('endDate').value = '';
+            // Сброс дат к значениям по умолчанию
+            setDefaultDates();
             applyFilters();
         }
         // Рендер автомобилей
