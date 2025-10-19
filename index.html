@@ -595,6 +595,17 @@
             font-size: 0.9rem;
         }
         @media (max-width: 768px) {
+            body {
+                overflow-x: hidden;
+            }
+            .container {
+                max-width: 100%;
+                padding: 0 15px;
+                box-sizing: border-box;
+            }
+            * {
+                box-sizing: border-box;
+            }
             .header-content {
                 flex-direction: column;
                 gap: 15px;
