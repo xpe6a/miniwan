@@ -51,7 +51,7 @@
     "includedMileage": "н/д",
     "insurance": "н/д",
     "availability": {
-      "startDate": "2025-10-19",
+      "startDate": "2025-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -104,7 +104,7 @@
     "includedMileage": "н/д",
     "insurance": "н/д",
     "availability": {
-      "startDate": "2025-10-19",
+      "startDate": "2025-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -161,7 +161,7 @@
     "includedMileage": "н/д",
     "insurance": "н/д",
     "availability": {
-      "startDate": "2025-10-19",
+      "startDate": "2025-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -218,7 +218,7 @@
     "includedMileage": "н/д",
     "insurance": "н/д",
     "availability": {
-      "startDate": "2025-10-19",
+      "startDate": "2025-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -274,7 +274,7 @@
     "includedMileage": "н/д",
     "insurance": "н/д",
     "availability": {
-      "startDate": "2025-10-19",
+      "startDate": "2025-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -331,7 +331,7 @@
     "includedMileage": "н/д",
     "insurance": "н/д",
     "availability": {
-      "startDate": "2025-10-19",
+      "startDate": "2025-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -387,7 +387,7 @@
     "includedMileage": "н/д",
     "insurance": "н/д",
     "availability": {
-      "startDate": "2025-10-19",
+      "startDate": "2025-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -444,7 +444,7 @@
     "includedMileage": "250",
     "insurance": "КАСКО",
     "availability": {
-      "startDate": "2025-10-19",
+      "startDate": "2025-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -500,7 +500,7 @@
     "includedMileage": "250",
     "insurance": "ОСАГО",
     "availability": {
-      "startDate": "2025-10-19",
+      "startDate": "2025-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -552,7 +552,7 @@
     "includedMileage": "100",
     "insurance": "ОСАГО",
     "availability": {
-      "startDate": "2025-10-19",
+      "startDate": "2025-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -603,7 +603,7 @@
     "includedMileage": "100",
     "insurance": "ОСАГО",
     "availability": {
-      "startDate": "2025-10-19",
+      "startDate": "2025-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -661,7 +661,7 @@
     "includedMileage": "250",
     "insurance": "ОСАГО",
     "availability": {
-      "startDate": "2025-10-19",
+      "startDate": "2025-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -718,7 +718,7 @@
     "includedMileage": "250",
     "insurance": "ОСАГО",
     "availability": {
-      "startDate": "2025-10-19",
+      "startDate": "2025-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }

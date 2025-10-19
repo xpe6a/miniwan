@@ -792,6 +792,14 @@
             const startDate = document.getElementById('startDate').value;
             const endDate = document.getElementById('endDate').value;
             
+            // Отладочная информация
+            console.log('Выбранные даты:', {
+                startDate: startDate,
+                endDate: endDate,
+                startDateObj: new Date(startDate),
+                endDateObj: new Date(endDate)
+            });
+            
             // Валидация дат
             if (startDate && endDate) {
                 if (new Date(startDate) >= new Date(endDate)) {
@@ -814,6 +822,21 @@
             const carEndDate = new Date(car.availability.endDate);
             const selectedStartDate = new Date(startDate);
             const selectedEndDate = new Date(endDate);
+            
+            // Отладочная информация для первой машины
+            if (car.id === 1) {
+                console.log('Проверка доступности для машины 1:', {
+                    carStartDate: car.availability.startDate,
+                    carEndDate: car.availability.endDate,
+                    selectedStartDate: startDate,
+                    selectedEndDate: endDate,
+                    carStartDateObj: carStartDate,
+                    carEndDateObj: carEndDate,
+                    selectedStartDateObj: selectedStartDate,
+                    selectedEndDateObj: selectedEndDate,
+                    isAvailable: selectedStartDate >= carStartDate && selectedEndDate <= carEndDate
+                });
+            }
             
             // Проверяем, что выбранный период полностью входит в доступный период автомобиля
             return selectedStartDate >= carStartDate && selectedEndDate <= carEndDate;
