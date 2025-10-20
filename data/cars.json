@@ -774,5 +774,85 @@
     "mileage": "н/д",
     "includedMileage": "300",
     "insurance": "ОСАГО и КАСКО"
+  },
+  {
+    "id": 15,
+    "brand": "Kia",
+    "model": "Carnival,",
+    "year": 2019,
+    "engine": "2.2",
+    "transmission": "automatic",
+    "fuelType": "Дизель",
+    "seats": 8,
+    "prices": {
+      "1": 6200,
+      "4": 5700,
+      "7": 5400,
+      "14": 5100,
+      "21": 5700
+    },
+    "deposit": 0,
+    "rentalRules": {
+      "minExperience": 3,
+      "minAge": 25
+    },
+    "isPopular": false,
+    "description": "Богатая комплектация, очень комфортный автомобиль для дальних поездок. Расход по трассе 6л/100км , адаптивный круиз\r\n контроль, при движение за автомобилем по трассе машина сама держит дистанцию, при необходимости набирает \r\nили уменьшает скорость, очень удобная функция для поездок на дальние расстояния. Нет повреждений, небольшой пробег, читая. Есть детские кресла",
+    "features": [
+      "Кондиционер",
+      "Камера заднего вида"
+    ],
+    "images": [],
+    "owner": {
+      "name": "Алан",
+      "rating": 4.7,
+      "carsCount": 2,
+      "rentalsCount": 29
+    },
+    "location": "Москва, ул Гарибальди, д 10 к 2, Метро Новые Черемушки",
+    "available": true,
+    "driveType": "Передний",
+    "includedMileage": "100",
+    "insurance": "ОСАГО"
+  },
+  {
+    "id": 16,
+    "brand": "Kia",
+    "model": "Carnival,",
+    "year": 2019,
+    "engine": "2.2",
+    "transmission": "automatic",
+    "fuelType": "Дизель",
+    "seats": 8,
+    "prices": {
+      "1": 4500,
+      "4": 5700,
+      "7": 5400,
+      "14": 5100,
+      "21": 4800
+    },
+    "deposit": 0,
+    "rentalRules": {
+      "minExperience": 5,
+      "minAge": 25
+    },
+    "isPopular": false,
+    "description": "Автомобиль очень комфортный, состояние отличное! Расход топлива небольшой.",
+    "features": [
+      "Кондиционер",
+      "Камера заднего вида"
+    ],
+    "images": [],
+    "owner": {
+      "name": "Алан",
+      "rating": 4.7,
+      "carsCount": 2,
+      "rentalsCount": 29
+    },
+    "location": "Москва, метро Аннино, Метро Аннино",
+    "available": true,
+    "driveType": "Передний",
+    "includedMileage": "100",
+    "insurance": "ОСАГО"
   }
 ]
