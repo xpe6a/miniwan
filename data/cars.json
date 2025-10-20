@@ -774,6 +774,10 @@
     "mileage": "н/д",
     "includedMileage": "300",
     "insurance": "ОСАГО и КАСКО"
+    "availability": {
+      "startDate": "2025-10-01",
+      "endDate": "2030-12-30",
+      "isAvailable": true
   },
   {
     "id": 15,
@@ -814,6 +818,10 @@
     "driveType": "Передний",
     "includedMileage": "100",
     "insurance": "ОСАГО"
+    "availability": {
+      "startDate": "2025-10-01",
+      "endDate": "2030-12-30",
+      "isAvailable": true
   },
   {
     "id": 16,
@@ -854,5 +862,9 @@
     "driveType": "Передний",
     "includedMileage": "100",
     "insurance": "ОСАГО"
+    "availability": {
+      "startDate": "2025-10-01",
+      "endDate": "2030-12-30",
+      "isAvailable": true
   }
 ]
