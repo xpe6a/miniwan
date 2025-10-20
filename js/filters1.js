@@ -357,7 +357,7 @@ class FiltersManager {
                 </div>
                 <div class="car-info">
                     <h3 class="car-title">${car.brand} ${car.model}</h3>
-                    <p class="car-details">${car.year} год • ${car.engine} • ${window.getTransmissionLabel(car.transmission)}</p>
+                    <p class="car-details">${car.year} год • ${car.engine}L ${car.fuelType} • ${window.getTransmissionLabel(car.transmission)}</p>
                     <p class="car-details">${car.seats} мест • ${car.fuelType}</p>
                     
                     <div class="car-features">

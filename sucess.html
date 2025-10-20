@@ -643,7 +643,7 @@
             // Информация об автомобиле
             const car = data.car;
             document.getElementById('carTitle').textContent = `${car.brand} ${car.model}`;
-            document.getElementById('carDetails').textContent = `${car.year} год • ${car.engine} • ${getTransmissionLabel(car.transmission)}`;
+            document.getElementById('carDetails').textContent = `${car.year} год • ${car.engine}L ${car.fuelType} • ${getTransmissionLabel(car.transmission)}`;
             document.getElementById('carFeatures').textContent = `${car.seats} мест • ${car.fuelType}`;
             
             // Установка изображения
