@@ -988,7 +988,7 @@
                         // Информация об автомобиле
                         'Автомобиль': `${formData.car.brand} ${formData.car.model}`,
                         'Год': formData.car.year,
-                        'Двигатель': formData.car.engine,
+                        'Двигатель': `${formData.car.engine}L ${formData.car.fuelType}`,
                         'Коробка': formData.car.transmission === 'automatic' ? 'Автоматическая' : 'Механическая',
                         'Мест': formData.car.seats,
                         'Топливо': formData.car.fuelType,

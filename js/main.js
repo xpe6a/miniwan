@@ -386,7 +386,7 @@ function renderCarousel(cars) {
                 <div class="car-info">
                     <h3>${car.brand} ${car.model}</h3>
                     <p class="car-year">${car.year} год</p>
-                    <p class="car-specs">${car.engine} • ${getTransmissionLabel(car.transmission)} • ${car.seats} мест</p>
+                    <p class="car-specs">${car.engine}L ${car.fuelType} • ${getTransmissionLabel(car.transmission)} • ${car.seats} мест</p>
                     <div class="car-price">${formatPrice(car.prices["1"])} ₽/день</div>
                     <a href="car-detail.html?id=${car.id}" class="btn btn-primary">Подробнее</a>
                 </div>
