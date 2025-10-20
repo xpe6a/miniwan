@@ -685,10 +685,6 @@
                             <span class="price-value" id="rentalPrice">0 ₽</span>
                         </div>
                         <div class="price-item">
-                            <span class="price-label">Комиссия сервиса</span>
-                            <span class="price-value" id="serviceFee">0 ₽</span>
-                        </div>
-                        <div class="price-item">
                             <span class="price-label">Страхование</span>
                             <span class="price-value">Включено</span>
                         </div>
@@ -830,12 +826,10 @@
             // Цены
             const dailyPrice = getCarPrice(currentCar, rentalDays);
             const rentalPrice = dailyPrice * rentalDays;
-            const serviceFee = Math.round(rentalPrice * 0.1); // 10% комиссия
-            const totalAmount = rentalPrice + serviceFee;
+            const totalAmount = rentalPrice;
 
             document.getElementById('priceDays').textContent = rentalDays;
             document.getElementById('rentalPrice').textContent = `${formatPrice(rentalPrice)} ₽`;
-            document.getElementById('serviceFee').textContent = `${formatPrice(serviceFee)} ₽`;
             document.getElementById('totalAmount').textContent = `${formatPrice(totalAmount)} ₽`;
             document.getElementById('depositAmount').textContent = `${formatPrice(currentCar.deposit)} ₽`;
 
@@ -1048,8 +1042,7 @@
         function calculateTotalAmount() {
             const dailyPrice = getCarPrice(currentCar, rentalDays);
             const rentalPrice = dailyPrice * rentalDays;
-            const serviceFee = Math.round(rentalPrice * 0.1);
-            return rentalPrice + serviceFee;
+            return rentalPrice;
         }
 
         // Загрузка данных при загрузке страницы
