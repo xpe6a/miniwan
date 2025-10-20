@@ -807,7 +807,13 @@
       "Кондиционер",
       "Камера заднего вида"
     ],
-    "images": [],
+    "images": [
+      "images/cars/015-1.jpg",
+      "images/cars/015-2.jpg",
+      "images/cars/015-3.jpg",
+      "images/cars/015-4.jpg",
+      "images/cars/015-5.jpg"
+    ],
     "owner": {
       "name": "Елена",
       "rating": 4.7,
@@ -852,7 +858,17 @@
       "Кондиционер",
       "Камера заднего вида"
     ],
-    "images": [],
+    "images": [
+      "images/cars/016-1.jpg",
+      "images/cars/016-2.jpg",
+      "images/cars/016-3.jpg",
+      "images/cars/016-4.jpg",
+      "images/cars/016-5.jpg",
+      "images/cars/016-6.jpg",
+      "images/cars/016-7.jpg",
+      "images/cars/016-8.jpg",
+      "images/cars/016-9.jpg"
+    ],
     "owner": {
       "name": "Елена",
       "rating": 4.7,
