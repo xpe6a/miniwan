@@ -160,13 +160,14 @@ class FiltersManager {
         minPriceInput.placeholder = `От ${minPrice}`;
         maxPriceInput.placeholder = `До ${maxPrice}`;
         
-        // Валидация цен
+        // Валидация цен с задержкой
         minPriceInput.addEventListener('input', (e) => {
             const value = parseInt(e.target.value);
             if (value && maxPriceInput.value && value > parseInt(maxPriceInput.value)) {
                 maxPriceInput.value = value;
             }
-            this.applyFilters();
+            clearTimeout(this.priceTimeout);
+            this.priceTimeout = setTimeout(() => this.applyFilters(), 500);
         });
         
         maxPriceInput.addEventListener('input', (e) => {
@@ -174,7 +175,8 @@ class FiltersManager {
             if (value && minPriceInput.value && value < parseInt(minPriceInput.value)) {
                 minPriceInput.value = value;
             }
-            this.applyFilters();
+            clearTimeout(this.priceTimeout);
+            this.priceTimeout = setTimeout(() => this.applyFilters(), 500);
         });
     }
     
@@ -211,9 +213,9 @@ class FiltersManager {
             resetBtn.addEventListener('click', () => this.resetFilters());
         }
         
-        // Обработчики для ценовых диапазонов
-        const priceInputs = document.querySelectorAll('input[type="number"]');
-        priceInputs.forEach(input => {
+        // Обработчики для других числовых полей (не minPrice/maxPrice)
+        const otherNumberInputs = document.querySelectorAll('input[type="number"]:not(#minPrice):not(#maxPrice)');
+        otherNumberInputs.forEach(input => {
             input.addEventListener('input', () => {
                 clearTimeout(this.priceTimeout);
                 this.priceTimeout = setTimeout(() => this.applyFilters(), 500);

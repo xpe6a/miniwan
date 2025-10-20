@@ -532,8 +532,8 @@
                     <h3>Цена за день</h3>
                     <div class="price-range">
                         <div class="price-inputs">
-                            <input type="number" id="minPrice" placeholder="От" min="0">
-                            <input type="number" id="maxPrice" placeholder="До" min="0">
+                            <input type="number" id="minPrice" placeholder="От" min="0" onchange="handleFilterChange()" oninput="handleFilterChange()">
+                            <input type="number" id="maxPrice" placeholder="До" min="0" onchange="handleFilterChange()" oninput="handleFilterChange()">
                         </div>
                     </div>
                 </div>
@@ -920,8 +920,8 @@
             if (f.fuels.length > 0 && !f.fuels.includes(car.fuelType)) return false;
             // Проверка количества мест
             if (f.seats.length > 0 && !f.seats.includes(car.seats)) return false;
-            // Проверка цены
-            if (car.prices["21"] < f.minPrice || car.prices["21"] > f.maxPrice) return false;
+            // Проверка цены (используем цену за 1 день)
+            if (car.prices["1"] < f.minPrice || car.prices["1"] > f.maxPrice) return false;
             // Проверка залога
             if (f.depositRanges.length > 0) {
                 const depositMatch = f.depositRanges.some(range => {
