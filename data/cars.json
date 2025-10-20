@@ -733,11 +733,11 @@
     "fuelType": "Дизель",
     "seats": 9,
     "prices": {
-      "1": 5490,
-      "4": 5215,
-      "7": 4941,
-      "14": 4666,
-      "21": 4392
+      "1": 6000,
+      "4": 5800,
+      "7": 5700,
+      "14": 5500,
+      "21": 5400
     },
     "deposit": 0,
     "rentalRules": {
@@ -763,12 +763,12 @@
       "images/cars/014-6.jpg"
     ],
     "owner": {
-      "name": "н/д",
-      "rating": 0,
-      "carsCount": 0,
-      "rentalsCount": 0
+      "name": "Роман",
+      "rating": 5,
+      "carsCount": 1,
+      "rentalsCount": 12
     },
-    "location": "н/д",
+    "location": "метро Молодежная",
     "available": true,
     "driveType": "Передний",
     "mileage": "н/д",
