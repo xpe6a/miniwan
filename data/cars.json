@@ -778,11 +778,12 @@
       "startDate": "2025-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
+    }
   },
   {
     "id": 15,
     "brand": "Kia",
-    "model": "Carnival,",
+    "model": "Carnival",
     "year": 2019,
     "engine": "2.2",
     "transmission": "automatic",
@@ -822,11 +823,12 @@
       "startDate": "2025-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
+    }
   },
   {
     "id": 16,
     "brand": "Kia",
-    "model": "Carnival,",
+    "model": "Carnival",
     "year": 2019,
     "engine": "2.2",
     "transmission": "automatic",
@@ -866,5 +868,6 @@
       "startDate": "2025-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
+    }
   }
 ]
