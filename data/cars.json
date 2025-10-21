@@ -885,5 +885,155 @@
       "endDate": "2030-12-30",
       "isAvailable": true
     }
+  },
+  {
+    "id": 17,
+    "brand": "Peugeot",
+    "model": "Traveller",
+    "year": 2023,
+    "engine": "2.0L Дизель",
+    "transmission": "automatic",
+    "fuelType": "Дизель",
+    "seats": 7,
+    "prices": {
+      "1": 10000,
+      "4": 8500,
+      "7": 8500,
+      "14": 8000,
+      "21": 8000
+    },
+    "deposit": 30000,
+    "rentalRules": {
+      "minExperience": 5,
+      "minAge": 25
+    },
+    "isPopular": false,
+    "description": "Надежный и комфортабельный минивэн Peugeot Traveller 2023 года выпуска. Автомобиль в отличном техническом состоянии, идеально подходит для длительных поездок и путешествий с семьей или компанией. Оснащен современными системами безопасности и комфорта для вашего уверенного вождения.",
+    "features": [
+      "Кондиционер",
+      "Аудиосистема",
+      "Сиденья с подогревом",
+      "Круиз-контроль",
+      "Парктроник",
+      "Камера заднего вида"
+    ],
+    "images": [
+      "images/cars/017-1.jpg",
+      "images/cars/017-2.jpg",
+      "images/cars/017-3.jpg",
+      "images/cars/017-4.jpg",
+      "images/cars/017-5.jpg"
+    ],
+    "owner": {
+      "name": "Роман",
+      "rating": 4.9,
+      "carsCount": 3,
+      "rentalsCount": 19
+    },
+    "location": "Москва, ул. Плеханова 18",
+    "available": true,
+    "driveType": "Передний",
+    "mileage": "н/д",
+    "includedMileage": "300",
+    "insurance": "ОСАГО",
+    "availability": {
+      "startDate": "2025-10-01",
+      "endDate": "2030-12-30",
+      "isAvailable": true
+    }
+  },
+  {
+    "id": 18,
+    "brand": "Hyundai",
+    "model": "H1",
+    "year": 2019,
+    "engine": "2.4L Бензин",
+    "transmission": "automatic",
+    "fuelType": "Бензин",
+    "seats": 8,
+    "prices": {
+      "1": 5490,
+      "4": 5215,
+      "7": 4941,
+      "14": 4666,
+      "21": 4392
+    },
+    "deposit": 0,
+    "rentalRules": {
+      "minExperience": 0,
+      "minAge": 0
+    },
+    "isPopular": false,
+    "description": "Просторный и надежный минивэн Hyundai H1 2019 года. Идеальный выбор для семейных поездок и комфортных путешествий большой компанией. Автомобиль оснащен всем необходимым для безопасной и удобной эксплуатации.",
+    "features": [],
+    "images": [
+      "images/cars/018-1.jpg",
+      "images/cars/018-2.jpg"
+    ],
+    "owner": {
+      "name": "Роман",
+      "rating": 4.9,
+      "carsCount": 3,
+      "rentalsCount": 19
+    },
+    "location": "Москва, ул. Плеханова 18",
+    "available": true,
+    "driveType": "н/д",
+    "mileage": "н/д",
+    "includedMileage": "300",
+    "insurance": "ОСАГО",
+    "availability": {
+      "startDate": "2025-10-01",
+      "endDate": "2030-12-30",
+      "isAvailable": true
+    }
+  },
+  {
+    "id": 19,
+    "brand": "Hyundai",
+    "model": "Staria",
+    "year": 2019,
+    "engine": "2.5L Бензин",
+    "transmission": "automatic",
+    "fuelType": "Бензин",
+    "seats": 8,
+    "prices": {
+      "1": 5490,
+      "4": 5215,
+      "7": 4941,
+      "14": 4666,
+      "21": 4392
+    },
+    "deposit": 0,
+    "rentalRules": {
+      "minExperience": 0,
+      "minAge": 0
+    },
+    "isPopular": false,
+    "description": "Современный и стильный минивэн Hyundai Staria 2019 года. Просторный салон и комфортабельные сиденья делают эту модель отличным выбором для дальних поездок и городских путешествий.",
+    "features": [],
+    "images": [
+      "images/cars/019-1.jpg",
+      "images/cars/019-2.jpg",
+      "images/cars/019-3.jpg",
+      "images/cars/019-4.jpg"
+    ],
+    "owner": {
+      "name": "Роман",
+      "rating": 4.9,
+      "carsCount": 3,
+      "rentalsCount": 19
+    },
+    "location": "Москва, ул. Плеханова 18",
+    "available": true,
+    "driveType": "н/д",
+    "mileage": "н/д",
+    "includedMileage": "300",
+    "insurance": "ОСАГО",
+    "availability": {
+      "startDate": "2025-10-01",
+      "endDate": "2030-12-30",
+      "isAvailable": true
+    }
   }
 ]
