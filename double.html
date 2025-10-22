@@ -592,6 +592,33 @@
             color: #D4C4A8;
             font-size: 0.9rem;
         }
+        .testimonial-text {
+    font-style: italic;
+    color: #D4C4A8;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    position: relative;
+    max-height: 4.8em; /* 3 строки */
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.testimonial-text.expanded {
+    max-height: none;
+}
+
+.read-more {
+    color: #8B5A2B;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9em;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.read-more:hover {
+    color: #A06A37;
+}
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -1027,6 +1054,53 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/104698981" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+<script>
+    // Функция для обрезки отзывов
+    function initTestimonials() {
+        const testimonials = document.querySelectorAll('.testimonial-text');
+        
+        testimonials.forEach(testimonial => {
+            const text = testimonial.textContent;
+            const words = text.split(' ');
+            
+            if (words.length > 40) { // Если больше 40 слов - обрезаем
+                const shortText = words.slice(0, 40).join(' ') + '...';
+                testimonial.textContent = shortText;
+                
+                const readMore = document.createElement('span');
+                readMore.className = 'read-more';
+                readMore.textContent = ' Читать далее';
+                readMore.onclick = function() {
+                    if (testimonial.classList.contains('expanded')) {
+                        testimonial.textContent = shortText;
+                        testimonial.appendChild(readMore);
+                        testimonial.classList.remove('expanded');
+                        readMore.textContent = ' Читать далее';
+                    } else {
+                        testimonial.textContent = text;
+                        testimonial.classList.add('expanded');
+                        
+                        const readLess = document.createElement('span');
+                        readLess.className = 'read-more';
+                        readLess.textContent = ' Свернуть';
+                        readLess.onclick = function() {
+                            testimonial.textContent = shortText;
+                            testimonial.appendChild(readMore);
+                            testimonial.classList.remove('expanded');
+                        };
+                        testimonial.appendChild(readLess);
+                    }
+                };
+                
+                testimonial.appendChild(readMore);
+            }
+        });
+    }
 
+    // Инициализируем при загрузке страницы
+    document.addEventListener('DOMContentLoaded', initTestimonials);
+</script>
+
+</script>
 </body>
 </html>
