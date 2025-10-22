@@ -1062,9 +1062,8 @@
     function initTestimonials() {
         const testimonials = document.querySelectorAll('.testimonial-text');
         
-        testimonials.forEach(testimonial => {
-            const text = testimonial.textContent;
-            const words = text.split(' ');
+            testimonials.forEach(testimonial => {
+                const text = testimonial.textContent;
             
             if (text.length > 200) { // Если больше 300 символов - обрезаем
                 const shortText = text.slice(0, 300) + '...';
