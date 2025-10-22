@@ -1060,41 +1060,53 @@
 <script>
     // Функция для обрезки отзывов
     function initTestimonials() {
-        const testimonials = document.querySelectorAll('.testimonial-text');
+        const testimonials = document.querySelectorAll('.testimonial-card');
         
-            testimonials.forEach(testimonial => {
-                const text = testimonial.textContent;
+        testimonials.forEach(card => {
+            const textElement = card.querySelector('.testimonial-text');
+            const text = textElement.innerHTML;
             
-            if (text.length > 200) { // Если больше 300 символов - обрезаем
-                const shortText = text.slice(0, 300) + '...';
-                testimonial.textContent = shortText;
+            if (text.length > 300) {
+                // Сохраняем оригинальный текст
+                const originalHTML = textElement.innerHTML;
                 
+                // Обрезаем до последнего целого слова
+                let shortText = text.slice(0, 300);
+                const lastSpace = shortText.lastIndexOf(' ');
+                if (lastSpace > 250) {
+                    shortText = shortText.slice(0, lastSpace);
+                }
+                shortText += '...';
+                
+                // Устанавливаем обрезанный текст
+                textElement.innerHTML = shortText;
+                
+                // Создаем кнопку "Читать далее"
                 const readMore = document.createElement('span');
                 readMore.className = 'read-more';
                 readMore.textContent = ' Читать далее';
                 readMore.onclick = function() {
-                    if (testimonial.classList.contains('expanded')) {
-                        testimonial.textContent = shortText;
-                        testimonial.appendChild(readMore);
-                        testimonial.classList.remove('expanded');
-                        readMore.textContent = ' Читать далее';
+                    if (textElement.classList.contains('expanded')) {
+                        textElement.innerHTML = shortText;
+                        textElement.appendChild(readMore);
+                        textElement.classList.remove('expanded');
                     } else {
-                        testimonial.textContent = text;
-                        testimonial.classList.add('expanded');
+                        textElement.innerHTML = originalHTML;
+                        textElement.classList.add('expanded');
                         
                         const readLess = document.createElement('span');
                         readLess.className = 'read-more';
                         readLess.textContent = ' Свернуть';
                         readLess.onclick = function() {
-                            testimonial.textContent = shortText;
-                            testimonial.appendChild(readMore);
-                            testimonial.classList.remove('expanded');
+                            textElement.innerHTML = shortText;
+                            textElement.appendChild(readMore);
+                            textElement.classList.remove('expanded');
                         };
-                        testimonial.appendChild(readLess);
+                        textElement.appendChild(readLess);
                     }
                 };
                 
-                testimonial.appendChild(readMore);
+                textElement.appendChild(readMore);
             }
         });
     }
@@ -1102,7 +1114,6 @@
     // Инициализируем при загрузке страницы
     document.addEventListener('DOMContentLoaded', initTestimonials);
 </script>
-
 </script>
 </body>
 </html>
