@@ -1066,8 +1066,8 @@
             const text = testimonial.textContent;
             const words = text.split(' ');
             
-            if (words.length > 40) { // Если больше 40 слов - обрезаем
-                const shortText = words.slice(0, 40).join(' ') + '...';
+            if (text.length > 200) { // Если больше 300 символов - обрезаем
+                const shortText = text.slice(0, 300) + '...';
                 testimonial.textContent = shortText;
                 
                 const readMore = document.createElement('span');
