@@ -891,7 +891,7 @@
     "brand": "Peugeot",
     "model": "Traveller",
     "year": 2023,
-    "engine": "2.0L Дизель",
+    "engine": "2.0",
     "transmission": "automatic",
     "fuelType": "Дизель",
     "seats": 7,
@@ -947,7 +947,7 @@
     "brand": "Hyundai",
     "model": "H1",
     "year": 2019,
-    "engine": "2.4L Бензин",
+    "engine": "2.4",
     "transmission": "automatic",
     "fuelType": "Бензин",
     "seats": 8,
@@ -993,7 +993,7 @@
     "brand": "Hyundai",
     "model": "Staria",
     "year": 2019,
-    "engine": "2.5L Бензин",
+    "engine": "2.5",
     "transmission": "automatic",
     "fuelType": "Бензин",
     "seats": 8,
@@ -1029,6 +1029,121 @@
     "driveType": "н/д",
     "mileage": "н/д",
     "includedMileage": "300",
+    "insurance": "ОСАГО",
+    "availability": {
+      "startDate": "2025-10-01",
+      "endDate": "2030-12-30",
+      "isAvailable": true
+    }
+  },
+    {
+    "id": 20,
+    "brand": "Hyundai",
+    "model": "Grand Starex",
+    "year": 2010,
+    "engine": "2.5",
+    "transmission": "manual",
+    "fuelType": "Дизель",
+    "seats": 7,
+    "prices": {
+      "1": 4000,
+      "4": 4000,
+      "7": 4000,
+      "14": 3500,
+      "21": 3500
+    },
+    "deposit": 5000,
+    "rentalRules": {
+      "minExperience": 1,
+      "minAge": 20
+    },
+    "isPopular": false,
+    "description": "Авто ухожен, обслужен, готов к работе. Условия договорные! Пишите желаемые даты и примерный пробег! Спасибо!",
+    "features": [],
+    "images": [
+      "images/cars/020-1.jpg",
+      "images/cars/020-2.jpg",
+      "images/cars/020-3.jpg",
+      "images/cars/020-4.jpg",
+      "images/cars/020-5.jpg",
+      "images/cars/020-6.jpg",
+      "images/cars/020-7.jpg",
+      "images/cars/020-8.jpg",
+      "images/cars/020-9.jpg",
+      "images/cars/020-10.jpg",
+      "images/cars/020-11.jpg",
+      "images/cars/020-12.jpg",
+      "images/cars/020-13.jpg",
+      "images/cars/020-14.jpg",
+      "images/cars/020-15.jpg",
+      "images/cars/020-16.jpg"
+    ],
+    "owner": {
+      "name": "Александр",
+      "rating": 4.8,
+      "carsCount": 2,
+      "rentalsCount": 23
+    },
+    "location": "н/д",
+    "available": true,
+    "driveType": "Задний",
+    "mileage": "н/д",
+    "includedMileage": "н/д",
+    "insurance": "ОСАГО",
+    "availability": {
+      "startDate": "2025-10-01",
+      "endDate": "2030-12-30",
+      "isAvailable": true
+    }
+  },
+  {
+    "id": 21,
+    "brand": "Hyundai",
+    "model": "Grand Starex",
+    "year": 2010,
+    "engine": "2.5",
+    "transmission": "automatic",
+    "fuelType": "Дизель",
+    "seats": 7,
+    "prices": {
+      "1": 4000,
+      "4": 4000,
+      "7": 4000,
+      "14": 3500,
+      "21": 3500
+    },
+    "deposit": 5000,
+    "rentalRules": {
+      "minExperience": 1,
+      "minAge": 20
+    },
+    "isPopular": false,
+    "description": "Авто ухожен, обслужен, готов к работе. Условия договорные! Пишите желаемые даты и примерный пробег! Спасибо!",
+    "features": [],
+    "images": [
+      "images/cars/021-1.jpg",
+      "images/cars/021-2.jpg",
+      "images/cars/021-3.jpg",
+      "images/cars/021-4.jpg",
+      "images/cars/021-5.jpg",
+      "images/cars/021-6.jpg",
+      "images/cars/021-7.jpg",
+      "images/cars/021-8.jpg",
+      "images/cars/021-9.jpg",
+      "images/cars/021-10.jpg",
+      "images/cars/021-11.jpg"
+    ],
+    "owner": {
+      "name": "Александр",
+      "rating": 4.8,
+      "carsCount": 2,
+      "rentalsCount": 23
+    },
+    "location": "н/д",
+    "available": true,
+    "driveType": "Задний",
+    "mileage": "н/д",
+    "includedMileage": "250",
     "insurance": "ОСАГО",
     "availability": {
       "startDate": "2025-10-01",
