@@ -1058,7 +1058,6 @@
 <noscript><div><img src="https://mc.yandex.ru/watch/104698981" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 <script>
-<script>
     // Функция для обрезки отзывов
     function initTestimonials() {
         const testimonials = document.querySelectorAll('.testimonial-text');
@@ -1067,8 +1066,8 @@
             const text = testimonial.textContent;
             const words = text.split(' ');
             
-            if (words.length > 40) { // Если больше 40 слов - обрезаем
-                const shortText = words.slice(0, 40).join(' ') + '...';
+            if (words.length > 90) { // Если больше 90 слов - обрезаем
+                const shortText = words.slice(0, 90).join(' ') + '...';
                 testimonial.textContent = shortText;
                 
                 const readMore = document.createElement('span');
