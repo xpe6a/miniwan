@@ -1038,7 +1038,7 @@
       "isAvailable": true
     }
   },
-    {
+  {
     "id": 20,
     "brand": "Hyundai",
     "model": "Grand Starex",
@@ -1146,6 +1146,120 @@
     "driveType": "Задний",
     "mileage": "н/д",
     "includedMileage": "250",
+    "insurance": "ОСАГО",
+    "availability": {
+      "startDate": "2025-10-01",
+      "endDate": "2030-12-30",
+      "isAvailable": true
+    }
+  },
+  {
+    "id": 22,
+    "brand": "Volkswagen",
+    "model": "Caravelle,",
+    "year": 2008,
+    "engine": "2.5",
+    "transmission": "automatic",
+    "fuelType": "Дизель",
+    "seats": 8,
+    "prices": {
+      "1": 6000,
+      "4": 5700,
+      "7": 5400,
+      "14": 5100,
+      "21": 4800
+    },
+    "deposit": 0,
+    "rentalRules": {
+      "minExperience": 4,
+      "minAge": 23
+    },
+    "isPopular": false,
+    "description": "Каравелла 7+1 мест, передний привод. Дизель, расход дизеля 8/9 л на 100 км. Коробка автомат, климат контроль 2 зонный! В багажнике есть полка, можно сложить задний ряд и будет спальное место. Свет линзы. Машина сдается полностью помытая и с полным баком, возвращается также! Сутки 7000₽ и лимит пробега 300 км, свыше 17₽ км",
+    "features": [
+      "Кондиционер",
+      "Камера заднего вида"
+    ],
+    "images": [
+      "images/cars/022-1.jpg",
+      "images/cars/022-2.jpg",
+      "images/cars/022-3.jpg",
+      "images/cars/022-4.jpg",
+      "images/cars/022-5.jpg",
+      "images/cars/022-6.jpg",
+      "images/cars/022-7.jpg",
+      "images/cars/022-8.jpg"
+    ],
+    "owner": {
+      "name": "Азад Амиров",
+      "rating": 4.7,
+      "carsCount": 2,
+      "rentalsCount": 29
+    },
+    "location": "Москва, ул Барвихинская, д 4А, Метро Кунцевская",
+    "available": true,
+    "driveType": "Передний",
+    "includedMileage": "100",
+    "insurance": "ОСАГО",
+    "availability": {
+      "startDate": "2025-10-01",
+      "endDate": "2030-12-30",
+      "isAvailable": true
+    }
+  },
+  {
+    "id": 23,
+    "brand": "Hyundai",
+    "model": "Grand Starex,",
+    "year": 2008,
+    "engine": "2.5",
+    "transmission": "automatic",
+    "fuelType": "Дизель",
+    "seats": 8,
+    "prices": {
+      "1": 6000,
+      "4": 5700,
+      "7": 5400,
+      "14": 5100,
+      "21": 4800
+    },
+    "deposit": 0,
+    "rentalRules": {
+      "minExperience": 3,
+      "minAge": 25
+    },
+    "isPopular": false,
+    "description": "Комплектация HVX ( топ) Кожаный перфорированный салон, фары (билед)ЛИНЗЫ- свет шикарный! 2 люка, магнитола пролоджи с блютуз , камера заднего хода, usb порты для зарядок телефонов.Установлен автобокс на 580 литров . Установлен большой удобный подлокотник с множеством кармашков, подстаканников и зарядок. \r\nКЛИМАТ КОНТРОЛЬ 2 зонный!!! \r\nПросторный минивэн 7 мест + водитель. Категория В. Полностью обслужен. Могу предоставить детское кресло и бустер.\r\nВозможно доставка/забор авто в пределах МКАД 2500₽, за МКАД обсуждается. \r\nАвто сдается и возвращаетс с полным баком! Заправка только на азс Лукойл, чеки сохранять на весь период аренды. \r\nТакже делается комлпексная мойка перед каждой поездкой и возвращается также чистой или 3000₽ .\r\nДанные на водителя предоставлять заранее.\r\nПробег 300 км сутки, далее 17₽ км.\r\nРасход дизеля 10л на 100км.",
+    "features": [
+      "Кондиционер",
+      "Камера заднего вида"
+    ],
+    "images": [
+      "images/cars/023-1.jpg",
+      "images/cars/023-2.jpg",
+      "images/cars/023-3.jpg",
+      "images/cars/023-4.jpg",
+      "images/cars/023-5.jpg",
+      "images/cars/023-6.jpg",
+      "images/cars/023-7.jpg",
+      "images/cars/023-8.jpg",
+      "images/cars/023-9.jpg",
+      "images/cars/023-10.jpg",
+      "images/cars/023-11.jpg",
+      "images/cars/023-12.jpg",
+      "images/cars/023-13.jpg",
+      "images/cars/023-14.jpg"
+    ],
+    "owner": {
+      "name": "Азад Амиров",
+      "rating": 4.7,
+      "carsCount": 2,
+      "rentalsCount": 29
+    },
+    "location": "Москва, ул Барвихинская, д 4А",
+    "available": true,
+    "driveType": "Задний",
+    "includedMileage": "100",
     "insurance": "ОСАГО",
     "availability": {
       "startDate": "2025-10-01",
