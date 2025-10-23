@@ -1067,8 +1067,8 @@
             const text = testimonial.textContent;
             const words = text.split(' ');
             
-            if (words.length > 80) { // Если больше 80 слов - обрезаем
-                const shortText = words.slice(0, 80).join(' ') + '...';
+            if (words.length > 40) { // Если больше 40 слов - обрезаем
+                const shortText = words.slice(0, 40).join(' ') + '...';
                 testimonial.textContent = shortText;
                 
                 const readMore = document.createElement('span');
@@ -1104,6 +1104,7 @@
     // Инициализируем при загрузке страницы
     document.addEventListener('DOMContentLoaded', initTestimonials);
 </script>
+
 </script>
 </body>
 </html>
