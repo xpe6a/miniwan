@@ -728,16 +728,16 @@
     "brand": "Kia",
     "model": "Carnival",
     "year": 2020,
-    "engine": "2.2L Дизель",
+    "engine": "2.2",
     "transmission": "automatic",
     "fuelType": "Дизель",
     "seats": 9,
     "prices": {
-      "1": 6000,
-      "4": 5800,
-      "7": 5700,
-      "14": 5500,
-      "21": 5400
+      "1": 10000,
+      "4": 8000,
+      "7": 8000,
+      "14": 7500,
+      "21": 7000
     },
     "deposit": 0,
     "rentalRules": {
@@ -768,7 +768,7 @@
       "carsCount": 1,
       "rentalsCount": 12
     },
-    "location": "метро Молодежная",
+    "location": "Москва, метро Крылатское, ул. Осеннняя",
     "available": true,
     "driveType": "Передний",
     "mileage": "н/д",
