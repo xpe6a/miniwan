@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оплата через СБП | Miniwan Store</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #231A16;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23E8DCC5' stroke-opacity='0.12' stroke-width='1' fill='none'%3E%3Cpath d='M0,20 L100,20 M20,0 L20,100 M0,80 L100,80 M80,0 L80,100 M0,0 L100,100 M100,0 L0,100'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 100px 100px;
+            min-height: 100vh;
+            color: #F0E6D2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            background: rgba(35, 26, 22, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #E8DCC5;
+            text-decoration: none;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-link {
+            color: #D4C4A8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+        }
+
+        .nav-link:hover {
+            color: #E8DCC5;
+        }
+
+        .payment-section {
+            padding: 80px 0;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .payment-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #E8DCC5;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #D4C4A8;
+        }
+
+        .qr-container {
+            background: rgba(40, 30, 25, 0.8);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 2px solid #8B5A2B;
+            display: inline-block;
+        }
+
+        .qr-code {
+            width: 250px;
+            height: 250px;
+            background: white;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .qr-placeholder {
+            text-align: center;
+            color: #666;
+        }
+
+        .payment-info {
+            background: rgba(40, 30, 25, 0.6);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .payment-info h3 {
+            color: #E8DCC5;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .payment-details {
+            color: #D4C4A8;
+            line-height: 1.6;
+        }
+
+        .payment-details p {
+            margin-bottom: 10px;
+        }
+
+        .instructions {
+            background: rgba(40, 30, 25, 0.4);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .instructions h4 {
+            color: #E8DCC5;
+            margin-bottom: 15px;
+        }
+
+        .instructions ol {
+            color: #D4C4A8;
+            line-height: 1.6;
+            padding-left: 20px;
+            text-align: left;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #8B5A2B;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background: #A06A37;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid #8B5A2B;
+            color: #E8DCC5;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(139, 90, 43, 0.1);
+        }
+
+        footer {
+            padding: 60px 0 20px;
+            background: rgba(20, 15, 12, 0.95);
+            border-top: 1px solid #443A30;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: #E8DCC5;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #D4C4A8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #E8DCC5;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #443A30;
+            color: #D4C4A8;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .header-nav {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .qr-code {
+                width: 200px;
+                height: 200px;
+            }
+
+            .qr-container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Miniwan Store</a>
+                <nav class="header-nav">
+                    <a href="index.html" class="nav-link">Главная</a>
+                    <a href="catalog.html" class="nav-link">Каталог авто</a>
+                    <a href="terms.html" class="nav-link">Условия оплаты</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="payment-section">
+        <div class="container">
+            <div class="payment-container">
+                <h1 class="section-title">Оплата через СБП</h1>
+                <div class="section-subtitle">Отсканируйте QR-код для быстрой оплаты</div>
+                
+                <div class="qr-container">
+                    <div class="qr-code">
+                        <div class="qr-placeholder">
+                            [QR-CODE]<br>
+                            СБП Платеж<br>
+                            Miniwan Store
+                        </div>
+                    </div>
+                    <div class="payment-info">
+                        <h3>Данные для оплаты</h3>
+                        <div class="payment-details">
+                            <p><strong>Получатель:</strong> ИП Хребтов Никита Алексеевич</p>
+                            <p><strong>ИНН:</strong> 772765091062</p>
+                            <p><strong>ОГРН:</strong> 317774600453811</p>
+                            <p><strong>Банк получателя:</strong> АО «Альфа-Банк»</p>
+                            <p><strong>Расчетный счет:</strong> 40802810402640004833</p>
+                            <p><strong>БИК:</strong> 044525593</p>
+                            <p><strong>Телефон:</strong> +7 (926) 823-71-80</p>
+                            <p><strong>Email:</strong> info@miniwan.store</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="instructions">
+                    <h4>📱 Как оплатить через СБП:</h4>
+                    <ol>
+                        <li>Откройте приложение вашего банка</li>
+                        <li>Выберите раздел "СБП" или "Быстрые платежи"</li>
+                        <li>Наведите камеру на QR-код</li>
+                        <li>Проверьте данные получателя и сумму</li>
+                        <li>Подтвердите платеж</li>
+                        <li>Сохраните чек об оплате</li>
+                    </ol>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <a href="index.html" class="btn">Вернуться на главную</a>
+                    <a href="terms.html" class="btn btn-secondary">Условия оплаты</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><a href="mailto:info@miniwan.store">info@miniwan.store</a></li>
+                        <li><a href="tel:+79268237180">+7 (926) 823-71-80</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Правовая информация</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Политика конфиденциальности</a></li>
+                        <li><a href="terms.html">Условия использования</a></li>
+                        <li><a href="cookies.html">Политика cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Miniwan Store. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
