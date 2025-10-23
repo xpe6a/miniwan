@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Условия оплаты и доставки | MinivanRent</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #231A16;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23E8DCC5' stroke-opacity='0.12' stroke-width='1' fill='none'%3E%3Cpath d='M0,20 L100,20 M20,0 L20,100 M0,80 L100,80 M80,0 L80,100 M0,0 L100,100 M100,0 L0,100'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 100px 100px;
+            min-height: 100vh;
+            color: #F0E6D2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            background: rgba(35, 26, 22, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #E8DCC5;
+            text-decoration: none;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-link {
+            color: #D4C4A8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+        }
+
+        .nav-link:hover {
+            color: #E8DCC5;
+        }
+
+        .content-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #E8DCC5;
+        }
+
+        .info-card {
+            background: rgba(40, 30, 25, 0.6);
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 1px solid #8B5A2B;
+        }
+
+        .info-card h3 {
+            color: #E8DCC5;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card p {
+            color: #D4C4A8;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .info-card ul {
+            color: #D4C4A8;
+            line-height: 1.6;
+            padding-left: 20px;
+        }
+
+        .info-card li {
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            background: rgba(40, 30, 25, 0.8);
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid #8B5A2B;
+        }
+
+        .contact-info h3 {
+            color: #E8DCC5;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        .contact-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item h4 {
+            color: #E8DCC5;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .contact-item p {
+            color: #D4C4A8;
+            margin: 5px 0;
+        }
+
+        .contact-item a {
+            color: #8B5A2B;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: #A06A37;
+        }
+
+        footer {
+            padding: 60px 0 20px;
+            background: rgba(20, 15, 12, 0.95);
+            border-top: 1px solid #443A30;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: #E8DCC5;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #D4C4A8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #E8DCC5;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #443A30;
+            color: #D4C4A8;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .header-nav {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .info-card {
+                padding: 25px;
+            }
+
+            .contact-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">MinivanRent</a>
+                <nav class="header-nav">
+                    <a href="index.html" class="nav-link">Главная</a>
+                    <a href="catalog.html" class="nav-link">Каталог авто</a>
+                    <a href="terms.html" class="nav-link">Условия оплаты</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="content-section">
+        <div class="container">
+            <h1 class="section-title">Условия оплаты и доставки</h1>
+            
+            <div class="info-card">
+                <h3>📋 Процедура заказа услуги</h3>
+                <p><strong>Шаг 1:</strong> Выбор автомобиля</p>
+                <ul>
+                    <li>Просмотр доступных минивэнов в каталоге</li>
+                    <li>Выбор подходящих дат аренды</li>
+                    <li>Ознакомление с условиями аренды и требованиями</li>
+                </ul>
+                
+                <p><strong>Шаг 2:</strong> Бронирование</p>
+                <ul>
+                    <li>Заполнение формы бронирования</li>
+                    <li>Подтверждение наличия автомобиля на выбранные даты</li>
+                    <li>Согласование деталей с менеджером</li>
+                </ul>
+                
+                <p><strong>Шаг 3:</strong> Оплата</p>
+                <ul>
+                    <li>Оплата аренды через защищенный платежный шлюз</li>
+                    <li>Прием платежей осуществляется банковскими картами Visa, Mastercard, Мир</li>
+                    <li>Сумма залога блокируется на карте до возврата автомобиля</li>
+                </ul>
+                
+                <p><strong>Шаг 4:</strong> Получение автомобиля</p>
+                <ul>
+                    <li>Подписание договора аренды</li>
+                    <li>Передача автомобиля в согласованном месте</li>
+                    <li>Составление акта приема-передачи</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>🚗 Условия доставки услуги</h3>
+                <p><strong>Сроки предоставления услуги:</strong></p>
+                <ul>
+                    <li>Автомобиль предоставляется в даты, указанные в договоре аренды</li>
+                    <li>Минимальный срок аренды - 1 сутки</li>
+                    <li>Максимальный срок аренды - 30 суток (с возможностью продления)</li>
+                </ul>
+                
+                <p><strong>Способы получения автомобиля:</strong></p>
+                <ul>
+                    <li><strong>Самовывоз:</strong> г. Москва, согласованная локация</li>
+                    <li><strong>Доставка:</strong> по Москве в пределах МКАД - бесплатно</li>
+                    <li><strong>Доставка за МКАД:</strong> рассчитывается индивидуально</li>
+                </ul>
+                
+                <p><strong>Время передачи автомобиля:</strong></p>
+                <ul>
+                    <li>С 08:00 до 22:00 ежедневно</li>
+                    <li>Круглосуточная передача возможна за дополнительную плату</li>
+                    <li>Задержка получения более чем на 2 часа без уведомления - отмена брони</li>
+                </ul>
+                
+                <p><strong>Необходимые документы:</strong></p>
+                <ul>
+                    <li>Паспорт РФ</li>
+                    <li>Водительское удостоверение (стаж не менее 2 лет)</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>🔄 Условия возврата и отмены</h3>
+                <p><strong>Возврат денежных средств:</strong></p>
+                <ul>
+                    <li><strong>Отмена за 7+ дней до начала аренды:</strong> полный возврат</li>
+                    <li><strong>Отмена за 3-7 дней до начала аренды:</strong> возврат 50% от суммы</li>
+                    <li><strong>Отмена менее чем за 3 дня:</strong> возврат не производится</li>
+                    <li><strong>Досрочное прекращение аренды:</strong> перерасчет не производится</li>
+                </ul>
+                
+                <p><strong>Возврат залога:</strong></p>
+                <ul>
+                    <li>Залог возвращается в течение 7 рабочих дней после возврата автомобиля</li>
+                    <li>Возврат осуществляется на ту же карту, с которой производилась оплата</li>
+                    <li>При наличии повреждений или штрафов сумма ремонта удерживается из залога</li>
+                </ul>
+                
+                <p><strong>Обмен и взаимозаменяемые товары:</strong></p>
+                <ul>
+                    <li>При невозможности предоставить забронированный автомобиль предлагается аналог</li>
+                    <li>В случае отказа от аналога производится полный возврат средств</li>
+                    <li>Качество услуги соответствует описанию на сайте</li>
+                </ul>
+                
+                <p><strong>Основания для отказа в возврате:</strong></p>
+                <ul>
+                    <li>Нарушение правил эксплуатации автомобиля</li>
+                    <li>Возврат автомобиля в ненадлежащем состоянии</li>
+                    <li>Превышение пробега сверх установленного лимита</li>
+                </ul>
+            </div>
+
+            <div class="contact-info">
+                <h3>📞 Контактная информация</h3>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <h4>Организация</h4>
+                        <p> ИП Хребтов Н.А.</p>
+                        <p>ИНН: 772765091062</p>
+                        <p>ОГРНИП: 317774600453811 </p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Адрес</h4>
+                        <p>Российская Федерация</p>
+                        <p>123456, г. Москва</p>
+                        <p>ул. Примерная, д. 1, офис 101</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Контакты</h4>
+                        <p>Телефон: <a href="tel:+79268237180">+7 (926) 823-71-80</a></p>
+                        <p>Email: <a href="mailto: info@miniwan.store">info@miniwan.store</a></p>
+                        <p>Режим работы: 09:00 - 21:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><a href="mailto:info@miniwan.store">info@miniwan.store </a></li>
+                        <li><a href="tel:+79268237180">+7 (926) 823-71-80</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Правовая информация</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Политика конфиденциальности</a></li>
+                        <li><a href="terms.html">Условия использования</a></li>
+                        <li><a href="cookies.html">Политика cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MinivanRent. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
