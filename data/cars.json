@@ -51,7 +51,7 @@
     "includedMileage": "н/д",
     "insurance": "н/д",
     "availability": {
-      "startDate": "2025-10-01",
+      "startDate": "2026-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -104,7 +104,7 @@
     "includedMileage": "н/д",
     "insurance": "н/д",
     "availability": {
-      "startDate": "2025-10-01",
+      "startDate": "2026-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -161,7 +161,7 @@
     "includedMileage": "н/д",
     "insurance": "н/д",
     "availability": {
-      "startDate": "2025-10-01",
+      "startDate": "2026-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -218,7 +218,7 @@
     "includedMileage": "н/д",
     "insurance": "н/д",
     "availability": {
-      "startDate": "2025-10-01",
+      "startDate": "2026-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -264,7 +264,7 @@
     "owner": {
       "name": "Анна",
       "rating": 4.8,
-      "carsCount": 2,
+      "carsCount": 1,
       "rentalsCount": 41
     },
     "location": "Москва, САО",
@@ -274,7 +274,7 @@
     "includedMileage": "н/д",
     "insurance": "н/д",
     "availability": {
-      "startDate": "2025-10-01",
+      "startDate": "2026-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -331,7 +331,7 @@
     "includedMileage": "н/д",
     "insurance": "н/д",
     "availability": {
-      "startDate": "2025-10-01",
+      "startDate": "2026-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -377,8 +377,8 @@
     "owner": {
       "name": "Сергей",
       "rating": 4.5,
-      "carsCount": 8,
-      "rentalsCount": 156
+      "carsCount": 1,
+      "rentalsCount": 16
     },
     "location": "Москва, ВАО",
     "available": true,
@@ -387,7 +387,7 @@
     "includedMileage": "н/д",
     "insurance": "н/д",
     "availability": {
-      "startDate": "2025-10-01",
+      "startDate": "2026-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
@@ -434,7 +434,7 @@
     "owner": {
       "name": "Павел",
       "rating": 4.7,
-      "carsCount": 3,
+      "carsCount": 1,
       "rentalsCount": 29
     },
     "location": "Москва, СЗАО",
@@ -444,7 +444,7 @@
     "includedMileage": "250",
     "insurance": "КАСКО",
     "availability": {
-      "startDate": "2025-10-01",
+      "startDate": "2026-10-01",
       "endDate": "2030-12-30",
       "isAvailable": true
     }
