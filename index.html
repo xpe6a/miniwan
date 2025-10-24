@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -995,11 +995,12 @@
                     <ul>
                         <li><a href="privacy-policy.html">Политика конфиденциальности</a></li>
                         <li><a href="cookies.html">Политика cookies</a></li>
+                        <li><a href="terms.html">Условия оплаты</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Miniwan Store. Все права защищены.</p>
+                <p>&copy; 2025 Miniwan Store. Все права защищены.</p>
             </div>
         </div>
     </footer>
@@ -1043,8 +1044,8 @@
             const text = testimonial.textContent;
             const words = text.split(' ');
             
-            if (words.length > 90) { // Если больше 90 слов - обрезаем
-                const shortText = words.slice(0, 90).join(' ') + '...';
+            if (words.length > 90) { // Если больше 80 слов - обрезаем
+                const shortText = words.slice(0, 80).join(' ') + '...';
                 testimonial.textContent = shortText;
                 
                 const readMore = document.createElement('span');
